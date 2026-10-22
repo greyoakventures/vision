@@ -27,22 +27,26 @@
    "OSRM public demo server has no uptime promise. The quote falls back to an estimate if it is down."
   ]
  },
- "lastUpdated": "2026-10-22T17:30:00-04:00",
- "lastUpdatedLabel": "Oct 22, 2026, 5:30 PM ET",
+ "lastUpdated": "2026-10-22T17:11-04:00",
+ "lastUpdatedLabel": "Oct 22, 2026, 5:11 PM ET",
  "projects": [
   {
    "id": "michigan-salt",
    "name": "Michigan Salt",
    "domain": "michigansalt.com",
    "filled": true,
-   "summary": "Truckload ice melt site: quote, request, invoice, ship."
+   "summary": "Truckload ice melt site: quote, request, invoice, ship.",
+   "updated": "2026-10-22T09:45-04:00",
+   "updatedLabel": "Oct 22, 2026, 9:45 AM ET"
   },
   {
    "id": "grey-oak",
    "name": "Grey Oak Ventures",
    "domain": "greyoakventures.com",
    "filled": true,
-   "summary": "AI Walkthrough offer: site, request form, auto-reply, booking."
+   "summary": "AI Walkthrough offer: site, request form, auto-reply, booking.",
+   "updated": "2026-10-22T17:11-04:00",
+   "updatedLabel": "Oct 22, 2026, 5:11 PM ET"
   },
   {
    "id": "augusta",

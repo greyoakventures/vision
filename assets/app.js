@@ -51,7 +51,7 @@ function render(){
  const ch=D.changes.filter(x=>x.project===p).sort((a,b)=>(b.date||'0').localeCompare(a.date||'0'));
  const flow=(D.flows[p]||[]);
  const bots=D.bots.filter(b=>b.touches.some(t=>cs.find(c=>c.id===t))||(b.projects||[]).includes(p));
- let h=`<div class="slim"><span class="money">${fmt(total)}<small>/mo known</small></span><span class="when">Updated ${esc(D.lastUpdatedLabel)}</span></div>`;
+ let h=`<div class="slim"><span class="money">${fmt(total)}<small>/mo known</small></span><span class="when">Updated ${esc(proj.updatedLabel||D.lastUpdatedLabel)}</span></div>`;
  const main=D.layers.filter(L=>L.flow!==false&&cs.some(c=>c.layer===L.id));
  const side=D.layers.filter(L=>L.flow===false&&cs.some(c=>c.layer===L.id));
  const LN=(D.layerNames||{})[p]||{};const band=L=>`<div class="band"><div class="bl">${svg(L.icon)}<span>${esc(LN[L.id]||L.name)}</span></div><div class="tiles">${cs.filter(c=>c.layer===L.id).map(tile).join('')}</div></div>`;

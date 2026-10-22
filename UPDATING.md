@@ -41,3 +41,4 @@ Everything on the page is drawn from **`data/stack.json`**. A daily refresh only
 - Site is noindex + robots.txt disallow. Keep it that way.
 - `greyoakventures.github.io` is Vision itself (this site). Never list it as part of Grey Oak or any other project; it stays `projects: ["shared"]` (component `vision-pages`).
 - `greyoakventures@gmail.com` is the account used only for website and service signups (Render, GoatCounter, Porkbun, etc.). Describe it that way when it appears as an account owner.
+- Per-project time: `projects[].updated` (ISO, America/Detroit offset) and `updatedLabel`, shown in that tab's header. Set by `python3 build_stack.py <project-id> ...` right before committing (uses the box clock, already Eastern; never convert from UTC). `lastUpdated` = newest project time.
