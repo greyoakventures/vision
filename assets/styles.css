@@ -100,3 +100,4 @@ details.acc .car{margin-left:auto;color:var(--mute);transition:transform .2s}det
 @media(max-width:600px){.band{grid-template-columns:1fr;gap:8px}.side{grid-template-columns:1fr}.tile{font-size:13px}}
 .arrow{color:#5eead4;opacity:.55;padding:4px 0;display:flex;justify-content:center}
 .sh{max-width:560px}
+.tile.paused{opacity:.6;border-style:dashed}

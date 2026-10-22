@@ -50,17 +50,17 @@ function render(){
  const unc=cs.filter(c=>!c.confirmed);
  const ch=D.changes.filter(x=>x.project===p).sort((a,b)=>(b.date||'0').localeCompare(a.date||'0'));
  const flow=(D.flows[p]||[]);
- const bots=D.bots.filter(b=>b.touches.some(t=>cs.find(c=>c.id===t)));
+ const bots=D.bots.filter(b=>b.touches.some(t=>cs.find(c=>c.id===t))||(b.projects||[]).includes(p));
  let h=`<div class="slim"><span class="money">${fmt(total)}<small>/mo known</small></span><span class="when">Updated ${esc(D.lastUpdatedLabel)}</span></div>`;
  const main=D.layers.filter(L=>L.flow!==false&&cs.some(c=>c.layer===L.id));
  const side=D.layers.filter(L=>L.flow===false&&cs.some(c=>c.layer===L.id));
- const band=L=>`<div class="band"><div class="bl">${svg(L.icon)}<span>${esc(L.name)}</span></div><div class="tiles">${cs.filter(c=>c.layer===L.id).map(tile).join('')}</div></div>`;
+ const LN=(D.layerNames||{})[p]||{};const band=L=>`<div class="band"><div class="bl">${svg(L.icon)}<span>${esc(LN[L.id]||L.name)}</span></div><div class="tiles">${cs.filter(c=>c.layer===L.id).map(tile).join('')}</div></div>`;
  h+=`<div class="hero">${main.map(band).join('<div class="arrow"><svg viewBox="0 0 12 18" width="12" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 1v15M1.5 11.5 6 16l4.5-4.5"/></svg></div>')}${side.length?`<div class="side">${side.map(band).join('')}</div>`:''}</div>`;
  h+=`<div class="botrow">${bots.map(b=>`<button class="bt" data-bot="${b.id}"><span class="av">${esc(initials(b.name))}</span>${esc(b.name)}</button>`).join('')}</div>`;
  const acc=(id,title,count,body)=>`<details class="acc" data-acc="${id}"><summary>${esc(title)}${count!=null?`<span class="cnt">${count}</span>`:''}<span class="car">›</span></summary><div class="accb">${body}</div></details>`;
  h+=`<div class="accs">`;
  h+=acc('changes','Recent changes',ch.length,`<ul class="list">${ch.map(x=>`<li><span class="d">${x.date?esc(x.date):'date ?'}</span>${esc(x.text)}</li>`).join('')}</ul>`);
- h+=acc('flow','Order flow',flow.length?flow.length+' steps':null,`<ol class="steps">${flow.map(s=>`<li>${svg(s.icon)}<div><b>${esc(s.title)}</b><p>${esc(s.detail)}</p></div></li>`).join('')}</ol>`);
+ h+=acc('flow',(D.flowTitles||{})[p]||'Order flow',flow.length?flow.length+' steps':null,`<ol class="steps">${flow.map(s=>`<li>${svg(s.icon)}<div><b>${esc(s.title)}</b><p>${esc(s.detail)}</p></div></li>`).join('')}</ol>`);
  h+=acc('chart','Flowchart',null,`<div class="mer"><pre class="mermaid" id="mer"></pre></div>`);
  const groups={};cs.filter(c=>c.overlapGroup).forEach(c=>(groups[c.overlapGroup]=groups[c.overlapGroup]||[]).push(c));
  const GN={invoicing:'Invoices & payments',email:'Email'};
@@ -74,8 +74,8 @@ function render(){
 function initials(n){return n.split(/\s|\./).filter(Boolean).map(w=>w[0]).join('').slice(0,2);}
 function tile(c){
  const m=c.cost;let tag='';
- if(m.kind==='unknown')tag='<span class="tag unk">?</span>';else if(m.monthly>0)tag=`<span class="tag">${fmt(m.monthly)}</span>`;
- return `<button class="tile" data-id="${c.id}">${logo(c)}<span class="tn">${esc(c.short)}</span>${tag}${c.confirmed?'':'<i class="dot" title="unconfirmed"></i>'}</button>`;
+ if(c.status==='paused')tag='<span class="tag unk">paused</span>';else if(m.kind==='unknown')tag='<span class="tag unk">?</span>';else if(m.monthly>0)tag=`<span class="tag">${fmt(m.monthly)}</span>`;
+ return `<button class="tile${c.status==='paused'?' paused':''}" data-id="${c.id}">${logo(c)}<span class="tn">${esc(c.short)}</span>${tag}${c.confirmed?'':'<i class="dot" title="unconfirmed"></i>'}</button>`;
 }
 window.visionBot=function(id){
  const b=D.bots.find(x=>x.id===id);const cs=comps(cur).filter(c=>b.touches.includes(c.id));
@@ -107,7 +107,7 @@ window.visionOpen=function(id){
  if(c.lives.dashboard)links.push(/^https?:/.test(c.lives.dashboard)?`<a href="${esc(c.lives.dashboard)}" target="_blank" rel="noopener">Dashboard</a>`:esc(c.lives.dashboard));
  document.getElementById('sh').innerHTML=`<div class="row">${logo(c)}<h3>${esc(c.name)}</h3><button class="x" onclick="visionClose()">✕</button></div>
  <div class="badges" style="margin-top:8px">${costBadge(c,false)}${c.confirmed?'<span class="b" style="color:#34d399">confirmed</span>':'<span class="b unc">unconfirmed</span>'}${c.overlapGroup?'<span class="b ovl">overlap: '+esc(c.overlapGroup)+'</span>':''}</div>
- <dl><dt>What it is</dt><dd>${esc(c.notes)}</dd><dt>Layer</dt><dd>${esc(L?L.name:c.layer)}</dd><dt>Where it lives</dt><dd>${links.join('<br>')||'—'}</dd><dt>Owner</dt><dd>${esc(c.owner.person||'—')}</dd><dt>Bots</dt><dd>${esc([...new Set([...(c.owner.bots||[]),...bots])].join(', ')||'—')}</dd><dt>Monthly cost</dt><dd>${c.cost.monthly!=null&&c.cost.kind!=='unknown'?fmt(c.cost.monthly)+' · ':''}${esc(c.cost.basis)}</dd><dt>Last verified</dt><dd>${esc(c.lastVerified)}</dd></dl>`;
+ <dl><dt>What it is</dt><dd>${esc((c.notesByProject||{})[cur]||c.notes)}</dd><dt>Layer</dt><dd>${esc((((D.layerNames||{})[cur]||{})[c.layer])||(L?L.name:c.layer))}</dd><dt>Where it lives</dt><dd>${links.join('<br>')||'—'}</dd><dt>Owner</dt><dd>${esc(c.owner.person||'—')}</dd><dt>Bots</dt><dd>${esc([...new Set([...(c.owner.bots||[]),...bots])].join(', ')||'—')}</dd><dt>Monthly cost</dt><dd>${c.cost.monthly!=null&&c.cost.kind!=='unknown'?fmt(c.cost.monthly)+' · ':''}${esc(c.cost.basis)}</dd><dt>Last verified</dt><dd>${esc(c.lastVerified)}</dd></dl>`;
  document.getElementById('sheet').classList.add('on');
 };
 window.visionClose=()=>document.getElementById('sheet').classList.remove('on');

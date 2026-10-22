@@ -1,6 +1,25 @@
 {
  "schemaVersion": 1,
+ "flowTitles": {
+  "michigan-salt": "Order flow",
+  "grey-oak": "Walkthrough request flow"
+ },
+ "layerNames": {
+  "grey-oak": {
+   "email": "Email & calendar",
+   "apis": "Forms",
+   "money": "Money"
+  }
+ },
  "watch": {
+  "grey-oak": [
+   "Business data on the signup-only account: the Prospect Tracker, Blueprint sheets, and brand files sit on the greyoakventures@gmail.com Drive. Move them to nick@greyoakventures.com as proposed.",
+   "The live greyoakventures.com is served from a branch of the Michigan Salt repo, by a Render service named 'sandbox'. A push to the wrong branch could change the wrong site. Consider giving it its own repo and service.",
+   "Private pages rely only on noindex. robots.txt allows everything, so anyone with the link can open them.",
+   "Two CRM sheets: the Prospect Tracker and an older Side Hustle CRM. Retire the old one if unused.",
+   "DMARC is p=none (monitor only), so others could spoof the domain. Tighten once mail is stable.",
+   "The auto-reply routine has no confirmed owner bot."
+  ],
   "michigan-salt": [
    "Sandbox server (michigansalt-sandbox) is a paid $7/mo starter service last changed Sep 22. Suspend it or move it to free if it is idle.",
    "Ops server: render.yaml says free plan + 1 GB disk, but the live service is starter with no disk showing. Check that orders survive a redeploy.",
@@ -8,8 +27,8 @@
    "OSRM public demo server has no uptime promise. The quote falls back to an estimate if it is down."
   ]
  },
- "lastUpdated": "2026-10-22T09:55:00-04:00",
- "lastUpdatedLabel": "Oct 22, 2026, 9:55 AM ET",
+ "lastUpdated": "2026-10-22T17:30:00-04:00",
+ "lastUpdatedLabel": "Oct 22, 2026, 5:30 PM ET",
  "projects": [
   {
    "id": "michigan-salt",
@@ -22,8 +41,8 @@
    "id": "grey-oak",
    "name": "Grey Oak Ventures",
    "domain": "greyoakventures.com",
-   "filled": false,
-   "summary": "Coming next."
+   "filled": true,
+   "summary": "AI Walkthrough offer: site, request form, auto-reply, booking."
   },
   {
    "id": "augusta",
@@ -247,7 +266,10 @@
    "notes": "The Render account that runs the three Michigan Salt services (site, sandbox, ops board).",
    "lastVerified": "2026-10-22",
    "connects": [],
-   "overlapGroup": null
+   "overlapGroup": null,
+   "notesByProject": {
+    "grey-oak": "The Render account that runs the Grey Oak site and the daily brief site."
+   }
   },
   {
    "id": "render-michigansalt",
@@ -363,7 +385,7 @@
    ],
    "layer": "hosting",
    "name": "Render static site: greyoak-site-sandbox",
-   "short": "Grey Oak site (same repo)",
+   "short": "Render \u00b7 site",
    "logo": "render",
    "color": "#46E3B7",
    "status": "live",
@@ -385,9 +407,13 @@
    },
    "links": [],
    "confirmed": true,
-   "notes": "greyoakventures.com is served from a branch of the Michigan Salt repo, so one repo feeds two businesses. www.greyoakventures.com CNAME points to greyoak-site-sandbox.onrender.com (checked by DNS lookup).",
+   "notes": "Serves greyoakventures.com and www. Free static site that auto-deploys from the greyoak-site-sandbox branch. The service is still named 'sandbox' even though it serves the live domain. Last deploy Oct 14.",
    "lastVerified": "2026-10-22",
-   "connects": [],
+   "connects": [
+    "go-site-pages",
+    "go-walkthrough-page",
+    "go-blueprint-page"
+   ],
    "overlapGroup": null
   },
   {
@@ -1097,6 +1123,616 @@
    "lastVerified": "2026-10-22",
    "connects": [],
    "overlapGroup": null
+  },
+  {
+   "id": "go-domain",
+   "projects": [
+    "grey-oak"
+   ],
+   "layer": "edge",
+   "name": "greyoakventures.com",
+   "short": "Porkbun DNS",
+   "logo": "porkbun",
+   "color": "#EF7878",
+   "status": "live",
+   "cost": {
+    "monthly": 0.92,
+    "basis": "Porkbun public .com renewal list price $11.08/yr (Porkbun pricing API). Actual invoice not checked.",
+    "kind": "list-price"
+   },
+   "owner": {
+    "bots": [
+     "Flynn"
+    ],
+    "person": "Nick"
+   },
+   "lives": {
+    "url": "https://greyoakventures.com",
+    "dashboard": "https://porkbun.com/account/domainsSpeedy"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "Registered and DNS at Porkbun (nameservers *.ns.porkbun.com). Apex A records point to Render; www CNAME greyoak-site-sandbox.onrender.com. MX smtp.google.com, SPF for Google, Google DKIM key, DMARC set to p=none (monitor only). All checked by DNS lookup.",
+   "lastVerified": "2026-10-22",
+   "connects": [
+    "go-cdn"
+   ],
+   "overlapGroup": null
+  },
+  {
+   "id": "go-cdn",
+   "projects": [
+    "grey-oak"
+   ],
+   "layer": "edge",
+   "name": "Render edge / CDN (Cloudflare)",
+   "short": "Cloudflare CDN",
+   "logo": "cloudflare",
+   "color": "#F38020",
+   "status": "live",
+   "cost": {
+    "monthly": 0,
+    "basis": "Included with Render.",
+    "kind": "included"
+   },
+   "owner": {
+    "bots": [],
+    "person": "Render (vendor)"
+   },
+   "lives": {},
+   "links": [],
+   "confirmed": true,
+   "notes": "Live headers show server: cloudflare in front of the Render static site. This is Render's built-in CDN and TLS.",
+   "lastVerified": "2026-10-22",
+   "connects": [
+    "render-greyoak-site"
+   ],
+   "overlapGroup": null
+  },
+  {
+   "id": "go-site-pages",
+   "projects": [
+    "grey-oak"
+   ],
+   "layer": "frontend",
+   "name": "Static HTML / CSS / JS (home page)",
+   "short": "Home page",
+   "logo": "html5",
+   "color": "#E34F26",
+   "status": "live",
+   "cost": {
+    "monthly": 0,
+    "basis": "Plain files on the free static site.",
+    "kind": "free"
+   },
+   "owner": {
+    "bots": [
+     "Flynn",
+     "Edna",
+     "J. Jonah Jameson"
+    ],
+    "person": "Nick"
+   },
+   "lives": {
+    "repo": "michigansalt (greyoak-site-sandbox branch)",
+    "url": "https://greyoakventures.com"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "One-page site: stacked logo, email signup form, footer. No framework, no build step. Edna design, J3 copy.",
+   "lastVerified": "2026-10-22",
+   "connects": [
+    "formsubmit",
+    "go-goatcounter"
+   ],
+   "overlapGroup": null
+  },
+  {
+   "id": "go-walkthrough-page",
+   "projects": [
+    "grey-oak"
+   ],
+   "layer": "frontend",
+   "name": "Private Walkthrough page",
+   "short": "Walkthrough page",
+   "logo": "",
+   "color": "#6B7280",
+   "status": "live",
+   "cost": {
+    "monthly": 0,
+    "basis": "Part of the static site.",
+    "kind": "free"
+   },
+   "owner": {
+    "bots": [
+     "Flynn",
+     "Edna",
+     "J. Jonah Jameson"
+    ],
+    "person": "Nick"
+   },
+   "lives": {
+    "repo": "michigansalt (greyoak-site-sandbox branch)"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "Unlisted, noindex page for The One-Day Walkthrough offer, with a request form. A short /walkthrough URL redirects to it (added Oct 14). Not linked from the home page.",
+   "lastVerified": "2026-10-22",
+   "connects": [
+    "formsubmit",
+    "go-goatcounter"
+   ],
+   "overlapGroup": null
+  },
+  {
+   "id": "go-blueprint-page",
+   "projects": [
+    "grey-oak"
+   ],
+   "layer": "frontend",
+   "name": "Private Blueprint page (One-Day AI Blueprint)",
+   "short": "Blueprint page",
+   "logo": "",
+   "color": "#6B7280",
+   "status": "paused",
+   "cost": {
+    "monthly": 0,
+    "basis": "Part of the static site.",
+    "kind": "free"
+   },
+   "owner": {
+    "bots": [
+     "Flynn"
+    ],
+    "person": "Nick"
+   },
+   "lives": {
+    "repo": "michigansalt (greyoak-site-sandbox branch)"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "Unlisted, noindex invite-request page for the One-Day AI Blueprint event, with an invitation code field. The event is on hold.",
+   "lastVerified": "2026-10-22",
+   "connects": [
+    "formsubmit"
+   ],
+   "overlapGroup": null
+  },
+  {
+   "id": "formsubmit",
+   "projects": [
+    "grey-oak"
+   ],
+   "layer": "apis",
+   "name": "FormSubmit",
+   "short": "FormSubmit",
+   "logo": "",
+   "color": "#6B7280",
+   "status": "live",
+   "cost": {
+    "monthly": 0,
+    "basis": "FormSubmit is a free service (formsubmit.co: 'Setup is easy and free').",
+    "kind": "free"
+   },
+   "owner": {
+    "bots": [
+     "Flynn"
+    ],
+    "person": "Nick"
+   },
+   "lives": {
+    "url": "https://formsubmit.co"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "Receives all three forms (home signup, Walkthrough request, Blueprint invite) and emails each one to Nick as a table. The target address is hidden in the form code. Spam trap field, no captcha.",
+   "lastVerified": "2026-10-22",
+   "connects": [
+    "go-gmail"
+   ],
+   "overlapGroup": null
+  },
+  {
+   "id": "go-workspace",
+   "projects": [
+    "grey-oak"
+   ],
+   "layer": "email",
+   "name": "Google Workspace (greyoakventures.com)",
+   "short": "Google Workspace",
+   "logo": "google",
+   "color": "#4285F4",
+   "status": "live",
+   "cost": {
+    "monthly": null,
+    "basis": "Workspace plan not checked. Google lists booking pages for Business Standard and up ($14/user/mo list), so the plan is probably Standard or higher (unconfirmed).",
+    "kind": "unknown"
+   },
+   "owner": {
+    "bots": [],
+    "person": "Nick"
+   },
+   "lives": {
+    "url": "https://admin.google.com"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "Workspace account for the domain, confirmed by MX, SPF, and DKIM records. nick@greyoakventures.com is the primary email and calendar.",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": "google"
+  },
+  {
+   "id": "go-gmail",
+   "projects": [
+    "grey-oak"
+   ],
+   "layer": "email",
+   "name": "Gmail: nick@greyoakventures.com",
+   "short": "Gmail",
+   "logo": "gmail",
+   "color": "#EA4335",
+   "status": "live",
+   "cost": {
+    "monthly": 0,
+    "basis": "Part of Google Workspace.",
+    "kind": "included"
+   },
+   "owner": {
+    "bots": [],
+    "person": "Nick"
+   },
+   "lives": {
+    "url": "https://mail.google.com"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "Primary Grey Oak inbox. FormSubmit delivers 'New Walkthrough request' emails here. Labels in use: 'Walkthrough auto-replied' and 'Walkthrough Nick alerted'.",
+   "lastVerified": "2026-10-22",
+   "connects": [
+    "go-autoreply"
+   ],
+   "overlapGroup": null
+  },
+  {
+   "id": "go-autoreply",
+   "projects": [
+    "grey-oak"
+   ],
+   "layer": "email",
+   "name": "Walkthrough auto-reply routine",
+   "short": "Auto-reply",
+   "logo": "",
+   "color": "#6B7280",
+   "status": "live",
+   "cost": {
+    "monthly": 0,
+    "basis": "No separate paid tool found. The funnel plan describes it as a Grok Bot routine (unconfirmed).",
+    "kind": "included"
+   },
+   "owner": {
+    "bots": [],
+    "person": "Nick"
+   },
+   "lives": {},
+   "links": [],
+   "confirmed": true,
+   "notes": "When a 'New Walkthrough request' email lands, an automated reply ('Your Walkthrough request') goes out from nick@greyoakventures.com and the thread is labeled. Tested Oct 16. Which bot runs it, and the routine's code, are unconfirmed. A 5-step follow-up email series is drafted but not launched.",
+   "lastVerified": "2026-10-22",
+   "connects": [
+    "go-calendar"
+   ],
+   "overlapGroup": null
+  },
+  {
+   "id": "go-calendar",
+   "projects": [
+    "grey-oak"
+   ],
+   "layer": "email",
+   "name": "Google Calendar appointment schedule",
+   "short": "Booking calendar",
+   "logo": "googlecalendar",
+   "color": "#4285F4",
+   "status": "live",
+   "cost": {
+    "monthly": 0,
+    "basis": "Part of Google Workspace.",
+    "kind": "included"
+   },
+   "owner": {
+    "bots": [
+     "Leslie"
+    ],
+    "person": "Nick"
+   },
+   "lives": {
+    "url": "https://calendar.google.com"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "'Grey Oak Ventures: Walkthrough Call' booking page. Bookings land on the Grey Oak calendar (first one booked Oct 16). Leslie owns Nick's calendars.",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": null
+  },
+  {
+   "id": "go-drive",
+   "projects": [
+    "grey-oak"
+   ],
+   "layer": "data",
+   "name": "Google Drive (greyoakventures@gmail.com)",
+   "short": "Drive (signup acct)",
+   "logo": "googledrive",
+   "color": "#1FA463",
+   "status": "live",
+   "cost": {
+    "monthly": null,
+    "basis": "Storage plan on the signup account not checked.",
+    "kind": "unknown"
+   },
+   "owner": {
+    "bots": [],
+    "person": "Nick"
+   },
+   "lives": {
+    "url": "https://drive.google.com"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "The Grey Oak sheets and brand files sit on the greyoakventures@gmail.com Drive. That account is meant only for website and service signups. Moving them to nick@greyoakventures.com was proposed, not done.",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": "google"
+  },
+  {
+   "id": "go-prospects",
+   "projects": [
+    "grey-oak"
+   ],
+   "layer": "data",
+   "name": "Google Sheet: Prospect Tracker (PRIVATE)",
+   "short": "Prospect Tracker",
+   "logo": "googlesheets",
+   "color": "#34A853",
+   "status": "live",
+   "cost": {
+    "monthly": 0,
+    "basis": "Part of Google Drive.",
+    "kind": "included"
+   },
+   "owner": {
+    "bots": [],
+    "person": "Nick"
+   },
+   "lives": {},
+   "links": [],
+   "confirmed": true,
+   "notes": "Private prospect list for outreach. Last edited Oct 22. No real CRM yet; this sheet is the list.",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": "crm"
+  },
+  {
+   "id": "go-oldcrm",
+   "projects": [
+    "grey-oak"
+   ],
+   "layer": "data",
+   "name": "Google Sheet: Side Hustle CRM",
+   "short": "Old CRM sheet",
+   "logo": "googlesheets",
+   "color": "#34A853",
+   "status": "old",
+   "cost": {
+    "monthly": 0,
+    "basis": "Part of Google Drive.",
+    "kind": "included"
+   },
+   "owner": {
+    "bots": [],
+    "person": "Nick"
+   },
+   "lives": {},
+   "links": [],
+   "confirmed": false,
+   "notes": "Older CRM sheet (last edited Jul 30). Whether it is still used is unconfirmed. It overlaps with the Prospect Tracker.",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": "crm"
+  },
+  {
+   "id": "go-blueprint-sheets",
+   "projects": [
+    "grey-oak"
+   ],
+   "layer": "data",
+   "name": "Blueprint sheets (venues, P&L, invite codes)",
+   "short": "Blueprint sheets",
+   "logo": "googlesheets",
+   "color": "#34A853",
+   "status": "paused",
+   "cost": {
+    "monthly": 0,
+    "basis": "Part of Google Drive.",
+    "kind": "included"
+   },
+   "owner": {
+    "bots": [],
+    "person": "Nick"
+   },
+   "lives": {},
+   "links": [],
+   "confirmed": true,
+   "notes": "Venue Tracker, P&L Model, and QR / invite-code sheets for the One-Day AI Blueprint. Event on hold.",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": null
+  },
+  {
+   "id": "go-stripe",
+   "projects": [
+    "grey-oak"
+   ],
+   "layer": "money",
+   "name": "Stripe payment link (Blueprint)",
+   "short": "Stripe (planned)",
+   "logo": "stripe",
+   "color": "#635BFF",
+   "status": "paused",
+   "cost": {
+    "monthly": 0,
+    "basis": "Nothing set up yet.",
+    "kind": "free"
+   },
+   "owner": {
+    "bots": [],
+    "person": "Nick"
+   },
+   "lives": {},
+   "links": [],
+   "confirmed": true,
+   "notes": "Planned for Blueprint tickets. Not created, price not set. No money flows through Grey Oak yet.",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": null
+  },
+  {
+   "id": "go-goatcounter",
+   "projects": [
+    "grey-oak"
+   ],
+   "layer": "analytics",
+   "name": "GoatCounter (greyoak)",
+   "short": "GoatCounter",
+   "logo": "",
+   "color": "#6B7280",
+   "status": "live",
+   "cost": {
+    "monthly": 0,
+    "basis": "Free plan per the Oct 3 tech doc.",
+    "kind": "free"
+   },
+   "owner": {
+    "bots": [
+     "Flynn"
+    ],
+    "person": "Nick"
+   },
+   "lives": {
+    "dashboard": "https://greyoak.goatcounter.com"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "Page counts on the home, Walkthrough, and Blueprint pages (added Oct 11).",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": null
+  },
+  {
+   "id": "go-gh-site",
+   "projects": [
+    "grey-oak"
+   ],
+   "layer": "code",
+   "name": "GitHub: michigansalt repo, greyoak-site-sandbox branch",
+   "short": "GitHub \u00b7 site branch",
+   "logo": "github",
+   "color": "#353b44",
+   "status": "live",
+   "cost": {
+    "monthly": 0,
+    "basis": "GitHub Free plan.",
+    "kind": "free"
+   },
+   "owner": {
+    "bots": [
+     "Flynn"
+    ],
+    "person": "Nick"
+   },
+   "lives": {
+    "repo": "https://github.com/greyoakventures/michigansalt/tree/greyoak-site-sandbox"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "The Grey Oak site lives on a branch of the Michigan Salt repo. Every push to that branch auto-deploys greyoakventures.com. Last change Oct 14.",
+   "lastVerified": "2026-10-22",
+   "connects": [
+    "render-greyoak-site"
+   ],
+   "overlapGroup": null
+  },
+  {
+   "id": "go-gh-brief",
+   "projects": [
+    "grey-oak"
+   ],
+   "layer": "code",
+   "name": "GitHub: daily-brief repo",
+   "short": "GitHub \u00b7 brief repo",
+   "logo": "github",
+   "color": "#353b44",
+   "status": "live",
+   "cost": {
+    "monthly": 0,
+    "basis": "GitHub Free plan.",
+    "kind": "free"
+   },
+   "owner": {
+    "bots": [
+     "Flynn",
+     "J. Jonah Jameson"
+    ],
+    "person": "Nick"
+   },
+   "lives": {
+    "repo": "https://github.com/greyoakventures/daily-brief"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "Private repo for the daily AI briefings site.",
+   "lastVerified": "2026-10-22",
+   "connects": [
+    "render-daily-brief"
+   ],
+   "overlapGroup": null
+  },
+  {
+   "id": "render-daily-brief",
+   "projects": [
+    "grey-oak"
+   ],
+   "layer": "hosting",
+   "name": "Render static site: daily-brief",
+   "short": "Render \u00b7 daily brief",
+   "logo": "render",
+   "color": "#46E3B7",
+   "status": "live",
+   "cost": {
+    "monthly": 0,
+    "basis": "Render static sites are free.",
+    "kind": "free"
+   },
+   "owner": {
+    "bots": [
+     "Flynn",
+     "J. Jonah Jameson"
+    ],
+    "person": "Nick"
+   },
+   "lives": {
+    "repo": "daily-brief (master)",
+    "url": "https://daily-brief-5dnm.onrender.com",
+    "dashboard": "https://dashboard.render.com/static/srv-db0geg9srm7s73fg7tcg"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "Daily AI briefings site (noindex), listed under Grey Oak in the source map. Auto-deploys from master; last updated Oct 22.",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": null
   }
  ],
  "bots": [
@@ -1109,7 +1745,11 @@
     "qbo",
     "ops-app",
     "gmail-hudsonville",
-    "facebook-leads"
+    "facebook-leads",
+    "go-gmail",
+    "go-calendar",
+    "go-prospects",
+    "go-workspace"
    ],
    "confirmed": true,
    "notes": "Approves invoices, Facebook replies, and anything public."
@@ -1119,11 +1759,12 @@
    "name": "Optimus Prime",
    "role": "Coordinator",
    "projects": [
-    "shared"
+    "shared",
+    "grey-oak"
    ],
    "touches": [],
    "confirmed": true,
-   "notes": "Routes the work and keeps the source map Vision reads."
+   "notes": "Coordinates Grey Oak work (per source map)."
   },
   {
    "id": "flynn",
@@ -1137,7 +1778,17 @@
     "render-ops",
     "frontend",
     "node-server",
-    "ops-app"
+    "ops-app",
+    "go-domain",
+    "go-site-pages",
+    "go-walkthrough-page",
+    "go-blueprint-page",
+    "formsubmit",
+    "go-goatcounter",
+    "go-gh-site",
+    "go-gh-brief",
+    "render-daily-brief",
+    "render-greyoak-site"
    ],
    "confirmed": true,
    "notes": "Wrote and ships the site and ops board (commits in the repo history)."
@@ -1147,7 +1798,9 @@
    "name": "Edna",
    "role": "Design",
    "touches": [
-    "frontend"
+    "frontend",
+    "go-site-pages",
+    "go-walkthrough-page"
    ],
    "confirmed": true,
    "notes": "Ice-and-steel look and copy passes (named in commits)."
@@ -1157,7 +1810,11 @@
    "name": "J. Jonah Jameson",
    "role": "Copy",
    "touches": [
-    "frontend"
+    "frontend",
+    "go-site-pages",
+    "go-walkthrough-page",
+    "go-gh-brief",
+    "render-daily-brief"
    ],
    "confirmed": true,
    "notes": "Page copy (per site README)."
@@ -1219,6 +1876,17 @@
    "notes": "Software engineer."
   },
   {
+   "id": "leslie",
+   "name": "Leslie",
+   "role": "Calendar",
+   "projects": [],
+   "touches": [
+    "go-calendar"
+   ],
+   "confirmed": true,
+   "notes": "Owns Nick's Google Calendars, including Grey Oak (per source map)."
+  },
+  {
    "id": "vision",
    "name": "Vision",
    "role": "Visuals",
@@ -1233,6 +1901,69 @@
   }
  ],
  "flows": {
+  "grey-oak": [
+   {
+    "step": 1,
+    "title": "Visit",
+    "icon": "globe",
+    "components": [
+     "go-domain",
+     "go-cdn",
+     "render-greyoak-site",
+     "go-walkthrough-page",
+     "go-goatcounter"
+    ],
+    "detail": "A prospect opens the private Walkthrough link. Porkbun DNS points to Render, Render's CDN serves the page, and GoatCounter counts the visit."
+   },
+   {
+    "step": 2,
+    "title": "Request",
+    "icon": "send",
+    "components": [
+     "go-walkthrough-page",
+     "formsubmit"
+    ],
+    "detail": "They fill in the Walkthrough request form. FormSubmit receives it."
+   },
+   {
+    "step": 3,
+    "title": "Alert",
+    "icon": "mail",
+    "components": [
+     "formsubmit",
+     "go-gmail"
+    ],
+    "detail": "FormSubmit emails a 'New Walkthrough request' table to nick@greyoakventures.com."
+   },
+   {
+    "step": 4,
+    "title": "Auto-reply",
+    "icon": "send",
+    "components": [
+     "go-autoreply",
+     "go-gmail"
+    ],
+    "detail": "An automatic reply goes out from nick@greyoakventures.com and the thread gets labeled."
+   },
+   {
+    "step": 5,
+    "title": "Book",
+    "icon": "calc",
+    "components": [
+     "go-calendar"
+    ],
+    "detail": "The prospect picks a time on the Walkthrough Call booking page, and it lands on the Grey Oak calendar."
+   },
+   {
+    "step": 6,
+    "title": "Walkthrough",
+    "icon": "truck",
+    "components": [
+     "go-prospects"
+    ],
+    "detail": "Nick does the on-site day and follows up by hand. The follow-up email series is drafted but not launched."
+   }
+  ],
   "michigan-salt": [
    {
     "step": 1,
@@ -1311,6 +2042,41 @@
   ]
  },
  "changes": [
+  {
+   "date": "2026-10-16",
+   "project": "grey-oak",
+   "text": "First Walkthrough call booked via the Google Calendar booking page; auto-reply tested"
+  },
+  {
+   "date": "2026-10-14",
+   "project": "grey-oak",
+   "text": "Short /walkthrough URL redirects to the private Walkthrough page"
+  },
+  {
+   "date": "2026-10-11",
+   "project": "grey-oak",
+   "text": "GoatCounter added to home, Walkthrough, and Blueprint pages"
+  },
+  {
+   "date": "2026-10-10",
+   "project": "grey-oak",
+   "text": "Private Walkthrough page added (noindex)"
+  },
+  {
+   "date": "2026-10-08",
+   "project": "grey-oak",
+   "text": "Blueprint page: invitation code prefilled from link"
+  },
+  {
+   "date": null,
+   "project": "grey-oak",
+   "text": "One-Day AI Blueprint put on hold"
+  },
+  {
+   "date": null,
+   "project": "grey-oak",
+   "text": "Walkthrough follow-up email series drafted (not launched)"
+  },
   {
    "date": "2026-10-22",
    "project": "michigan-salt",
