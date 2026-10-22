@@ -1,0 +1,1354 @@
+{
+ "schemaVersion": 1,
+ "watch": {
+  "michigan-salt": [
+   "Sandbox server (michigansalt-sandbox) is a paid $7/mo starter service last changed Sep 22. Suspend it or move it to free if it is idle.",
+   "Ops server: render.yaml says free plan + 1 GB disk, but the live service is starter with no disk showing. Check that orders survive a redeploy.",
+   "Invoicing overlap: QuickBooks (live), Homeworks (old docs), and Stripe (unused, 0 products). Pick one and retire the rest.",
+   "OSRM public demo server has no uptime promise. The quote falls back to an estimate if it is down."
+  ]
+ },
+ "lastUpdated": "2026-10-22T08:55:00-04:00",
+ "lastUpdatedLabel": "Oct 22, 2026, 8:55 AM ET",
+ "projects": [
+  {
+   "id": "michigan-salt",
+   "name": "Michigan Salt",
+   "domain": "michigansalt.com",
+   "filled": true,
+   "summary": "Truckload ice melt site: quote, request, invoice, ship."
+  },
+  {
+   "id": "grey-oak",
+   "name": "Grey Oak Ventures",
+   "domain": "greyoakventures.com",
+   "filled": false,
+   "summary": "Coming next."
+  },
+  {
+   "id": "augusta",
+   "name": "Augusta Lawn Care",
+   "domain": null,
+   "filled": false,
+   "summary": "Coming later."
+  },
+  {
+   "id": "log3a",
+   "name": "Log3A",
+   "domain": "getlog3a.com",
+   "filled": false,
+   "summary": "Coming later."
+  },
+  {
+   "id": "blueprint",
+   "name": "One-Day AI Blueprint",
+   "domain": null,
+   "filled": false,
+   "summary": "Coming later."
+  },
+  {
+   "id": "dog-house",
+   "name": "The Dog House",
+   "domain": null,
+   "filled": false,
+   "summary": "Coming later."
+  },
+  {
+   "id": "haul-yeah",
+   "name": "Haul Yeah",
+   "domain": null,
+   "filled": false,
+   "summary": "Paused."
+  },
+  {
+   "id": "holland-wave",
+   "name": "Holland Wave",
+   "domain": null,
+   "filled": false,
+   "summary": "Coming later."
+  },
+  {
+   "id": "jen-amazon",
+   "name": "Jen's Amazon",
+   "domain": null,
+   "filled": false,
+   "summary": "Coming later."
+  },
+  {
+   "id": "other",
+   "name": "Other",
+   "domain": null,
+   "filled": false,
+   "summary": "Pointsman, SignFrame, Pastor Mark, Mr. Mow-It-All, and more."
+  }
+ ],
+ "layers": [
+  {
+   "id": "edge",
+   "name": "Domain & edge",
+   "icon": "globe"
+  },
+  {
+   "id": "hosting",
+   "name": "Hosting",
+   "icon": "server"
+  },
+  {
+   "id": "frontend",
+   "name": "Website",
+   "icon": "window"
+  },
+  {
+   "id": "backend",
+   "name": "Server & APIs",
+   "icon": "cpu"
+  },
+  {
+   "id": "apis",
+   "name": "Outside services & leads",
+   "icon": "plug"
+  },
+  {
+   "id": "data",
+   "name": "Data",
+   "icon": "db"
+  },
+  {
+   "id": "email",
+   "name": "Email & alerts",
+   "icon": "mail"
+  },
+  {
+   "id": "money",
+   "name": "Invoices & money",
+   "icon": "money"
+  },
+  {
+   "id": "analytics",
+   "name": "Analytics",
+   "icon": "chart"
+  },
+  {
+   "id": "code",
+   "name": "Code & deploy",
+   "icon": "code"
+  }
+ ],
+ "components": [
+  {
+   "id": "ms-domain",
+   "projects": [
+    "michigan-salt"
+   ],
+   "layer": "edge",
+   "name": "michigansalt.com",
+   "short": "Domain + DNS",
+   "logo": "porkbun",
+   "color": "#EF7878",
+   "status": "live",
+   "cost": {
+    "monthly": 0.92,
+    "basis": "Porkbun public .com renewal list price $11.08/yr (Porkbun pricing API, Oct 22). Actual invoice not checked.",
+    "kind": "list-price"
+   },
+   "owner": {
+    "bots": [
+     "Flynn"
+    ],
+    "person": "Nick"
+   },
+   "lives": {
+    "url": "https://michigansalt.com",
+    "dashboard": "https://porkbun.com/account/domainsSpeedy"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "Domain registered and DNS hosted at Porkbun (nameservers *.ns.porkbun.com, checked by DNS lookup). Apex A record 216.24.57.1 (Render) and www CNAME michigansalt.onrender.com. No MX record on michigansalt.com, so no email at this domain.",
+   "lastVerified": "2026-10-22",
+   "connects": [
+    "cloudflare-edge"
+   ],
+   "overlapGroup": null
+  },
+  {
+   "id": "cloudflare-edge",
+   "projects": [
+    "michigan-salt",
+    "grey-oak"
+   ],
+   "layer": "edge",
+   "name": "Render edge / CDN (Cloudflare)",
+   "short": "CDN + TLS",
+   "logo": "cloudflare",
+   "color": "#F38020",
+   "status": "live",
+   "cost": {
+    "monthly": 0,
+    "basis": "Included with Render; no separate Cloudflare account.",
+    "kind": "included"
+   },
+   "owner": {
+    "bots": [],
+    "person": "Render (vendor)"
+   },
+   "lives": {},
+   "links": [],
+   "confirmed": true,
+   "notes": "Live response headers show server: cloudflare + x-render-origin-server: Render. This is Render's built-in CDN and TLS, not a Cloudflare account of Nick's.",
+   "lastVerified": "2026-10-22",
+   "connects": [
+    "render-michigansalt"
+   ],
+   "overlapGroup": null
+  },
+  {
+   "id": "render-workspace",
+   "projects": [
+    "shared",
+    "michigan-salt",
+    "grey-oak",
+    "log3a",
+    "dog-house",
+    "haul-yeah",
+    "augusta",
+    "other"
+   ],
+   "layer": "hosting",
+   "name": "Render workspace \"My Workspace\"",
+   "short": "Render account",
+   "logo": "render",
+   "color": "#46E3B7",
+   "status": "live",
+   "cost": {
+    "monthly": null,
+    "basis": "Workspace plan not visible through the connector (Hobby $0 or Pro $25/mo on render.com/pricing).",
+    "kind": "unknown"
+   },
+   "owner": {
+    "bots": [
+     "Flynn",
+     "Doc Brown"
+    ],
+    "person": "Nick (greyoakventures@gmail.com)"
+   },
+   "lives": {
+    "dashboard": "https://dashboard.render.com"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "One Render workspace holds all 12 of Nick's services (Michigan Salt, Grey Oak, Log3A, Dog House, Haul Yeah, Mr. Mow-It-All, Augusta plant finder, daily brief).",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": null
+  },
+  {
+   "id": "render-michigansalt",
+   "projects": [
+    "michigan-salt"
+   ],
+   "layer": "hosting",
+   "name": "Render web service: michigansalt",
+   "short": "Site server",
+   "logo": "render",
+   "color": "#46E3B7",
+   "status": "live",
+   "cost": {
+    "monthly": 7,
+    "basis": "Render 'starter' instance (0.5 CPU / 512 MB) list price $7/mo, plan read from the Render connector.",
+    "kind": "list-price"
+   },
+   "owner": {
+    "bots": [
+     "Flynn"
+    ],
+    "person": "Nick"
+   },
+   "lives": {
+    "repo": "greyoakventures/michigansalt (main)",
+    "url": "https://michigansalt.onrender.com",
+    "dashboard": "https://dashboard.render.com/web/srv-dafcmreq1p3s73b7du5g"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "Live customer site. Node web service, Ohio region, starter plan, auto-deploys on every commit to main. Last deploy Oct 22 (5:53 AM ET). /health reports the lead webhook is configured.",
+   "lastVerified": "2026-10-22",
+   "connects": [
+    "node-server"
+   ],
+   "overlapGroup": null
+  },
+  {
+   "id": "render-ms-sandbox",
+   "projects": [
+    "michigan-salt"
+   ],
+   "layer": "hosting",
+   "name": "Render web service: michigansalt-sandbox",
+   "short": "Sandbox server",
+   "logo": "render",
+   "color": "#46E3B7",
+   "status": "test",
+   "cost": {
+    "monthly": 7,
+    "basis": "Render 'starter' list price $7/mo (plan from connector).",
+    "kind": "list-price"
+   },
+   "owner": {
+    "bots": [
+     "Flynn"
+    ],
+    "person": "Nick"
+   },
+   "lives": {
+    "repo": "greyoakventures/michigansalt (sandbox/bags-50lb)",
+    "url": "https://michigansalt-sandbox.onrender.com",
+    "dashboard": "https://dashboard.render.com/web/srv-dald6fm1egvs73e6gcf0"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "Test copy of the site for the 50 lb bags idea. Paid starter plan, last changed Sep 22. Possible savings: suspend it or move it to the free plan if nobody is using it.",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": null
+  },
+  {
+   "id": "render-ops",
+   "projects": [
+    "michigan-salt"
+   ],
+   "layer": "hosting",
+   "name": "Render web service: michigansalt-ops",
+   "short": "Ops server",
+   "logo": "render",
+   "color": "#46E3B7",
+   "status": "live",
+   "cost": {
+    "monthly": 7,
+    "basis": "Render 'starter' list price $7/mo (plan from connector). render.yaml also asks for a 1 GB disk ($0.25/mo) that the connector did not show.",
+    "kind": "list-price"
+   },
+   "owner": {
+    "bots": [
+     "Flynn",
+     "KITT"
+    ],
+    "person": "Nick"
+   },
+   "lives": {
+    "repo": "greyoakventures/michigansalt-ops (main)",
+    "url": "https://michigansalt-ops.onrender.com",
+    "dashboard": "https://dashboard.render.com/web/srv-dafgcsv40ujc73b6f64g"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "Order ops board. Node web service, Ohio, starter plan, auto-deploys from main. Note: render.yaml says plan free + disk, but the live service is on starter, and the connector shows no disk.",
+   "lastVerified": "2026-10-22",
+   "connects": [
+    "ops-app"
+   ],
+   "overlapGroup": null
+  },
+  {
+   "id": "render-greyoak-site",
+   "projects": [
+    "grey-oak",
+    "michigan-salt"
+   ],
+   "layer": "hosting",
+   "name": "Render static site: greyoak-site-sandbox",
+   "short": "Grey Oak site (same repo)",
+   "logo": "render",
+   "color": "#46E3B7",
+   "status": "live",
+   "cost": {
+    "monthly": 0,
+    "basis": "Render static sites are free.",
+    "kind": "free"
+   },
+   "owner": {
+    "bots": [
+     "Flynn"
+    ],
+    "person": "Nick"
+   },
+   "lives": {
+    "repo": "greyoakventures/michigansalt (greyoak-site-sandbox branch)",
+    "url": "https://greyoakventures.com",
+    "dashboard": "https://dashboard.render.com/static/srv-damigvbm8hqs73d9cih0"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "greyoakventures.com is served from a branch of the Michigan Salt repo, so one repo feeds two businesses. www.greyoakventures.com CNAME points to greyoak-site-sandbox.onrender.com (checked by DNS lookup).",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": null
+  },
+  {
+   "id": "render-doghouse-phone",
+   "projects": [
+    "dog-house",
+    "michigan-salt"
+   ],
+   "layer": "hosting",
+   "name": "Render static site: doghouse-phone",
+   "short": "Dog House demo (same repo)",
+   "logo": "render",
+   "color": "#46E3B7",
+   "status": "live",
+   "cost": {
+    "monthly": 0,
+    "basis": "Render static sites are free.",
+    "kind": "free"
+   },
+   "owner": {
+    "bots": [
+     "Flynn"
+    ],
+    "person": "Nick"
+   },
+   "lives": {
+    "repo": "greyoakventures/michigansalt (doghouse-phone branch)",
+    "url": "https://doghouse-phone.onrender.com"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "The Dog House phone demo also lives on a branch of the Michigan Salt repo (moved off michigansalt.com Sep 11).",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": null
+  },
+  {
+   "id": "gh-michigansalt",
+   "projects": [
+    "michigan-salt",
+    "grey-oak",
+    "dog-house"
+   ],
+   "layer": "code",
+   "name": "GitHub repo: michigansalt",
+   "short": "Site code",
+   "logo": "github",
+   "color": "#181717",
+   "status": "live",
+   "cost": {
+    "monthly": null,
+    "basis": "GitHub account plan not readable with the current token scope.",
+    "kind": "unknown"
+   },
+   "owner": {
+    "bots": [
+     "Flynn"
+    ],
+    "person": "Nick (greyoakventures)"
+   },
+   "lives": {
+    "repo": "https://github.com/greyoakventures/michigansalt"
+   },
+   "links": [
+    {
+     "label": "Repo",
+     "url": "https://github.com/greyoakventures/michigansalt"
+    }
+   ],
+   "confirmed": true,
+   "notes": "Private repo. Branches: main (live site), sandbox/bags-50lb (sandbox), greyoak-site-sandbox (greyoakventures.com), doghouse-phone (Dog House demo), qbo-invoice (QuickBooks invoice work by Flynn, not live).",
+   "lastVerified": "2026-10-22",
+   "connects": [
+    "render-michigansalt",
+    "render-ms-sandbox",
+    "render-greyoak-site",
+    "render-doghouse-phone"
+   ],
+   "overlapGroup": null
+  },
+  {
+   "id": "gh-ops",
+   "projects": [
+    "michigan-salt"
+   ],
+   "layer": "code",
+   "name": "GitHub repo: michigansalt-ops",
+   "short": "Ops code",
+   "logo": "github",
+   "color": "#181717",
+   "status": "live",
+   "cost": {
+    "monthly": null,
+    "basis": "Same GitHub account; plan not readable.",
+    "kind": "unknown"
+   },
+   "owner": {
+    "bots": [
+     "Flynn"
+    ],
+    "person": "Nick (greyoakventures)"
+   },
+   "lives": {
+    "repo": "https://github.com/greyoakventures/michigansalt-ops"
+   },
+   "links": [
+    {
+     "label": "Repo",
+     "url": "https://github.com/greyoakventures/michigansalt-ops"
+    }
+   ],
+   "confirmed": true,
+   "notes": "Private repo for the ops board. Last commit Sep 11 (finance strip).",
+   "lastVerified": "2026-10-22",
+   "connects": [
+    "render-ops"
+   ],
+   "overlapGroup": null
+  },
+  {
+   "id": "gh-actions",
+   "projects": [
+    "michigan-salt"
+   ],
+   "layer": "code",
+   "name": "GitHub Actions: assemble-chunks",
+   "short": "Helper workflow",
+   "logo": "githubactions",
+   "color": "#2088FF",
+   "status": "live",
+   "cost": {
+    "monthly": null,
+    "basis": "Uses GitHub Actions minutes; plan and usage not checked.",
+    "kind": "unknown"
+   },
+   "owner": {
+    "bots": [
+     "Flynn"
+    ],
+    "person": null
+   },
+   "lives": {
+    "repo": "greyoakventures/michigansalt/.github/workflows/assemble-chunks.yml"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "Helper workflow that stitches uploaded file chunks into the site pages and commits them. The real deploy is Render auto-deploy on push to main, with no CI build step.",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": null
+  },
+  {
+   "id": "frontend",
+   "projects": [
+    "michigan-salt"
+   ],
+   "layer": "frontend",
+   "name": "Static HTML / CSS / JavaScript",
+   "short": "Web pages",
+   "logo": "html5",
+   "color": "#E34F26",
+   "status": "live",
+   "cost": {
+    "monthly": 0,
+    "basis": "No cost (plain files served by the site server).",
+    "kind": "free"
+   },
+   "owner": {
+    "bots": [
+     "Flynn",
+     "Edna",
+     "J. Jonah Jameson"
+    ],
+    "person": null
+   },
+   "lives": {
+    "repo": "greyoakventures/michigansalt/public"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "No framework, no build step. Pages: home, Purple Power, super sacks, for contractors, FAQ, thank-you, privacy, terms (privacy and terms added Oct 22). Self-hosted Satoshi fonts. Edna's ice-and-steel look; J3 copy.",
+   "lastVerified": "2026-10-22",
+   "connects": [
+    "node-server",
+    "goatcounter"
+   ],
+   "overlapGroup": null
+  },
+  {
+   "id": "node-server",
+   "projects": [
+    "michigan-salt"
+   ],
+   "layer": "backend",
+   "name": "Node.js 20 server (server.mjs)",
+   "short": "Quote + order API",
+   "logo": "nodedotjs",
+   "color": "#5FA04E",
+   "status": "live",
+   "cost": {
+    "monthly": 0,
+    "basis": "Runs inside the michigansalt Render service.",
+    "kind": "included"
+   },
+   "owner": {
+    "bots": [
+     "Flynn"
+    ],
+    "person": null
+   },
+   "lives": {
+    "repo": "greyoakventures/michigansalt/server.mjs"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "Plain Node http server, not Express. Serves pages plus APIs: /api/quote (price quote), /api/lead (quote/abandon events), /api/request (real order request), /health. Prices and origin are kept server-side in JSON, never sent to the browser. Env var names: LEAD_WEBHOOK_URL, LEAD_WEBHOOK_SECRET, PORT.",
+   "lastVerified": "2026-10-22",
+   "connects": [
+    "zippopotam",
+    "osrm",
+    "lead-files",
+    "ops-app"
+   ],
+   "overlapGroup": null
+  },
+  {
+   "id": "zippopotam",
+   "projects": [
+    "michigan-salt"
+   ],
+   "layer": "apis",
+   "name": "Zippopotam.us",
+   "short": "ZIP lookup",
+   "logo": "",
+   "color": "#6B7280",
+   "status": "live",
+   "cost": {
+    "monthly": 0,
+    "basis": "Free public API.",
+    "kind": "free"
+   },
+   "owner": {
+    "bots": [
+     "Flynn"
+    ],
+    "person": null
+   },
+   "lives": {
+    "url": "https://api.zippopotam.us"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "Turns the customer's ZIP into a map point for the freight quote.",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": null
+  },
+  {
+   "id": "osrm",
+   "projects": [
+    "michigan-salt"
+   ],
+   "layer": "apis",
+   "name": "OSRM routing",
+   "short": "Driving miles",
+   "logo": "openstreetmap",
+   "color": "#7EBC6F",
+   "status": "live",
+   "cost": {
+    "monthly": 0,
+    "basis": "Free public demo server.",
+    "kind": "free"
+   },
+   "owner": {
+    "bots": [
+     "Flynn"
+    ],
+    "person": null
+   },
+   "lives": {
+    "url": "https://router.project-osrm.org"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "Driving miles for the freight part of the quote. Falls back to a straight-line estimate if it fails. Uses a public demo server with no uptime promise.",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": null
+  },
+  {
+   "id": "lead-files",
+   "projects": [
+    "michigan-salt"
+   ],
+   "layer": "data",
+   "name": "Lead files on site server (leads/*.json)",
+   "short": "Lead log",
+   "logo": "",
+   "color": "#6B7280",
+   "status": "live",
+   "cost": {
+    "monthly": 0,
+    "basis": "Part of the michigansalt service.",
+    "kind": "included"
+   },
+   "owner": {
+    "bots": [
+     "Flynn"
+    ],
+    "person": null
+   },
+   "lives": {
+    "repo": "greyoakventures/michigansalt/lead.mjs"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "Each quote, abandon, and request is written to a JSON file and an inbox log on the site server, then forwarded to ops. No disk is attached, so these files are probably wiped on each deploy (unconfirmed). Ops is the lasting copy.",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": null
+  },
+  {
+   "id": "ops-app",
+   "projects": [
+    "michigan-salt"
+   ],
+   "layer": "backend",
+   "name": "Ops board app (Express + SQLite)",
+   "short": "Order board",
+   "logo": "express",
+   "color": "#000000",
+   "status": "live",
+   "cost": {
+    "monthly": 0,
+    "basis": "Runs inside the michigansalt-ops Render service.",
+    "kind": "included"
+   },
+   "owner": {
+    "bots": [
+     "Flynn",
+     "KITT"
+    ],
+    "person": "Nick (views board)"
+   },
+   "lives": {
+    "repo": "greyoakventures/michigansalt-ops",
+    "url": "https://michigansalt-ops.onrender.com"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "Receives the lead webhook (POST /webhooks/leads with a shared secret), saves the order, and shows Nick a Kanban: lead > quoted > invoiced > awaiting pay > paid > scheduled > delivered. Admin pages need a token. Has an ops-only finance strip. Env var names: WEBHOOK_SECRET, ADMIN_TOKEN, RESEND_API_KEY, ALERT_FROM, ALERT_TO, DATABASE_PATH.",
+   "lastVerified": "2026-10-22",
+   "connects": [
+    "sqlite",
+    "resend"
+   ],
+   "overlapGroup": null
+  },
+  {
+   "id": "sqlite",
+   "projects": [
+    "michigan-salt"
+   ],
+   "layer": "data",
+   "name": "SQLite order database",
+   "short": "Order DB",
+   "logo": "sqlite",
+   "color": "#003B57",
+   "status": "live",
+   "cost": {
+    "monthly": null,
+    "basis": "Disk would be $0.25/GB/mo (Render list price) if attached; disk not confirmed.",
+    "kind": "unknown"
+   },
+   "owner": {
+    "bots": [
+     "Flynn"
+    ],
+    "person": null
+   },
+   "lives": {
+    "repo": "michigansalt-ops/db.mjs",
+    "dashboard": "DATABASE_PATH /var/data/michigansalt.db"
+   },
+   "links": [],
+   "confirmed": false,
+   "notes": "Orders, abandoned contacts, and supplier invoices in SQLite (better-sqlite3). render.yaml asks for a 1 GB disk at /var/data, but the Render connector shows no disk on the live service. If there is none, orders could be lost on redeploy. Check this.",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": null
+  },
+  {
+   "id": "resend",
+   "projects": [
+    "michigan-salt",
+    "log3a"
+   ],
+   "layer": "email",
+   "name": "Resend (order alert email)",
+   "short": "Order alerts",
+   "logo": "resend",
+   "color": "#000000",
+   "status": "live",
+   "cost": {
+    "monthly": null,
+    "basis": "Resend plan not checked.",
+    "kind": "unknown"
+   },
+   "owner": {
+    "bots": [
+     "Flynn",
+     "Mr. Mcfeely"
+    ],
+    "person": null
+   },
+   "lives": {
+    "url": "https://resend.com"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "When a real order request lands, ops emails an alert through Resend to the hudsonville@ inbox (default ALERT_TO). Also used by Log3A and Haul Yeah per the source map.",
+   "lastVerified": "2026-10-22",
+   "connects": [
+    "gmail-hudsonville"
+   ],
+   "overlapGroup": "email"
+  },
+  {
+   "id": "gmail-hudsonville",
+   "projects": [
+    "michigan-salt",
+    "augusta"
+   ],
+   "layer": "email",
+   "name": "Gmail: hudsonville@augustalawncareservices.com",
+   "short": "Order inbox",
+   "logo": "gmail",
+   "color": "#EA4335",
+   "status": "live",
+   "cost": {
+    "monthly": null,
+    "basis": "Google Workspace plan/seat cost not checked (Augusta account).",
+    "kind": "unknown"
+   },
+   "owner": {
+    "bots": [
+     "Mr. Mcfeely"
+    ],
+    "person": "Nick"
+   },
+   "lives": {
+    "url": "https://mail.google.com"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "Customer-facing inbox for Michigan Salt and the destination of order alerts. Mr. McFeely watches it. Shared with Augusta Lawn Care.",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": "email"
+  },
+  {
+   "id": "zapier",
+   "projects": [
+    "shared",
+    "michigan-salt",
+    "augusta"
+   ],
+   "layer": "money",
+   "name": "Zapier (QuickBooks bridge)",
+   "short": "Automation",
+   "logo": "zapier",
+   "color": "#FF4F00",
+   "status": "live",
+   "cost": {
+    "monthly": 0,
+    "basis": "Free plan per Optimus source map (hudsonville@ account).",
+    "kind": "free"
+   },
+   "owner": {
+    "bots": [
+     "Mr. Krabs"
+    ],
+    "person": "Nick"
+   },
+   "lives": {
+    "dashboard": "https://zapier.com/app/zaps"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "Connects to QuickBooks Online (1 QBO connection confirmed on the Zapier connector). Used to create one invoice per salt order. The exact Zap steps were not inspected.",
+   "lastVerified": "2026-10-22",
+   "connects": [
+    "qbo"
+   ],
+   "overlapGroup": null
+  },
+  {
+   "id": "qbo",
+   "projects": [
+    "michigan-salt",
+    "augusta"
+   ],
+   "layer": "money",
+   "name": "QuickBooks Online",
+   "short": "Invoices + payment",
+   "logo": "quickbooks",
+   "color": "#2CA01C",
+   "status": "live",
+   "cost": {
+    "monthly": null,
+    "basis": "QBO subscription tier not checked.",
+    "kind": "unknown"
+   },
+   "owner": {
+    "bots": [
+     "Mr. Krabs",
+     "KITT"
+    ],
+    "person": "Nick (approves)"
+   },
+   "lives": {
+    "dashboard": "https://qbo.intuit.com"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "Company: Davidson Snow and Ice, LLC dba Augusta Lawn Care Services of Hudsonville. One invoice per order, emailed to the customer. Customer pays by QBO pay page, ACH, check, or wire. Salt ships only after Mr. Krabs confirms cleared funds. The Intuit custom app was dropped, and Flynn's qbo-invoice branch is not live.",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": "invoicing"
+  },
+  {
+   "id": "homeworks",
+   "projects": [
+    "michigan-salt",
+    "augusta"
+   ],
+   "layer": "money",
+   "name": "Homeworks",
+   "short": "Customer records",
+   "logo": "",
+   "color": "#6B7280",
+   "status": "live",
+   "cost": {
+    "monthly": null,
+    "basis": "Homeworks subscription not checked.",
+    "kind": "unknown"
+   },
+   "owner": {
+    "bots": [
+     "KITT",
+     "Mr. Krabs"
+    ],
+    "person": "Nick"
+   },
+   "lives": {},
+   "links": [],
+   "confirmed": true,
+   "notes": "Augusta's system of record. Holds salt customers and past sales. The ops README and Oct 3 tech doc still say Homeworks issues salt invoices. That is outdated, since invoicing now runs through QuickBooks.",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": "invoicing"
+  },
+  {
+   "id": "stripe",
+   "projects": [
+    "shared",
+    "michigan-salt",
+    "augusta"
+   ],
+   "layer": "money",
+   "name": "Stripe (Augustalawncareservices account)",
+   "short": "Not on site",
+   "logo": "stripe",
+   "color": "#635BFF",
+   "status": "not used",
+   "cost": {
+    "monthly": 0,
+    "basis": "No monthly fee on Stripe's standard plan; per-payment fees only. Not used by this site.",
+    "kind": "free"
+   },
+   "owner": {
+    "bots": [
+     "Mr. Krabs"
+    ],
+    "person": "unconfirmed"
+   },
+   "lives": {
+    "dashboard": "https://dashboard.stripe.com"
+   },
+   "links": [],
+   "confirmed": false,
+   "notes": "Not on michigansalt.com, so customers never pay by card on the site. The connected Stripe account is named Augustalawncareservices and has 0 products. Who owns it and what it will be used for is unconfirmed. Stripe on the site is planned only after the Stripe Capital loan is paid off.",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": "invoicing"
+  },
+  {
+   "id": "goatcounter",
+   "projects": [
+    "michigan-salt",
+    "grey-oak"
+   ],
+   "layer": "analytics",
+   "name": "GoatCounter",
+   "short": "Page stats",
+   "logo": "",
+   "color": "#6B7280",
+   "status": "live",
+   "cost": {
+    "monthly": 0,
+    "basis": "Free plan per Oct 3 tech doc.",
+    "kind": "free"
+   },
+   "owner": {
+    "bots": [
+     "Flynn"
+    ],
+    "person": "Nick (greyoakventures@gmail.com)"
+   },
+   "lives": {
+    "dashboard": "https://michigansalt.goatcounter.com"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "Privacy-friendly page counts on every public page. Replaced Plausible on Oct 11. Same account also tracks greyoakventures.com.",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": null
+  },
+  {
+   "id": "facebook-leads",
+   "projects": [
+    "michigan-salt"
+   ],
+   "layer": "apis",
+   "name": "Facebook leads",
+   "short": "FB leads",
+   "logo": "facebook",
+   "color": "#0866FF",
+   "status": "live",
+   "cost": {
+    "monthly": null,
+    "basis": "Ads spend/plan not checked.",
+    "kind": "unknown"
+   },
+   "owner": {
+    "bots": [
+     "Mr. Mcfeely"
+    ],
+    "person": "Nick (approves replies)"
+   },
+   "lives": {},
+   "links": [],
+   "confirmed": false,
+   "notes": "Per the source map, salt leads also come in from Facebook, and Nick approves replies. Which page and how replies are routed is unconfirmed.",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": null
+  },
+  {
+   "id": "box-backup",
+   "projects": [
+    "michigan-salt"
+   ],
+   "layer": "data",
+   "name": "Grok Bot box order backup",
+   "short": "Order backup",
+   "logo": "",
+   "color": "#6B7280",
+   "status": "live",
+   "cost": {
+    "monthly": 0,
+    "basis": "Part of the Grok Bot box.",
+    "kind": "included"
+   },
+   "owner": {
+    "bots": [
+     "Mr. Krabs",
+     "KITT"
+    ],
+    "person": null
+   },
+   "lives": {
+    "dashboard": "/workspace/ms-orders.json (box)"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "A copy of orders kept on the shared Grok Bot box.",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": null
+  },
+  {
+   "id": "vision-pages",
+   "projects": [
+    "shared",
+    "michigan-salt"
+   ],
+   "layer": "code",
+   "name": "GitHub Pages: Vision (this site)",
+   "short": "This page",
+   "logo": "githubpages",
+   "color": "#222222",
+   "status": "live",
+   "cost": {
+    "monthly": null,
+    "basis": "Depends on GitHub plan.",
+    "kind": "unknown"
+   },
+   "owner": {
+    "bots": [
+     "Vision"
+    ],
+    "person": "Nick"
+   },
+   "lives": {
+    "repo": "https://github.com/greyoakventures/vision"
+   },
+   "links": [],
+   "confirmed": true,
+   "notes": "This visual. Data lives in data/stack.json and is refreshed daily by Vision.",
+   "lastVerified": "2026-10-22",
+   "connects": [],
+   "overlapGroup": null
+  }
+ ],
+ "bots": [
+  {
+   "id": "nick",
+   "name": "Nick",
+   "role": "Owner",
+   "kind": "person",
+   "touches": [
+    "qbo",
+    "ops-app",
+    "gmail-hudsonville",
+    "facebook-leads"
+   ],
+   "confirmed": true,
+   "notes": "Approves invoices, Facebook replies, and anything public."
+  },
+  {
+   "id": "optimus",
+   "name": "Optimus Prime",
+   "role": "Coordinator",
+   "touches": [],
+   "confirmed": true,
+   "notes": "Routes the work and keeps the source map Vision reads."
+  },
+  {
+   "id": "flynn",
+   "name": "Flynn",
+   "role": "Website developer",
+   "touches": [
+    "gh-michigansalt",
+    "gh-ops",
+    "render-michigansalt",
+    "render-ms-sandbox",
+    "render-ops",
+    "frontend",
+    "node-server",
+    "ops-app",
+    "render-greyoak-site"
+   ],
+   "confirmed": true,
+   "notes": "Wrote and ships the site and ops board (commits in the repo history)."
+  },
+  {
+   "id": "edna",
+   "name": "Edna",
+   "role": "Design",
+   "touches": [
+    "frontend"
+   ],
+   "confirmed": true,
+   "notes": "Ice-and-steel look and copy passes (named in commits)."
+  },
+  {
+   "id": "j3",
+   "name": "J. Jonah Jameson",
+   "role": "Copy",
+   "touches": [
+    "frontend"
+   ],
+   "confirmed": true,
+   "notes": "Page copy (per site README)."
+  },
+  {
+   "id": "kitt",
+   "name": "KITT",
+   "role": "Ops",
+   "touches": [
+    "ops-app",
+    "homeworks",
+    "qbo"
+   ],
+   "confirmed": true,
+   "notes": "Order ops and invoice drafting (per source map)."
+  },
+  {
+   "id": "krabs",
+   "name": "Mr. Krabs",
+   "role": "Money",
+   "touches": [
+    "qbo",
+    "zapier",
+    "stripe",
+    "box-backup"
+   ],
+   "confirmed": true,
+   "notes": "QuickBooks invoices; confirms cleared funds before salt ships."
+  },
+  {
+   "id": "mcfeely",
+   "name": "Mr. Mcfeely",
+   "role": "Email",
+   "touches": [
+    "gmail-hudsonville",
+    "resend"
+   ],
+   "confirmed": true,
+   "notes": "Watches the hudsonville@ inbox where order alerts land."
+  },
+  {
+   "id": "ms-room",
+   "name": "Michigan Salt room",
+   "role": "Project room",
+   "touches": [],
+   "confirmed": false,
+   "notes": "Where Michigan Salt work is discussed. Whether this is a separate bot, and what it owns, is unconfirmed."
+  },
+  {
+   "id": "docbrown",
+   "name": "Doc Brown",
+   "role": "Software engineer",
+   "touches": [],
+   "confirmed": false,
+   "notes": "No confirmed Michigan Salt role (works on Log3A)."
+  },
+  {
+   "id": "vision",
+   "name": "Vision",
+   "role": "Visuals",
+   "touches": [
+    "vision-pages"
+   ],
+   "confirmed": true,
+   "notes": "Builds and refreshes this page daily."
+  }
+ ],
+ "flows": {
+  "michigan-salt": [
+   {
+    "step": 1,
+    "title": "Visit",
+    "icon": "globe",
+    "components": [
+     "ms-domain",
+     "cloudflare-edge",
+     "render-michigansalt",
+     "frontend",
+     "goatcounter"
+    ],
+    "detail": "Customer opens michigansalt.com. Porkbun DNS points to Render, Render's CDN serves the static pages, and GoatCounter counts the visit."
+   },
+   {
+    "step": 2,
+    "title": "Quote",
+    "icon": "calc",
+    "components": [
+     "node-server",
+     "zippopotam",
+     "osrm"
+    ],
+    "detail": "Customer enters address, sack count, and forks. The server turns the ZIP into a map point, gets driving miles from OSRM, and returns one all-in delivered price."
+   },
+   {
+    "step": 3,
+    "title": "Request",
+    "icon": "send",
+    "components": [
+     "node-server",
+     "lead-files",
+     "ops-app",
+     "sqlite"
+    ],
+    "detail": "Request this load. The site saves the lead and forwards it with a shared secret to the ops board, which saves it in SQLite."
+   },
+   {
+    "step": 4,
+    "title": "Alert",
+    "icon": "mail",
+    "components": [
+     "resend",
+     "gmail-hudsonville"
+    ],
+    "detail": "Ops emails an order alert through Resend to the hudsonville@ inbox (watched by Mr. McFeely)."
+   },
+   {
+    "step": 5,
+    "title": "Invoice",
+    "icon": "doc",
+    "components": [
+     "zapier",
+     "qbo"
+    ],
+    "detail": "An invoice is created in QuickBooks Online through Zapier and emailed to the customer. Nick approves."
+   },
+   {
+    "step": 6,
+    "title": "Pay",
+    "icon": "money",
+    "components": [
+     "qbo"
+    ],
+    "detail": "Customer pays by QBO pay page, ACH, check, or wire. No card payments on the site."
+   },
+   {
+    "step": 7,
+    "title": "Ship",
+    "icon": "truck",
+    "components": [
+     "ops-app"
+    ],
+    "detail": "Mr. Krabs confirms cleared funds, then the truck is scheduled. The ops board moves the order to paid, scheduled, and delivered."
+   }
+  ]
+ },
+ "changes": [
+  {
+   "date": "2026-10-22",
+   "project": "michigan-salt",
+   "text": "Privacy and Terms pages added; Satoshi fonts restored"
+  },
+  {
+   "date": "2026-10-22",
+   "project": "shared",
+   "text": "Vision tech stack page created"
+  },
+  {
+   "date": "2026-10-21",
+   "project": "michigan-salt",
+   "text": "VIP 44-sack order fix; driver notes form removed"
+  },
+  {
+   "date": "2026-10-11",
+   "project": "michigan-salt",
+   "text": "Analytics: Plausible replaced by GoatCounter"
+  },
+  {
+   "date": null,
+   "project": "michigan-salt",
+   "text": "Invoicing moved to QuickBooks Online via Zapier; Intuit custom app dropped (date unconfirmed)"
+  },
+  {
+   "date": "2026-09-22",
+   "project": "michigan-salt",
+   "text": "Sandbox service (50 lb bags) last changed"
+  },
+  {
+   "date": "2026-09-11",
+   "project": "michigan-salt",
+   "text": "Ops board finance strip added"
+  },
+  {
+   "date": "2026-09-11",
+   "project": "michigan-salt",
+   "text": "Dog House demo moved off michigansalt.com to its own static site"
+  }
+ ]
+}
