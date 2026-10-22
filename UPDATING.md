@@ -39,3 +39,5 @@ Everything on the page is drawn from **`data/stack.json`**. A daily refresh only
 - No secrets, keys, env var values, prices/markups, supplier names, or revenue. Env var **names** are OK.
 - Totals are computed in the browser from known `cost.monthly` values.
 - Site is noindex + robots.txt disallow. Keep it that way.
+- `greyoakventures.github.io` is Vision itself (this site). Never list it as part of Grey Oak or any other project; it stays `projects: ["shared"]` (component `vision-pages`).
+- `greyoakventures@gmail.com` is the account used only for website and service signups (Render, GoatCounter, Porkbun, etc.). Describe it that way when it appears as an account owner.
