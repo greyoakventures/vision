@@ -38,7 +38,7 @@ function costBadge(c,top){
 function comps(p){return D.components.filter(c=>c.projects.includes(p));}
 function render(){
  const p=cur, proj=D.projects.find(x=>x.id===p);
- document.getElementById('upd').textContent='Last updated '+D.lastUpdatedLabel;
+ document.getElementById('upd').textContent=proj&&proj.filled?'':'Last updated '+D.lastUpdatedLabel;
  document.getElementById('tabs').innerHTML=D.projects.map(x=>`<button class="tab ${x.id===p?'on':''} ${x.filled?'':'empty'}" data-p="${x.id}">${esc(x.name)}</button>`).join('');
  const app=document.getElementById('app');
  if(!proj.filled){app.innerHTML=`<div class="empty-proj">${svg('box','ic')}<p><b>${esc(proj.name)}</b> isn't mapped yet.</p><p>${esc(proj.summary)}</p></div>`;return;}
@@ -47,28 +47,41 @@ function render(){
  const total=known.reduce((a,c)=>a+c.cost.monthly,0);
  const unk=cs.filter(c=>c.cost.kind==='unknown');
  const paid=known.filter(c=>c.cost.monthly>0).sort((a,b)=>b.cost.monthly-a.cost.monthly);
- const topIds=new Set(paid.slice(0,3).map(c=>c.id));
  const unc=cs.filter(c=>!c.confirmed);
- const ch=D.changes.filter(x=>x.project===p).sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+ const ch=D.changes.filter(x=>x.project===p).sort((a,b)=>(b.date||'0').localeCompare(a.date||'0'));
  const flow=(D.flows[p]||[]);
- let h='';
- h+=`<section><div class="stats"><div class="stat"><b>${fmt(total)}</b><span>known monthly subscriptions</span></div><div class="stat"><b>${unk.length}</b><span>pieces with cost unknown</span></div><div class="stat"><b>${cs.length}</b><span>pieces mapped</span></div><div class="stat"><b>${unc.length}</b><span>unconfirmed</span></div></div></section>`;
- h+=`<section><h2>${svg('chart','ic')}Recently added / changed</h2><div class="changes">${ch.map(x=>`<div class="chg"><i>${x.date?esc(x.date):'date unconfirmed'}</i>${esc(x.text)}</div>`).join('')}</div></section>`;
- if(flow.length){h+=`<section><h2>${svg('send','ic')}What happens when a customer orders</h2><div class="flow">${flow.map(s=>`<div class="step ${selStep===s.step?'on':''}" data-step="${s.step}">${svg(s.icon)}<div><b>${esc(s.title)}</b></div><small>${s.step}</small></div>`).join('')}</div><div class="stepdetail" id="stepdetail">${selStep?esc(flow.find(s=>s.step===selStep).detail):'Tap a step to light up the pieces it uses.'}</div></section>`;}
- h+=`<section><h2>${svg('bot','ic')}Who built or runs it</h2><div class="bots">${D.bots.filter(b=>b.touches.some(t=>cs.find(c=>c.id===t))).map(b=>`<div class="bot ${selBot===b.id?'on':''} ${b.confirmed?'':'unc'}" data-bot="${b.id}"><span class="av">${esc(b.name.split(/\s|\./).filter(Boolean).map(w=>w[0]).join('').slice(0,2))}</span>${esc(b.name)}</div>`).join('')}</div><div class="botnote" id="botnote">${selBot?botNote(selBot):'Tap a bot to light up what it touches.'}</div></section>`;
- h+=`<section><h2>${svg('server','ic')}The stack, layer by layer</h2>`;
- const hi=highlightSet(flow);
- for(const L of D.layers){const lc=cs.filter(c=>c.layer===L.id);if(!lc.length)continue;
-  const lt=lc.filter(c=>c.cost.kind!=='unknown').reduce((a,c)=>a+(c.cost.monthly||0),0);
-  h+=`<details class="layer" open><summary><span class="car">▸</span>${svg(L.icon)}${esc(L.name)}<span class="sum">${lc.length} · ${fmt(lt)}/mo known${lc.some(c=>c.cost.kind==='unknown')?' + unknown':''}</span></summary><div class="nodes">${lc.map(c=>node(c,topIds,hi)).join('')}</div></details>`;}
- h+=`<div class="legend"><span><span class="b top">$</span> top cost</span><span><span class="b unk">cost unknown</span></span><span><span class="b unc">unconfirmed</span></span><span><span class="b ovl">overlap</span> tools doing similar jobs</span></div></section>`;
- h+=`<section><details class="layer"><summary><span class="car">▸</span>${svg('code')}Flowchart: how the pieces connect<span class="sum">tap to open</span></summary><div class="mer"><pre class="mermaid" id="mer"></pre></div></details></section>`;
+ const bots=D.bots.filter(b=>b.touches.some(t=>cs.find(c=>c.id===t)));
+ let h=`<div class="slim"><span class="money">${fmt(total)}<small>/mo known</small></span><span class="when">Updated ${esc(D.lastUpdatedLabel)}</span></div>`;
+ const main=D.layers.filter(L=>L.flow!==false&&cs.some(c=>c.layer===L.id));
+ const side=D.layers.filter(L=>L.flow===false&&cs.some(c=>c.layer===L.id));
+ const band=L=>`<div class="band"><div class="bl">${svg(L.icon)}<span>${esc(L.name)}</span></div><div class="tiles">${cs.filter(c=>c.layer===L.id).map(tile).join('')}</div></div>`;
+ h+=`<div class="hero">${main.map(band).join('<div class="arrow"><svg viewBox="0 0 12 18" width="12" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 1v15M1.5 11.5 6 16l4.5-4.5"/></svg></div>')}${side.length?`<div class="side">${side.map(band).join('')}</div>`:''}</div>`;
+ h+=`<div class="botrow">${bots.map(b=>`<button class="bt" data-bot="${b.id}"><span class="av">${esc(initials(b.name))}</span>${esc(b.name)}</button>`).join('')}</div>`;
+ const acc=(id,title,count,body)=>`<details class="acc" data-acc="${id}"><summary>${esc(title)}${count!=null?`<span class="cnt">${count}</span>`:''}<span class="car">›</span></summary><div class="accb">${body}</div></details>`;
+ h+=`<div class="accs">`;
+ h+=acc('changes','Recent changes',ch.length,`<ul class="list">${ch.map(x=>`<li><span class="d">${x.date?esc(x.date):'date ?'}</span>${esc(x.text)}</li>`).join('')}</ul>`);
+ h+=acc('flow','Order flow',flow.length?flow.length+' steps':null,`<ol class="steps">${flow.map(s=>`<li>${svg(s.icon)}<div><b>${esc(s.title)}</b><p>${esc(s.detail)}</p></div></li>`).join('')}</ol>`);
+ h+=acc('chart','Flowchart',null,`<div class="mer"><pre class="mermaid" id="mer"></pre></div>`);
  const groups={};cs.filter(c=>c.overlapGroup).forEach(c=>(groups[c.overlapGroup]=groups[c.overlapGroup]||[]).push(c));
  const GN={invoicing:'Invoices & payments',email:'Email'};
- h+=`<section><h2>${svg('money','ic')}Spot the savings</h2><div class="cards"><div class="card"><h3>Most expensive (known)</h3><ul>${paid.slice(0,5).map(c=>`<li>${esc(c.name)}: ${fmt(c.cost.monthly)}/mo</li>`).join('')||'<li>None known</li>'}</ul></div><div class="card"><h3>Overlapping tools</h3><ul>${Object.entries(groups).filter(([,v])=>v.length>1).map(([k,v])=>`<li><b>${esc(GN[k]||k)}:</b> ${v.map(c=>esc(c.short)).join(' · ')}</li>`).join('')}</ul></div><div class="card"><h3>Worth a look</h3><ul>${(D.watch&&D.watch[p]||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="card"><h3>Cost unknown</h3><ul>${unk.map(c=>`<li>${esc(c.short)}</li>`).join('')}</ul></div></div></section>`;
+ h+=acc('save','Savings & overlaps',null,`<h4>Biggest known costs</h4><ul class="list">${paid.map(c=>`<li><span class="d">${fmt(c.cost.monthly)}/mo</span>${esc(c.short)}</li>`).join('')}</ul><h4>Overlapping tools</h4><ul class="list">${Object.entries(groups).filter(([,v])=>v.length>1).map(([k,v])=>`<li><span class="d">${esc(GN[k]||k)}</span>${v.map(c=>esc(c.short)).join(' · ')}</li>`).join('')}</ul><h4>Worth a look</h4><ul class="list">${(D.watch&&D.watch[p]||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`);
+ h+=acc('unc','Unconfirmed & unknown cost',unc.length+unk.length,`<h4>Unconfirmed <i class="dot"></i></h4><ul class="list">${unc.map(c=>`<li>${esc(c.short)}</li>`).join('')}</ul><h4>Cost unknown <span class="tag unk">?</span></h4><ul class="list">${unk.map(c=>`<li>${esc(c.short)}</li>`).join('')}</ul><p class="note">Tags show list-price monthly cost. No tag = free or included.</p>`);
+ h+=`</div>`;
  app.innerHTML=h;
- drawMermaid(cs);
+ const md=app.querySelector('details[data-acc="chart"]');
+ md.addEventListener('toggle',()=>{if(md.open&&!md.dataset.drawn){md.dataset.drawn=1;drawMermaid(cs);}});
 }
+function initials(n){return n.split(/\s|\./).filter(Boolean).map(w=>w[0]).join('').slice(0,2);}
+function tile(c){
+ const m=c.cost;let tag='';
+ if(m.kind==='unknown')tag='<span class="tag unk">?</span>';else if(m.monthly>0)tag=`<span class="tag">${fmt(m.monthly)}</span>`;
+ return `<button class="tile" data-id="${c.id}">${logo(c)}<span class="tn">${esc(c.short)}</span>${tag}${c.confirmed?'':'<i class="dot" title="unconfirmed"></i>'}</button>`;
+}
+window.visionBot=function(id){
+ const b=D.bots.find(x=>x.id===id);const cs=comps(cur).filter(c=>b.touches.includes(c.id));
+ document.getElementById('sh').innerHTML=`<div class="row"><span class="av big">${esc(initials(b.name))}</span><h3>${esc(b.name)}</h3><button class="x" onclick="visionClose()">✕</button></div><p class="role">${esc(b.role)}</p><p>${esc(b.notes)}</p><div class="tiles">${cs.map(tile).join('')}</div>`;
+ document.getElementById('sheet').classList.add('on');
+};
 function sharedSection(p){
  const sh=D.components.filter(c=>c.projects.filter(x=>x!=='shared').length>1||c.projects.includes('shared'));
  if(!sh.length)return '';
@@ -101,18 +114,19 @@ window.visionClose=()=>document.getElementById('sheet').classList.remove('on');
 function drawMermaid(cs){
  const el=document.getElementById('mer');if(!el||!window.mermaid)return;
  const ids={};cs.forEach((c,i)=>ids[c.id]='n'+i);
- let g='flowchart '+(innerWidth<700?'TB':'LR')+'\n';
- for(const L of D.layers){const lc=cs.filter(c=>c.layer===L.id);if(!lc.length)continue;
-  g+=`subgraph ${L.id}["${L.name.replace(/"/g,'')}"]\n`;lc.forEach(c=>{g+=`${ids[c.id]}["${c.short.replace(/"/g,'')}${c.confirmed?'':' (unconfirmed)'}"]\n`;});g+='end\n';}
+ let g='flowchart TB\n';
+ const linked=new Set();cs.forEach(c=>c.connects.forEach(t=>{if(ids[t]){linked.add(c.id);linked.add(t);}}));
+ cs.filter(c=>linked.has(c.id)).forEach(c=>{g+=`${ids[c.id]}["${c.short.replace(/"/g,'')}${c.confirmed?'':' •'}"]\n`;});
  cs.forEach(c=>c.connects.forEach(t=>{if(ids[t])g+=`${ids[c.id]} --> ${ids[t]}\n`;}));
- cs.forEach(c=>{g+=`click ${ids[c.id]} call visionOpen("${c.id}")\n`;});
+ cs.filter(c=>linked.has(c.id)).forEach(c=>{g+=`click ${ids[c.id]} call visionOpen("${c.id}")\n`;});
  el.textContent=g;el.removeAttribute('data-processed');
- mermaid.initialize({startOnLoad:false,theme:'dark',securityLevel:'loose',flowchart:{htmlLabels:true}});
+ mermaid.initialize({startOnLoad:false,theme:'base',securityLevel:'loose',flowchart:{htmlLabels:true,curve:'basis'},themeVariables:{background:'#161a1f',primaryColor:'#1d2229',primaryTextColor:'#e9edf1',primaryBorderColor:'#2a313a',lineColor:'#5eead4',clusterBkg:'#12161a',clusterBorder:'#2a313a',titleColor:'#97a1ad',fontSize:'13px'}});
  mermaid.run({nodes:[el]}).catch(e=>{el.textContent='Flowchart could not render: '+e.message;});
 }
 document.addEventListener('click',e=>{
  const t=e.target.closest('.tab');if(t){cur=t.dataset.p;selBot=selStep=null;if(!FIXED)history.replaceState(null,'','#'+cur);else if(cur!==FIXED){location.href=ROOT+'/#'+cur;return;}render();return;}
- const n=e.target.closest('.node');if(n){visionOpen(n.dataset.id);return;}
+ const n=e.target.closest('.node,.tile');if(n){visionOpen(n.dataset.id);return;}
+ const bt=e.target.closest('.bt');if(bt){visionBot(bt.dataset.bot);return;}
  const s=e.target.closest('.step');if(s){const v=+s.dataset.step;selStep=selStep===v?null:v;selBot=null;render();return;}
  const b=e.target.closest('.bot');if(b){selBot=selBot===b.dataset.bot?null:b.dataset.bot;selStep=null;render();return;}
  if(e.target.id==='sheet')visionClose();

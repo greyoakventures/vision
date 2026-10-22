@@ -8,8 +8,8 @@
    "OSRM public demo server has no uptime promise. The quote falls back to an estimate if it is down."
   ]
  },
- "lastUpdated": "2026-10-22T09:45:00-04:00",
- "lastUpdatedLabel": "Oct 22, 2026, 9:45 AM ET",
+ "lastUpdated": "2026-10-22T09:55:00-04:00",
+ "lastUpdatedLabel": "Oct 22, 2026, 9:55 AM ET",
  "projects": [
   {
    "id": "michigan-salt",
@@ -85,53 +85,63 @@
  "layers": [
   {
    "id": "edge",
-   "name": "Domain & edge",
-   "icon": "globe"
+   "name": "Domain",
+   "icon": "globe",
+   "flow": true
   },
   {
    "id": "hosting",
    "name": "Hosting",
-   "icon": "server"
+   "icon": "server",
+   "flow": true
   },
   {
    "id": "frontend",
    "name": "Website",
-   "icon": "window"
+   "icon": "window",
+   "flow": true
   },
   {
    "id": "backend",
-   "name": "Server & APIs",
-   "icon": "cpu"
+   "name": "Server",
+   "icon": "cpu",
+   "flow": true
   },
   {
    "id": "apis",
-   "name": "Outside services & leads",
-   "icon": "plug"
+   "name": "Outside services",
+   "icon": "plug",
+   "flow": true
   },
   {
    "id": "data",
    "name": "Data",
-   "icon": "db"
+   "icon": "db",
+   "flow": true
   },
   {
    "id": "email",
-   "name": "Email & alerts",
-   "icon": "mail"
+   "name": "Alerts",
+   "icon": "mail",
+   "flow": true
   },
   {
    "id": "money",
-   "name": "Invoices & money",
-   "icon": "money"
+   "name": "Money",
+   "icon": "money",
+   "flow": true
   },
   {
    "id": "analytics",
    "name": "Analytics",
-   "icon": "chart"
+   "icon": "chart",
+   "flow": false
   },
   {
    "id": "code",
    "name": "Code & deploy",
-   "icon": "code"
+   "icon": "code",
+   "flow": false
   }
  ],
  "components": [
@@ -142,7 +152,7 @@
    ],
    "layer": "edge",
    "name": "michigansalt.com",
-   "short": "Domain + DNS",
+   "short": "Porkbun DNS",
    "logo": "porkbun",
    "color": "#EF7878",
    "status": "live",
@@ -177,7 +187,7 @@
    ],
    "layer": "edge",
    "name": "Render edge / CDN (Cloudflare)",
-   "short": "CDN + TLS",
+   "short": "Cloudflare CDN",
    "logo": "cloudflare",
    "color": "#F38020",
    "status": "live",
@@ -246,7 +256,7 @@
    ],
    "layer": "hosting",
    "name": "Render web service: michigansalt",
-   "short": "Site server",
+   "short": "Render \u00b7 site",
    "logo": "render",
    "color": "#46E3B7",
    "status": "live",
@@ -282,7 +292,7 @@
    ],
    "layer": "hosting",
    "name": "Render web service: michigansalt-sandbox",
-   "short": "Sandbox server",
+   "short": "Render \u00b7 sandbox",
    "logo": "render",
    "color": "#46E3B7",
    "status": "test",
@@ -316,7 +326,7 @@
    ],
    "layer": "hosting",
    "name": "Render web service: michigansalt-ops",
-   "short": "Ops server",
+   "short": "Render \u00b7 ops",
    "logo": "render",
    "color": "#46E3B7",
    "status": "live",
@@ -420,9 +430,9 @@
    ],
    "layer": "code",
    "name": "GitHub repo: michigansalt",
-   "short": "Site code",
+   "short": "GitHub \u00b7 site repo",
    "logo": "github",
-   "color": "#181717",
+   "color": "#353b44",
    "status": "live",
    "cost": {
     "monthly": 0,
@@ -460,9 +470,9 @@
    ],
    "layer": "code",
    "name": "GitHub repo: michigansalt-ops",
-   "short": "Ops code",
+   "short": "GitHub \u00b7 ops repo",
    "logo": "github",
-   "color": "#181717",
+   "color": "#353b44",
    "status": "live",
    "cost": {
     "monthly": 0,
@@ -499,7 +509,7 @@
    ],
    "layer": "code",
    "name": "GitHub Actions: assemble-chunks",
-   "short": "Helper workflow",
+   "short": "GitHub Actions",
    "logo": "githubactions",
    "color": "#2088FF",
    "status": "live",
@@ -531,7 +541,7 @@
    ],
    "layer": "frontend",
    "name": "Static HTML / CSS / JavaScript",
-   "short": "Web pages",
+   "short": "HTML / CSS / JS",
    "logo": "html5",
    "color": "#E34F26",
    "status": "live",
@@ -568,7 +578,7 @@
    ],
    "layer": "backend",
    "name": "Node.js 20 server (server.mjs)",
-   "short": "Quote + order API",
+   "short": "Node.js server",
    "logo": "nodedotjs",
    "color": "#5FA04E",
    "status": "live",
@@ -605,7 +615,7 @@
    ],
    "layer": "apis",
    "name": "Zippopotam.us",
-   "short": "ZIP lookup",
+   "short": "Zippopotam",
    "logo": "",
    "color": "#6B7280",
    "status": "live",
@@ -637,7 +647,7 @@
    ],
    "layer": "apis",
    "name": "OSRM routing",
-   "short": "Driving miles",
+   "short": "OSRM",
    "logo": "openstreetmap",
    "color": "#7EBC6F",
    "status": "live",
@@ -701,9 +711,9 @@
    ],
    "layer": "backend",
    "name": "Ops board app (Express + SQLite)",
-   "short": "Order board",
+   "short": "Express ops board",
    "logo": "express",
-   "color": "#000000",
+   "color": "#353b44",
    "status": "live",
    "cost": {
     "monthly": 0,
@@ -738,7 +748,7 @@
    ],
    "layer": "data",
    "name": "SQLite order database",
-   "short": "Order DB",
+   "short": "SQLite",
    "logo": "sqlite",
    "color": "#003B57",
    "status": "live",
@@ -771,9 +781,9 @@
    ],
    "layer": "email",
    "name": "Resend (order alert email)",
-   "short": "Order alerts",
+   "short": "Resend",
    "logo": "resend",
-   "color": "#000000",
+   "color": "#353b44",
    "status": "live",
    "cost": {
     "monthly": null,
@@ -806,7 +816,7 @@
    ],
    "layer": "email",
    "name": "Gmail order inbox (hudsonville@)",
-   "short": "Order inbox",
+   "short": "Gmail inbox",
    "logo": "gmail",
    "color": "#EA4335",
    "status": "live",
@@ -838,7 +848,7 @@
    ],
    "layer": "money",
    "name": "Zapier (QuickBooks bridge)",
-   "short": "Automation",
+   "short": "Zapier",
    "logo": "zapier",
    "color": "#FF4F00",
    "status": "live",
@@ -872,7 +882,7 @@
    ],
    "layer": "money",
    "name": "QuickBooks Online",
-   "short": "Invoices + payment",
+   "short": "QuickBooks",
    "logo": "quickbooks",
    "color": "#2CA01C",
    "status": "live",
@@ -905,7 +915,7 @@
    ],
    "layer": "money",
    "name": "Homeworks",
-   "short": "Customer records",
+   "short": "Homeworks",
    "logo": "",
    "color": "#6B7280",
    "status": "live",
@@ -936,7 +946,7 @@
    ],
    "layer": "money",
    "name": "Stripe",
-   "short": "Not on site",
+   "short": "Stripe",
    "logo": "stripe",
    "color": "#635BFF",
    "status": "not used",
@@ -968,7 +978,7 @@
    ],
    "layer": "analytics",
    "name": "GoatCounter",
-   "short": "Page stats",
+   "short": "GoatCounter",
    "logo": "",
    "color": "#6B7280",
    "status": "live",
@@ -1000,7 +1010,7 @@
    ],
    "layer": "apis",
    "name": "Facebook leads",
-   "short": "FB leads",
+   "short": "Facebook leads",
    "logo": "facebook",
    "color": "#0866FF",
    "status": "live",
@@ -1030,7 +1040,7 @@
    ],
    "layer": "data",
    "name": "Grok Bot box order backup",
-   "short": "Order backup",
+   "short": "Box backup",
    "logo": "",
    "color": "#6B7280",
    "status": "live",
@@ -1065,7 +1075,7 @@
    "name": "GitHub Pages: Vision (this site)",
    "short": "This page",
    "logo": "githubpages",
-   "color": "#222222",
+   "color": "#353b44",
    "status": "live",
    "cost": {
     "monthly": 0,
@@ -1305,6 +1315,11 @@
    "date": "2026-10-22",
    "project": "michigan-salt",
    "text": "Privacy and Terms pages added; Satoshi fonts restored"
+  },
+  {
+   "date": "2026-10-22",
+   "project": "vision",
+   "text": "Michigan Salt tab redesigned: one calm stack diagram"
   },
   {
    "date": "2026-10-21",

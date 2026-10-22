@@ -59,3 +59,44 @@ details.layer>summary .car{transition:transform .2s;color:var(--mute)}details[op
 .legend{font-size:12px;color:var(--mute);display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
 footer{color:var(--mute);font-size:12px;text-align:center;padding:20px}
 svg.ic{width:18px;height:18px;flex:0 0 auto}h2 svg.ic{width:15px;height:15px;color:var(--accent)}.step svg.ic{width:26px;height:26px}.empty-proj svg.ic{width:32px;height:32px}
+/* calm stack view */
+.slim{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:2px 0 14px;flex-wrap:wrap}
+.slim .money{font-size:20px;font-weight:700}.slim .money small{font-size:12px;color:var(--mute);font-weight:400;margin-left:3px}
+.slim .when{font-size:12px;color:var(--mute)}
+.hero{display:flex;flex-direction:column;align-items:stretch}
+.band{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+.bl{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:.06em}
+.bl svg.ic{width:15px;height:15px;color:var(--accent)}
+.tiles{display:flex;flex-wrap:wrap;gap:8px}
+.tile{position:relative;display:inline-flex;align-items:center;gap:8px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:5px 10px 5px 5px;color:var(--text);font:inherit;font-size:14px;cursor:pointer}
+.tile:hover{border-color:#3b4652}
+.tile .logo{width:28px;height:28px;border-radius:7px}.tile .logo img,.tile .logo svg{width:16px;height:16px}
+.tn{white-space:nowrap}
+.tag{font-size:11px;color:var(--warn);background:#2a2110;border-radius:6px;padding:1px 6px}
+.tag.unk{color:var(--mute);background:#20252c}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--bad);opacity:.8}
+.tile .dot{position:absolute;top:4px;right:4px;width:6px;height:6px}
+.arrow{text-align:center;color:#4b5563;font-size:16px;line-height:1;padding:3px 0}
+.side{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px;padding-top:14px;border-top:1px dashed var(--line)}
+.side .band{grid-template-columns:1fr;gap:8px}
+.botrow{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 18px}
+.bt{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--line);border-radius:999px;padding:4px 10px 4px 4px;color:var(--text);font:inherit;font-size:13px;cursor:pointer}
+.av{width:22px;height:22px;border-radius:50%;display:inline-grid;place-items:center;background:#24323a;color:var(--accent);font-size:10px;font-weight:700}
+.av.big{width:34px;height:34px;font-size:13px}
+.accs{display:flex;flex-direction:column;gap:6px}
+details.acc{background:var(--panel);border:1px solid var(--line);border-radius:12px}
+details.acc>summary{list-style:none;cursor:pointer;padding:11px 14px;display:flex;align-items:center;gap:8px;font-size:14px}
+details.acc>summary::-webkit-details-marker{display:none}
+details.acc .cnt{font-size:11px;color:var(--mute);background:#20252c;border-radius:999px;padding:1px 7px}
+details.acc .car{margin-left:auto;color:var(--mute);transition:transform .2s}details.acc[open] .car{transform:rotate(90deg)}
+.accb{padding:0 14px 12px;font-size:14px}
+.accb h4{margin:10px 0 4px;font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center;gap:6px}
+.list{list-style:none;margin:0;padding:0}.list li{padding:5px 0;border-top:1px solid var(--line)}.list li:first-child{border-top:0}
+.list .d{color:var(--mute);font-size:12px;margin-right:8px}
+.steps{list-style:none;margin:0;padding:0}.steps li{display:flex;gap:10px;padding:8px 0;border-top:1px solid var(--line)}.steps li:first-child{border-top:0}
+.steps p{margin:2px 0 0;color:var(--mute);font-size:13px}.steps svg.ic{color:var(--accent);margin-top:2px}
+.note{color:var(--mute);font-size:12px}
+.sh .role{color:var(--accent);margin:8px 0 0;font-size:13px}.sh .tiles{margin-top:10px}
+@media(max-width:600px){.band{grid-template-columns:1fr;gap:8px}.side{grid-template-columns:1fr}.tile{font-size:13px}}
+.arrow{color:#5eead4;opacity:.55;padding:4px 0;display:flex;justify-content:center}
+.sh{max-width:560px}
