@@ -8,8 +8,8 @@
    "OSRM public demo server has no uptime promise. The quote falls back to an estimate if it is down."
   ]
  },
- "lastUpdated": "2026-10-22T08:55:00-04:00",
- "lastUpdatedLabel": "Oct 22, 2026, 8:55 AM ET",
+ "lastUpdated": "2026-10-22T09:45:00-04:00",
+ "lastUpdatedLabel": "Oct 22, 2026, 9:45 AM ET",
  "projects": [
   {
    "id": "michigan-salt",
@@ -173,8 +173,7 @@
   {
    "id": "cloudflare-edge",
    "projects": [
-    "michigan-salt",
-    "grey-oak"
+    "michigan-salt"
    ],
    "layer": "edge",
    "name": "Render edge / CDN (Cloudflare)",
@@ -226,17 +225,16 @@
    },
    "owner": {
     "bots": [
-     "Flynn",
-     "Doc Brown"
+     "Flynn"
     ],
-    "person": "Nick (greyoakventures@gmail.com)"
+    "person": "Nick"
    },
    "lives": {
     "dashboard": "https://dashboard.render.com"
    },
    "links": [],
    "confirmed": true,
-   "notes": "One Render workspace holds all 12 of Nick's services (Michigan Salt, Grey Oak, Log3A, Dog House, Haul Yeah, Mr. Mow-It-All, Augusta plant finder, daily brief).",
+   "notes": "The Render account that runs the three Michigan Salt services (site, sandbox, ops board).",
    "lastVerified": "2026-10-22",
    "connects": [],
    "overlapGroup": null
@@ -264,7 +262,7 @@
     "person": "Nick"
    },
    "lives": {
-    "repo": "greyoakventures/michigansalt (main)",
+    "repo": "michigansalt (main)",
     "url": "https://michigansalt.onrender.com",
     "dashboard": "https://dashboard.render.com/web/srv-dafcmreq1p3s73b7du5g"
    },
@@ -300,7 +298,7 @@
     "person": "Nick"
    },
    "lives": {
-    "repo": "greyoakventures/michigansalt (sandbox/bags-50lb)",
+    "repo": "michigansalt (sandbox/bags-50lb)",
     "url": "https://michigansalt-sandbox.onrender.com",
     "dashboard": "https://dashboard.render.com/web/srv-dald6fm1egvs73e6gcf0"
    },
@@ -335,7 +333,7 @@
     "person": "Nick"
    },
    "lives": {
-    "repo": "greyoakventures/michigansalt-ops (main)",
+    "repo": "michigansalt-ops (main)",
     "url": "https://michigansalt-ops.onrender.com",
     "dashboard": "https://dashboard.render.com/web/srv-dafgcsv40ujc73b6f64g"
    },
@@ -351,8 +349,7 @@
   {
    "id": "render-greyoak-site",
    "projects": [
-    "grey-oak",
-    "michigan-salt"
+    "grey-oak"
    ],
    "layer": "hosting",
    "name": "Render static site: greyoak-site-sandbox",
@@ -372,7 +369,7 @@
     "person": "Nick"
    },
    "lives": {
-    "repo": "greyoakventures/michigansalt (greyoak-site-sandbox branch)",
+    "repo": "michigansalt (greyoak-site-sandbox branch)",
     "url": "https://greyoakventures.com",
     "dashboard": "https://dashboard.render.com/static/srv-damigvbm8hqs73d9cih0"
    },
@@ -386,8 +383,7 @@
   {
    "id": "render-doghouse-phone",
    "projects": [
-    "dog-house",
-    "michigan-salt"
+    "dog-house"
    ],
    "layer": "hosting",
    "name": "Render static site: doghouse-phone",
@@ -407,7 +403,7 @@
     "person": "Nick"
    },
    "lives": {
-    "repo": "greyoakventures/michigansalt (doghouse-phone branch)",
+    "repo": "michigansalt (doghouse-phone branch)",
     "url": "https://doghouse-phone.onrender.com"
    },
    "links": [],
@@ -420,9 +416,7 @@
   {
    "id": "gh-michigansalt",
    "projects": [
-    "michigan-salt",
-    "grey-oak",
-    "dog-house"
+    "michigan-salt"
    ],
    "layer": "code",
    "name": "GitHub repo: michigansalt",
@@ -439,7 +433,7 @@
     "bots": [
      "Flynn"
     ],
-    "person": "Nick (greyoakventures)"
+    "person": "Nick"
    },
    "lives": {
     "repo": "https://github.com/greyoakventures/michigansalt"
@@ -451,13 +445,11 @@
     }
    ],
    "confirmed": true,
-   "notes": "Private repo. Branches: main (live site), sandbox/bags-50lb (sandbox), greyoak-site-sandbox (greyoakventures.com), doghouse-phone (Dog House demo), qbo-invoice (QuickBooks invoice work by Flynn, not live).",
+   "notes": "Private repo for the Michigan Salt site. Branches: main (live site), sandbox/bags-50lb (sandbox server), qbo-invoice (Flynn's QuickBooks invoice work, not live).",
    "lastVerified": "2026-10-22",
    "connects": [
     "render-michigansalt",
-    "render-ms-sandbox",
-    "render-greyoak-site",
-    "render-doghouse-phone"
+    "render-ms-sandbox"
    ],
    "overlapGroup": null
   },
@@ -481,7 +473,7 @@
     "bots": [
      "Flynn"
     ],
-    "person": "Nick (greyoakventures)"
+    "person": "Nick"
    },
    "lives": {
     "repo": "https://github.com/greyoakventures/michigansalt-ops"
@@ -523,7 +515,7 @@
     "person": null
    },
    "lives": {
-    "repo": "greyoakventures/michigansalt/.github/workflows/assemble-chunks.yml"
+    "repo": "michigansalt/.github/workflows/assemble-chunks.yml"
    },
    "links": [],
    "confirmed": true,
@@ -557,7 +549,7 @@
     "person": null
    },
    "lives": {
-    "repo": "greyoakventures/michigansalt/public"
+    "repo": "michigansalt/public"
    },
    "links": [],
    "confirmed": true,
@@ -592,7 +584,7 @@
     "person": null
    },
    "lives": {
-    "repo": "greyoakventures/michigansalt/server.mjs"
+    "repo": "michigansalt/server.mjs"
    },
    "links": [],
    "confirmed": true,
@@ -693,7 +685,7 @@
     "person": null
    },
    "lives": {
-    "repo": "greyoakventures/michigansalt/lead.mjs"
+    "repo": "michigansalt/lead.mjs"
    },
    "links": [],
    "confirmed": true,
@@ -726,7 +718,7 @@
     "person": "Nick (views board)"
    },
    "lives": {
-    "repo": "greyoakventures/michigansalt-ops",
+    "repo": "michigansalt-ops",
     "url": "https://michigansalt-ops.onrender.com"
    },
    "links": [],
@@ -775,8 +767,7 @@
   {
    "id": "resend",
    "projects": [
-    "michigan-salt",
-    "log3a"
+    "michigan-salt"
    ],
    "layer": "email",
    "name": "Resend (order alert email)",
@@ -801,7 +792,7 @@
    },
    "links": [],
    "confirmed": true,
-   "notes": "When a real order request lands, ops emails an alert through Resend to the hudsonville@ inbox (default ALERT_TO). Also used by Log3A and Haul Yeah per the source map.",
+   "notes": "When a real order request lands, the ops board emails an alert through Resend to the order inbox (default ALERT_TO).",
    "lastVerified": "2026-10-22",
    "connects": [
     "gmail-hudsonville"
@@ -811,18 +802,17 @@
   {
    "id": "gmail-hudsonville",
    "projects": [
-    "michigan-salt",
-    "augusta"
+    "michigan-salt"
    ],
    "layer": "email",
-   "name": "Gmail: hudsonville@augustalawncareservices.com",
+   "name": "Gmail order inbox (hudsonville@)",
    "short": "Order inbox",
    "logo": "gmail",
    "color": "#EA4335",
    "status": "live",
    "cost": {
     "monthly": null,
-    "basis": "Google Workspace plan/seat cost not checked (Augusta account).",
+    "basis": "Google Workspace plan/seat cost not checked.",
     "kind": "unknown"
    },
    "owner": {
@@ -836,7 +826,7 @@
    },
    "links": [],
    "confirmed": true,
-   "notes": "Customer-facing inbox for Michigan Salt and the destination of order alerts. Mr. McFeely watches it. Shared with Augusta Lawn Care.",
+   "notes": "Customer-facing inbox for Michigan Salt, where order alerts land. Mr. McFeely watches it.",
    "lastVerified": "2026-10-22",
    "connects": [],
    "overlapGroup": "email"
@@ -844,9 +834,7 @@
   {
    "id": "zapier",
    "projects": [
-    "shared",
-    "michigan-salt",
-    "augusta"
+    "michigan-salt"
    ],
    "layer": "money",
    "name": "Zapier (QuickBooks bridge)",
@@ -880,8 +868,7 @@
   {
    "id": "qbo",
    "projects": [
-    "michigan-salt",
-    "augusta"
+    "michigan-salt"
    ],
    "layer": "money",
    "name": "QuickBooks Online",
@@ -906,7 +893,7 @@
    },
    "links": [],
    "confirmed": true,
-   "notes": "Company: Davidson Snow and Ice, LLC dba Augusta Lawn Care Services of Hudsonville. One invoice per order, emailed to the customer. Customer pays by QBO pay page, ACH, check, or wire. Salt ships only after Mr. Krabs confirms cleared funds. The Intuit custom app was dropped, and Flynn's qbo-invoice branch is not live.",
+   "notes": "One invoice per Michigan Salt order, emailed to the customer. Customer pays by QBO pay page, ACH, check, or wire. Salt ships only after Mr. Krabs confirms cleared funds. The Intuit custom app was dropped, and Flynn's qbo-invoice branch is not live.",
    "lastVerified": "2026-10-22",
    "connects": [],
    "overlapGroup": "invoicing"
@@ -914,8 +901,7 @@
   {
    "id": "homeworks",
    "projects": [
-    "michigan-salt",
-    "augusta"
+    "michigan-salt"
    ],
    "layer": "money",
    "name": "Homeworks",
@@ -938,7 +924,7 @@
    "lives": {},
    "links": [],
    "confirmed": true,
-   "notes": "Augusta's system of record. Holds salt customers and past sales. The ops README and Oct 3 tech doc still say Homeworks issues salt invoices. That is outdated, since invoicing now runs through QuickBooks.",
+   "notes": "Holds Michigan Salt customers and past salt sales. The ops README and Oct 3 tech doc still say Homeworks issues salt invoices. That is outdated, since invoicing now runs through QuickBooks.",
    "lastVerified": "2026-10-22",
    "connects": [],
    "overlapGroup": "invoicing"
@@ -946,12 +932,10 @@
   {
    "id": "stripe",
    "projects": [
-    "shared",
-    "michigan-salt",
-    "augusta"
+    "michigan-salt"
    ],
    "layer": "money",
-   "name": "Stripe (Augustalawncareservices account)",
+   "name": "Stripe",
    "short": "Not on site",
    "logo": "stripe",
    "color": "#635BFF",
@@ -972,7 +956,7 @@
    },
    "links": [],
    "confirmed": false,
-   "notes": "Not on michigansalt.com, so customers never pay by card on the site. The connected Stripe account is named Augustalawncareservices and has 0 products. Who owns it and what it will be used for is unconfirmed. Stripe on the site is planned only after the Stripe Capital loan is paid off.",
+   "notes": "Not on michigansalt.com, so customers never pay by card on the site. The connected Stripe account has 0 products. Who owns it and what it will be used for is unconfirmed. Stripe on the site is planned only after the Stripe Capital loan is paid off.",
    "lastVerified": "2026-10-22",
    "connects": [],
    "overlapGroup": "invoicing"
@@ -980,8 +964,7 @@
   {
    "id": "goatcounter",
    "projects": [
-    "michigan-salt",
-    "grey-oak"
+    "michigan-salt"
    ],
    "layer": "analytics",
    "name": "GoatCounter",
@@ -998,14 +981,14 @@
     "bots": [
      "Flynn"
     ],
-    "person": "Nick (greyoakventures@gmail.com)"
+    "person": "Nick"
    },
    "lives": {
     "dashboard": "https://michigansalt.goatcounter.com"
    },
    "links": [],
    "confirmed": true,
-   "notes": "Privacy-friendly page counts on every public page. Replaced Plausible on Oct 11. Same account also tracks greyoakventures.com.",
+   "notes": "Privacy-friendly page counts on every Michigan Salt page. Replaced Plausible on Oct 11.",
    "lastVerified": "2026-10-22",
    "connects": [],
    "overlapGroup": null
@@ -1076,8 +1059,7 @@
   {
    "id": "vision-pages",
    "projects": [
-    "shared",
-    "michigan-salt"
+    "shared"
    ],
    "layer": "code",
    "name": "GitHub Pages: Vision (this site)",
@@ -1126,6 +1108,9 @@
    "id": "optimus",
    "name": "Optimus Prime",
    "role": "Coordinator",
+   "projects": [
+    "shared"
+   ],
    "touches": [],
    "confirmed": true,
    "notes": "Routes the work and keeps the source map Vision reads."
@@ -1142,8 +1127,7 @@
     "render-ops",
     "frontend",
     "node-server",
-    "ops-app",
-    "render-greyoak-site"
+    "ops-app"
    ],
    "confirmed": true,
    "notes": "Wrote and ships the site and ops board (commits in the repo history)."
@@ -1208,6 +1192,7 @@
    "id": "ms-room",
    "name": "Michigan Salt room",
    "role": "Project room",
+   "projects": [],
    "touches": [],
    "confirmed": false,
    "notes": "Where Michigan Salt work is discussed. Whether this is a separate bot, and what it owns, is unconfirmed."
@@ -1216,14 +1201,20 @@
    "id": "docbrown",
    "name": "Doc Brown",
    "role": "Software engineer",
+   "projects": [
+    "log3a"
+   ],
    "touches": [],
-   "confirmed": false,
-   "notes": "No confirmed Michigan Salt role (works on Log3A)."
+   "confirmed": true,
+   "notes": "Software engineer."
   },
   {
    "id": "vision",
    "name": "Vision",
    "role": "Visuals",
+   "projects": [
+    "shared"
+   ],
    "touches": [
     "vision-pages"
    ],
@@ -1316,11 +1307,6 @@
    "text": "Privacy and Terms pages added; Satoshi fonts restored"
   },
   {
-   "date": "2026-10-22",
-   "project": "shared",
-   "text": "Vision tech stack page created"
-  },
-  {
    "date": "2026-10-21",
    "project": "michigan-salt",
    "text": "VIP 44-sack order fix; driver notes form removed"
@@ -1344,11 +1330,6 @@
    "date": "2026-09-11",
    "project": "michigan-salt",
    "text": "Ops board finance strip added"
-  },
-  {
-   "date": "2026-09-11",
-   "project": "michigan-salt",
-   "text": "Dog House demo moved off michigansalt.com to its own static site"
   }
  ]
 }

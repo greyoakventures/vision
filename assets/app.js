@@ -41,7 +41,7 @@ function render(){
  document.getElementById('upd').textContent='Last updated '+D.lastUpdatedLabel;
  document.getElementById('tabs').innerHTML=D.projects.map(x=>`<button class="tab ${x.id===p?'on':''} ${x.filled?'':'empty'}" data-p="${x.id}">${esc(x.name)}</button>`).join('');
  const app=document.getElementById('app');
- if(!proj.filled){app.innerHTML=`<div class="empty-proj">${svg('box','ic')}<p><b>${esc(proj.name)}</b> isn't mapped yet.</p><p>${esc(proj.summary)}</p></div>`+sharedSection(p);return;}
+ if(!proj.filled){app.innerHTML=`<div class="empty-proj">${svg('box','ic')}<p><b>${esc(proj.name)}</b> isn't mapped yet.</p><p>${esc(proj.summary)}</p></div>`;return;}
  const cs=comps(p);
  const known=cs.filter(c=>c.cost.kind!=='unknown'&&c.cost.monthly!=null);
  const total=known.reduce((a,c)=>a+c.cost.monthly,0);
@@ -49,13 +49,13 @@ function render(){
  const paid=known.filter(c=>c.cost.monthly>0).sort((a,b)=>b.cost.monthly-a.cost.monthly);
  const topIds=new Set(paid.slice(0,3).map(c=>c.id));
  const unc=cs.filter(c=>!c.confirmed);
- const ch=D.changes.filter(x=>x.project===p||x.project==='shared').sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+ const ch=D.changes.filter(x=>x.project===p).sort((a,b)=>(b.date||'').localeCompare(a.date||''));
  const flow=(D.flows[p]||[]);
  let h='';
  h+=`<section><div class="stats"><div class="stat"><b>${fmt(total)}</b><span>known monthly subscriptions</span></div><div class="stat"><b>${unk.length}</b><span>pieces with cost unknown</span></div><div class="stat"><b>${cs.length}</b><span>pieces mapped</span></div><div class="stat"><b>${unc.length}</b><span>unconfirmed</span></div></div></section>`;
  h+=`<section><h2>${svg('chart','ic')}Recently added / changed</h2><div class="changes">${ch.map(x=>`<div class="chg"><i>${x.date?esc(x.date):'date unconfirmed'}</i>${esc(x.text)}</div>`).join('')}</div></section>`;
  if(flow.length){h+=`<section><h2>${svg('send','ic')}What happens when a customer orders</h2><div class="flow">${flow.map(s=>`<div class="step ${selStep===s.step?'on':''}" data-step="${s.step}">${svg(s.icon)}<div><b>${esc(s.title)}</b></div><small>${s.step}</small></div>`).join('')}</div><div class="stepdetail" id="stepdetail">${selStep?esc(flow.find(s=>s.step===selStep).detail):'Tap a step to light up the pieces it uses.'}</div></section>`;}
- h+=`<section><h2>${svg('bot','ic')}Grok Bot layer: who built or runs what</h2><div class="bots">${D.bots.filter(b=>b.touches.some(t=>cs.find(c=>c.id===t))||b.id==='optimus'||b.id==='ms-room'||b.id==='docbrown').map(b=>`<div class="bot ${selBot===b.id?'on':''} ${b.confirmed?'':'unc'}" data-bot="${b.id}"><span class="av">${esc(b.name.split(/\s|\./).filter(Boolean).map(w=>w[0]).join('').slice(0,2))}</span>${esc(b.name)}</div>`).join('')}</div><div class="botnote" id="botnote">${selBot?botNote(selBot):'Tap a bot to light up what it touches. Dashed = role unconfirmed.'}</div></section>`;
+ h+=`<section><h2>${svg('bot','ic')}Who built or runs it</h2><div class="bots">${D.bots.filter(b=>b.touches.some(t=>cs.find(c=>c.id===t))).map(b=>`<div class="bot ${selBot===b.id?'on':''} ${b.confirmed?'':'unc'}" data-bot="${b.id}"><span class="av">${esc(b.name.split(/\s|\./).filter(Boolean).map(w=>w[0]).join('').slice(0,2))}</span>${esc(b.name)}</div>`).join('')}</div><div class="botnote" id="botnote">${selBot?botNote(selBot):'Tap a bot to light up what it touches.'}</div></section>`;
  h+=`<section><h2>${svg('server','ic')}The stack, layer by layer</h2>`;
  const hi=highlightSet(flow);
  for(const L of D.layers){const lc=cs.filter(c=>c.layer===L.id);if(!lc.length)continue;
@@ -66,7 +66,6 @@ function render(){
  const groups={};cs.filter(c=>c.overlapGroup).forEach(c=>(groups[c.overlapGroup]=groups[c.overlapGroup]||[]).push(c));
  const GN={invoicing:'Invoices & payments',email:'Email'};
  h+=`<section><h2>${svg('money','ic')}Spot the savings</h2><div class="cards"><div class="card"><h3>Most expensive (known)</h3><ul>${paid.slice(0,5).map(c=>`<li>${esc(c.name)}: ${fmt(c.cost.monthly)}/mo</li>`).join('')||'<li>None known</li>'}</ul></div><div class="card"><h3>Overlapping tools</h3><ul>${Object.entries(groups).filter(([,v])=>v.length>1).map(([k,v])=>`<li><b>${esc(GN[k]||k)}:</b> ${v.map(c=>esc(c.short)).join(' · ')}</li>`).join('')}</ul></div><div class="card"><h3>Worth a look</h3><ul>${(D.watch&&D.watch[p]||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="card"><h3>Cost unknown</h3><ul>${unk.map(c=>`<li>${esc(c.short)}</li>`).join('')}</ul></div></div></section>`;
- h+=sharedSection(p);
  app.innerHTML=h;
  drawMermaid(cs);
 }
@@ -88,7 +87,7 @@ function node(c,topIds,hi,showProj){
 function botNote(id){const b=D.bots.find(x=>x.id===id);return `<b>${esc(b.name)}</b> · ${esc(b.role)}${b.confirmed?'':' (unconfirmed)'}: ${esc(b.notes)}`;}
 window.visionOpen=function(id){
  const c=D.components.find(x=>x.id===id);if(!c)return;
- const bots=D.bots.filter(b=>b.touches.includes(id)).map(b=>b.name);
+ const bots=D.bots.filter(b=>b.touches.includes(id)&&b.id!=='nick').map(b=>b.name);
  const L=D.layers.find(l=>l.id===c.layer);
  const links=[];if(c.lives.url)links.push(`<a href="${esc(c.lives.url)}" target="_blank" rel="noopener">${esc(c.lives.url)}</a>`);
  if(c.lives.repo)links.push(/^https?:/.test(c.lives.repo)?`<a href="${esc(c.lives.repo)}" target="_blank" rel="noopener">${esc(c.lives.repo.replace('https://github.com/',''))}</a>`:esc(c.lives.repo));
