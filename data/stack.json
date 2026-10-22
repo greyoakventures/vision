@@ -431,9 +431,9 @@
    "color": "#181717",
    "status": "live",
    "cost": {
-    "monthly": null,
-    "basis": "GitHub account plan not readable with the current token scope.",
-    "kind": "unknown"
+    "monthly": 0,
+    "basis": "GitHub Free plan (GitHub refused Pages on a private repo, which only Free accounts do). Private repos are free.",
+    "kind": "free"
    },
    "owner": {
     "bots": [
@@ -473,9 +473,9 @@
    "color": "#181717",
    "status": "live",
    "cost": {
-    "monthly": null,
-    "basis": "Same GitHub account; plan not readable.",
-    "kind": "unknown"
+    "monthly": 0,
+    "basis": "GitHub Free plan.",
+    "kind": "free"
    },
    "owner": {
     "bots": [
@@ -513,7 +513,7 @@
    "status": "live",
    "cost": {
     "monthly": null,
-    "basis": "Uses GitHub Actions minutes; plan and usage not checked.",
+    "basis": "GitHub Free includes some Actions minutes for private repos; usage not checked.",
     "kind": "unknown"
    },
    "owner": {
@@ -1086,9 +1086,9 @@
    "color": "#222222",
    "status": "live",
    "cost": {
-    "monthly": null,
-    "basis": "Depends on GitHub plan.",
-    "kind": "unknown"
+    "monthly": 0,
+    "basis": "GitHub Pages is free for public repos.",
+    "kind": "free"
    },
    "owner": {
     "bots": [
@@ -1101,7 +1101,7 @@
    },
    "links": [],
    "confirmed": true,
-   "notes": "This visual. Data lives in data/stack.json and is refreshed daily by Vision.",
+   "notes": "This visual. The repo is public because GitHub Free does not allow Pages from a private repo. The pages are marked noindex and robots.txt blocks crawlers. Data lives in data/stack.json, refreshed daily by Vision.",
    "lastVerified": "2026-10-22",
    "connects": [],
    "overlapGroup": null
