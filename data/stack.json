@@ -27,8 +27,8 @@
    "OSRM public demo server has no uptime promise. The quote falls back to an estimate if it is down."
   ]
  },
- "lastUpdated": "2026-10-28T06:34-04:00",
- "lastUpdatedLabel": "Oct 28, 2026, 6:34 AM ET",
+ "lastUpdated": "2026-10-29T06:31-04:00",
+ "lastUpdatedLabel": "Oct 29, 2026, 6:31 AM ET",
  "projects": [
   {
    "id": "michigan-salt",
@@ -36,8 +36,8 @@
    "domain": "michigansalt.com",
    "filled": true,
    "summary": "Truckload ice melt site: quote, request, invoice, ship.",
-   "updated": "2026-10-28T06:34-04:00",
-   "updatedLabel": "Oct 28, 2026, 6:34 AM ET"
+   "updated": "2026-10-29T06:31-04:00",
+   "updatedLabel": "Oct 29, 2026, 6:31 AM ET"
   },
   {
    "id": "grey-oak",
@@ -45,8 +45,8 @@
    "domain": "greyoakventures.com",
    "filled": true,
    "summary": "AI Walkthrough offer: site, request form, auto-reply, booking.",
-   "updated": "2026-10-28T06:34-04:00",
-   "updatedLabel": "Oct 28, 2026, 6:34 AM ET"
+   "updated": "2026-10-29T06:31-04:00",
+   "updatedLabel": "Oct 29, 2026, 6:31 AM ET"
   },
   {
    "id": "augusta",
@@ -197,7 +197,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Domain registered and DNS hosted at Porkbun (nameservers *.ns.porkbun.com, checked by DNS lookup). Apex A record 216.24.57.1 (Render) and www CNAME michigansalt.onrender.com. No MX record on michigansalt.com, so no email at this domain.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [
     "cloudflare-edge"
    ],
@@ -227,7 +227,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Live response headers show server: cloudflare + x-render-origin-server: Render. This is Render's built-in CDN and TLS, not a Cloudflare account of Nick's.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [
     "render-michigansalt"
    ],
@@ -268,7 +268,7 @@
    "links": [],
    "confirmed": true,
    "notes": "The Render account that runs the three Michigan Salt services (site, sandbox, ops board).",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [],
    "overlapGroup": null,
    "notesByProject": {
@@ -304,8 +304,8 @@
    },
    "links": [],
    "confirmed": true,
-   "notes": "Live customer site. Node web service, Ohio region, starter plan, auto-deploys on every commit to main. Last deploy Oct 22 (5:53 AM ET). /health reports the lead webhook is configured.",
-   "lastVerified": "2026-10-28",
+   "notes": "Live customer site. Node web service, Ohio region, starter plan, auto-deploys on every commit to main. Last deploy Oct 28 (7:33 AM ET). /health reports the lead webhook is configured.",
+   "lastVerified": "2026-10-29",
    "connects": [
     "node-server"
    ],
@@ -341,7 +341,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Test copy of the site for the 50 lb bags idea. Paid starter plan, last changed Sep 22. Possible savings: suspend it or move it to the free plan if nobody is using it.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [],
    "overlapGroup": null
   },
@@ -375,8 +375,8 @@
    },
    "links": [],
    "confirmed": true,
-   "notes": "Order ops board. Node web service, Ohio, starter plan, auto-deploys from main. Last deploy Oct 23 (2:16 PM ET). Note: render.yaml says plan free + disk, but the live service is on starter, and the connector shows no disk.",
-   "lastVerified": "2026-10-28",
+   "notes": "Order ops board. Node web service, Ohio, starter plan, auto-deploys from main. Last deploy Oct 29 (6:28 AM ET). Note: render.yaml says plan free + disk, but the live service is on starter, and the connector shows no disk.",
+   "lastVerified": "2026-10-29",
    "connects": [
     "ops-app"
    ],
@@ -412,7 +412,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Serves greyoakventures.com and www. Free static site that auto-deploys from the greyoak-site-sandbox branch. The service is still named 'sandbox' even though it serves the live domain. Last deploy Oct 14.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [
     "go-site-pages",
     "go-walkthrough-page",
@@ -449,7 +449,7 @@
    "links": [],
    "confirmed": true,
    "notes": "The Dog House phone demo also lives on a branch of the Michigan Salt repo (moved off michigansalt.com Sep 11).",
-   "lastVerified": "2026-10-24",
+   "lastVerified": "2026-10-29",
    "connects": [],
    "overlapGroup": null
   },
@@ -486,7 +486,7 @@
    ],
    "confirmed": true,
    "notes": "Private repo for the Michigan Salt site. Branches: main (live site), sandbox/bags-50lb (sandbox server), qbo-invoice (Flynn's QuickBooks invoice work, not live), pickup-fix (local pickup work, already merged into main Oct 27), doghouse-phone and greyoak-site-sandbox (other projects).",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [
     "render-michigansalt",
     "render-ms-sandbox"
@@ -525,8 +525,8 @@
     }
    ],
    "confirmed": true,
-   "notes": "Private repo for the ops board. Branches: main (live ops board) and inventory (shop inventory page with stock events, added Oct 27, not merged or live yet).",
-   "lastVerified": "2026-10-28",
+   "notes": "Private repo for the ops board. Branches: main (live ops board; the inventory branch was merged and went live Oct 28), feature/zapier-qbo-invoice (Oct 29: send each new real order once to Zapier to start an unsent QuickBooks invoice; not merged or live), and feature/qbo-sync-and-delivered-button (Oct 29: QuickBooks-to-board sync, a Picked up/Delivered button with undo, and an unpaid-but-delivered flag; not merged or live). The old inventory branch is still listed.",
+   "lastVerified": "2026-10-29",
    "connects": [
     "render-ops"
    ],
@@ -560,7 +560,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Helper workflow that stitches uploaded file chunks into the site pages and commits them. The real deploy is Render auto-deploy on push to main, with no CI build step.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [],
    "overlapGroup": null
   },
@@ -594,7 +594,7 @@
    "links": [],
    "confirmed": true,
    "notes": "No framework, no build step. Pages: home, Purple Power, super sacks, for contractors, FAQ, thank-you, privacy, terms (privacy and terms added Oct 22). Self-hosted Satoshi fonts. Edna's ice-and-steel look; J3 copy.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [
     "node-server",
     "goatcounter"
@@ -628,8 +628,8 @@
    },
    "links": [],
    "confirmed": true,
-   "notes": "Plain Node http server, not Express. Serves pages plus APIs: /api/quote (price quote), /api/lead (quote/abandon events), /api/request (real order request), /health. Prices and origin are kept server-side in JSON, never sent to the browser. Env var names: LEAD_WEBHOOK_URL, LEAD_WEBHOOK_SECRET, PORT.",
-   "lastVerified": "2026-10-28",
+   "notes": "Plain Node http server, not Express. Serves pages plus APIs: /api/quote (price quote), /api/lead (quote/abandon events), /api/request (real order request), /health. Prices and origin are kept server-side in JSON, never sent to the browser. Since Oct 28 the public sack stock shown on the site comes from the ops board's public stock endpoint (server refresh with last-good fallback; browser check with a 2-second timeout), and test order stamps are kept off production. Env var names: LEAD_WEBHOOK_URL, LEAD_WEBHOOK_SECRET, PORT.",
+   "lastVerified": "2026-10-29",
    "connects": [
     "zippopotam",
     "osrm",
@@ -666,7 +666,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Turns the customer's ZIP into a map point for the freight quote.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [],
    "overlapGroup": null
   },
@@ -698,7 +698,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Driving miles for the freight part of the quote. Falls back to a straight-line estimate if it fails. Uses a public demo server with no uptime promise.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [],
    "overlapGroup": null
   },
@@ -730,7 +730,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Each quote, abandon, and request is written to a JSON file and an inbox log on the site server, then forwarded to ops. No disk is attached, so these files are probably wiped on each deploy (unconfirmed). Ops is the lasting copy.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [],
    "overlapGroup": null
   },
@@ -763,8 +763,8 @@
    },
    "links": [],
    "confirmed": true,
-   "notes": "Receives the lead webhook (POST /webhooks/leads with a shared secret), saves the order, and shows Nick a Kanban: lead > quoted > invoiced > awaiting pay > paid > scheduled > delivered. Admin pages need a token. Has an ops-only finance strip that now figures profit from landed cost per sack (Oct 23). The Paid column now reads 'Paid, confirm funds': Mr. Krabs confirms the deposit cleared before an order moves to scheduled. Admin backup and exact restore (export/import) added Oct 23 so orders can be saved before a redeploy. Env var names: WEBHOOK_SECRET, ADMIN_TOKEN, RESEND_API_KEY, ALERT_FROM, ALERT_TO, DATABASE_PATH.",
-   "lastVerified": "2026-10-28",
+   "notes": "Receives the lead webhook (POST /webhooks/leads with a shared secret), saves the order, and shows Nick a Kanban: lead > quoted > invoiced > awaiting pay > paid > scheduled > delivered. Admin pages need a token. Has an ops-only finance strip that now figures profit from landed cost per sack (Oct 23). The Paid column now reads 'Paid, confirm funds': Mr. Krabs confirms the deposit cleared before an order moves to scheduled. Admin backup and exact restore (export/import) added Oct 23 so orders can be saved before a redeploy. Live since Oct 28: shop inventory with stock events (/admin/inventory) and a private, key-protected phone inventory page (dark view, refresh button with updated time), plus a public stock endpoint that shares only the available sack count and its time. Holds can now carry a delivery date and note (Oct 28). Env var names: WEBHOOK_SECRET, ADMIN_TOKEN, RESEND_API_KEY, ALERT_FROM, ALERT_TO, DATABASE_PATH.",
+   "lastVerified": "2026-10-29",
    "connects": [
     "sqlite",
     "resend"
@@ -800,7 +800,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Orders, abandoned contacts, and supplier invoices in SQLite (better-sqlite3). Confirmed Oct 23: there is no persistent disk yet, so the database is wiped on every redeploy. The ops board now has a full export and exact restore to back it up first. render.yaml still asks for a 1 GB disk at /var/data that was never attached.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [],
    "overlapGroup": null
   },
@@ -833,7 +833,7 @@
    "links": [],
    "confirmed": true,
    "notes": "When a real order request lands, the ops board emails an alert through Resend to the order inbox (default ALERT_TO).",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [
     "gmail-hudsonville"
    ],
@@ -867,7 +867,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Customer-facing inbox for Michigan Salt, where order alerts land. Mr. McFeely watches it.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [],
    "overlapGroup": "email"
   },
@@ -899,7 +899,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Connects to QuickBooks Online (1 QBO connection confirmed on the Zapier connector). Used to create one invoice per salt order. The exact Zap steps were not inspected.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [
     "qbo"
    ],
@@ -934,7 +934,7 @@
    "links": [],
    "confirmed": true,
    "notes": "One invoice per Michigan Salt order, emailed to the customer. Customer pays by QBO pay page, ACH, check, or wire. Salt ships only after Mr. Krabs confirms cleared funds. The Intuit custom app was dropped, and Flynn's qbo-invoice branch is not live.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [],
    "overlapGroup": "invoicing"
   },
@@ -965,7 +965,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Holds Michigan Salt customers and past salt sales. The ops README and Oct 3 tech doc still say Homeworks issues salt invoices. That is outdated, since invoicing now runs through QuickBooks.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [],
    "overlapGroup": "invoicing"
   },
@@ -997,7 +997,7 @@
    "links": [],
    "confirmed": false,
    "notes": "Not on michigansalt.com, so customers never pay by card on the site. The connected Stripe account has 0 products. Who owns it and what it will be used for is unconfirmed. Stripe on the site is planned only after the Stripe Capital loan is paid off.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [],
    "overlapGroup": "invoicing"
   },
@@ -1029,7 +1029,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Privacy-friendly page counts on every Michigan Salt page. Replaced Plausible on Oct 11.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [],
    "overlapGroup": null
   },
@@ -1059,7 +1059,7 @@
    "links": [],
    "confirmed": false,
    "notes": "Per the source map, salt leads also come in from Facebook, and Nick approves replies. Which page and how replies are routed is unconfirmed.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [],
    "overlapGroup": null
   },
@@ -1092,7 +1092,7 @@
    "links": [],
    "confirmed": true,
    "notes": "A copy of orders kept on the shared Grok Bot box.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [],
    "overlapGroup": null
   },
@@ -1124,7 +1124,7 @@
    "links": [],
    "confirmed": true,
    "notes": "This visual. The repo is public because GitHub Free does not allow Pages from a private repo. The pages are marked noindex and robots.txt blocks crawlers. Data lives in data/stack.json, refreshed daily by Vision.",
-   "lastVerified": "2026-10-24",
+   "lastVerified": "2026-10-29",
    "connects": [],
    "overlapGroup": null
   },
@@ -1157,7 +1157,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Registered and DNS at Porkbun (nameservers *.ns.porkbun.com). Apex A records point to Render; www CNAME greyoak-site-sandbox.onrender.com. MX smtp.google.com, SPF for Google, Google DKIM key, DMARC set to p=none (monitor only). All checked by DNS lookup.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [
     "go-cdn"
    ],
@@ -1187,7 +1187,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Live headers show server: cloudflare in front of the Render static site. This is Render's built-in CDN and TLS.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [
     "render-greyoak-site"
    ],
@@ -1224,7 +1224,7 @@
    "links": [],
    "confirmed": true,
    "notes": "One-page site: stacked logo, email signup form, footer. No framework, no build step. Edna design, J3 copy.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [
     "formsubmit",
     "go-goatcounter"
@@ -1261,7 +1261,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Unlisted, noindex page for The One-Day Walkthrough offer, with a request form. A short /walkthrough URL redirects to it (added Oct 14). Not linked from the home page.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [
     "formsubmit",
     "go-goatcounter"
@@ -1296,7 +1296,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Unlisted, noindex invite-request page for the One-Day AI Blueprint event, with an invitation code field. The event is on hold.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [
     "formsubmit"
    ],
@@ -1330,7 +1330,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Receives all three forms (home signup, Walkthrough request, Blueprint invite) and emails each one to Nick as a table. The target address is hidden in the form code. Spam trap field, no captcha.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [
     "go-gmail"
    ],
@@ -1362,7 +1362,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Workspace account for the domain, confirmed by MX, SPF, and DKIM records. nick@greyoakventures.com is the primary email and calendar.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [],
    "overlapGroup": "google"
   },
@@ -1392,7 +1392,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Primary Grey Oak inbox. FormSubmit delivers 'New Walkthrough request' emails here. Labels in use: 'Walkthrough auto-replied' and 'Walkthrough Nick alerted'.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [
     "go-autoreply"
    ],
@@ -1422,7 +1422,7 @@
    "links": [],
    "confirmed": true,
    "notes": "When a 'New Walkthrough request' email lands, an automated reply ('Your Walkthrough request') goes out from nick@greyoakventures.com and the thread is labeled. Tested Oct 16. Which bot runs it, and the routine's code, are unconfirmed. A 5-step follow-up email series is drafted but not launched.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [
     "go-calendar"
    ],
@@ -1456,7 +1456,7 @@
    "links": [],
    "confirmed": true,
    "notes": "'Grey Oak Ventures: Walkthrough Call' booking page. Bookings land on the Grey Oak calendar (first one booked Oct 16). Leslie owns Nick's calendars.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [],
    "overlapGroup": null
   },
@@ -1486,7 +1486,7 @@
    "links": [],
    "confirmed": true,
    "notes": "The Grey Oak sheets and brand files sit on the greyoakventures@gmail.com Drive. That account is meant only for website and service signups. Moving them to nick@greyoakventures.com was proposed, not done.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [],
    "overlapGroup": "google"
   },
@@ -1514,7 +1514,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Private prospect list for outreach. Last edited Oct 22. No real CRM yet; this sheet is the list.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [],
    "overlapGroup": "crm"
   },
@@ -1542,7 +1542,7 @@
    "links": [],
    "confirmed": false,
    "notes": "Older CRM sheet (last edited Jul 30). Whether it is still used is unconfirmed. It overlaps with the Prospect Tracker.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [],
    "overlapGroup": "crm"
   },
@@ -1570,7 +1570,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Venue Tracker, P&L Model, and QR / invite-code sheets for the One-Day AI Blueprint. Event on hold.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [],
    "overlapGroup": null
   },
@@ -1598,7 +1598,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Planned for Blueprint tickets. Not created, price not set. No money flows through Grey Oak yet.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [],
    "overlapGroup": null
   },
@@ -1630,7 +1630,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Page counts on the home, Walkthrough, and Blueprint pages (added Oct 11).",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [],
    "overlapGroup": null
   },
@@ -1662,7 +1662,7 @@
    "links": [],
    "confirmed": true,
    "notes": "The Grey Oak site lives on a branch of the Michigan Salt repo. Every push to that branch auto-deploys greyoakventures.com. Last change Oct 14.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [
     "render-greyoak-site"
    ],
@@ -1697,7 +1697,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Private repo for the daily AI briefings site.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [
     "render-daily-brief"
    ],
@@ -1734,7 +1734,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Daily AI briefings site (noindex), listed under Grey Oak in the source map. Auto-deploys from master; last updated Oct 28.",
-   "lastVerified": "2026-10-28",
+   "lastVerified": "2026-10-29",
    "connects": [],
    "overlapGroup": null
   }
@@ -2046,6 +2046,21 @@
   ]
  },
  "changes": [
+  {
+   "date": "2026-10-29",
+   "project": "michigan-salt",
+   "text": "Ops board: two new branches in progress, not live yet: send new orders to Zapier for a QuickBooks invoice, and QuickBooks sync with a Picked up/Delivered button"
+  },
+  {
+   "date": "2026-10-28",
+   "project": "michigan-salt",
+   "text": "Ops board: shop inventory went live, with your private phone inventory page and holds that carry a delivery date"
+  },
+  {
+   "date": "2026-10-28",
+   "project": "michigan-salt",
+   "text": "Site stock count now follows the ops board automatically"
+  },
   {
    "date": "2026-10-27",
    "project": "michigan-salt",
