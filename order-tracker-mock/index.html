@@ -52,7 +52,7 @@ h1 span{color:var(--amber)}
 main{max-width:1080px;margin:0 auto;padding:4px 14px 40px}
 
 /* ---------- order card ---------- */
-.order{background:var(--card);border:2.5px solid var(--ink);border-radius:var(--r);box-shadow:0 6px 0 var(--ink);padding:16px 16px 14px;margin:0 0 22px;position:relative}
+.order{overflow:hidden;background:var(--card);border:2.5px solid var(--ink);border-radius:var(--r);box-shadow:0 6px 0 var(--ink);padding:16px 16px 14px;margin:0 0 22px;position:relative}
 .ohead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
 .who{font-weight:900;font-size:19px}
 .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
@@ -195,10 +195,43 @@ footer{text-align:center;font-size:12px;color:var(--mute);padding:10px 14px 30px
   .s3 .mascot{width:132px;margin-left:-66px}
   .s3 .track,.s4 .track{margin-top:100px}
 }
+
+/* ---------- delivered: big jump, then the spout pours a little pile ---------- */
+.s4 .track{margin-top:172px}
+.s4 .mascot{top:-134px}
+.s4 .mascot .shadow{display:none}
+.s4 .mascot .body svg{--spout:1}
+.s4 .mascot .body{animation:hopOut .8s cubic-bezier(.3,1.3,.5,1) backwards,dance 1.1s .8s ease-in-out 1,unload 4.2s 2.2s ease-in-out infinite}
+@keyframes unload{
+  0%{transform:none}
+  7%{transform:translateY(0) scale(1.12,.86)}
+  20%{transform:translateY(-52px) rotate(-10deg) scale(.94,1.08)}
+  26%{transform:translateY(-54px) rotate(8deg)}
+  34%{transform:translateY(0) scale(1.14,.84)}
+  40%{transform:translateY(0) scale(1,1)}
+  48%{transform:rotate(-3deg)}56%{transform:rotate(3deg)}64%{transform:rotate(-3deg)}72%{transform:rotate(3deg)}
+  80%,100%{transform:none}}
+.pour{position:absolute;left:50%;top:90px;--fall:22px;width:0;height:0;display:none}
+.s4 .pour{display:block}
+.pour i{position:absolute;left:-3px;top:0;width:6px;height:6px;border-radius:1.5px;background:var(--grain);border:1px solid rgba(20,26,46,.55);opacity:0;
+  animation:grain 4.2s infinite linear}
+@keyframes grain{0%{opacity:0;transform:translate(0,0) rotate(0)}1%{opacity:1}8%{opacity:1;transform:translate(var(--gx),var(--fall)) rotate(140deg)}9%,100%{opacity:0;transform:translate(var(--gx),var(--fall))}}
+.pile{position:absolute;left:50%;top:110px;width:58px;height:18px;margin-left:-29px;display:none;transform-origin:50% 100%;animation:pileUp 1.8s 3.9s ease-out both}
+.s4 .pile{display:block}
+.pile svg{width:100%;height:100%;display:block;overflow:visible}
+@keyframes pileUp{0%{transform:scale(.15,0)}100%{transform:none}}
+@media (max-width:600px){
+  .s4 .track{margin-top:126px}
+  .s4 .mascot{top:-100px}
+  .pour{top:65px;--fall:15px}
+  .pour i{width:4.5px;height:4.5px;left:-2.25px}
+  .pile{top:80px;width:42px;height:13px;margin-left:-21px}
+}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .snow{display:none}
-  .s4 .mascot .body{transform:rotate(-6deg)}
+  .s4 .mascot .body{transform:none}
+  .pour{display:none!important}
   .s4 .rig{display:none}
 }
 </style>
@@ -223,8 +256,8 @@ footer{text-align:center;font-size:12px;color:var(--mute);padding:10px 14px 30px
         <g class="pump-r"><path d="M65 44 Q74 36 72 20" fill="none" stroke="#141a2e" stroke-width="4" stroke-linecap="round"/><circle cx="72" cy="18" r="4.6" fill="#fff" stroke="#141a2e" stroke-width="2.4"/></g>
       </g>
       <!-- feet -->
-      <ellipse cx="28" cy="84" rx="8" ry="4" fill="#141a2e"/>
-      <ellipse cx="52" cy="84" rx="8" ry="4" fill="#141a2e"/>
+      <ellipse cx="25" cy="84" rx="8" ry="4" fill="#141a2e"/>
+      <ellipse cx="55" cy="84" rx="8" ry="4" fill="#141a2e"/>
       <!-- bag body -->
       <path d="M14 22 Q40 15 66 22 L69 70 Q69 82 56 82 L24 82 Q11 82 11 70 Z" fill="#fbfdff" stroke="#141a2e" stroke-width="3" stroke-linejoin="round"/>
       <!-- woven texture -->
@@ -234,6 +267,11 @@ footer{text-align:center;font-size:12px;color:var(--mute);padding:10px 14px 30px
       <!-- salt pile peeking out the top -->
       <path d="M24 22 Q32 10 40 13 Q48 9 56 22 Q40 18 24 22Z" fill="#ffffff" stroke="#141a2e" stroke-width="2.2" stroke-linejoin="round"/>
       <circle cx="34" cy="16" r="1.3" fill="#b9c8dc"/><circle cx="44" cy="14.5" r="1.3" fill="#b9c8dc"/><circle cx="49" cy="18" r="1.1" fill="#b9c8dc"/>
+      <!-- discharge spout (Delivered) -->
+      <g style="opacity:var(--spout,0)">
+        <path d="M34 78 H46 L44.5 92 Q40 94.5 35.5 92 Z" fill="#fbfdff" stroke="#141a2e" stroke-width="2.4" stroke-linejoin="round"/>
+        <rect x="32.5" y="82" width="15" height="4" rx="2" fill="var(--loop,#FFB000)" stroke="#141a2e" stroke-width="1.5"/>
+      </g>
       <!-- label patch -->
       <rect x="20" y="30" width="40" height="40" rx="9" fill="var(--label,#FFB000)" stroke="#141a2e" stroke-width="2.4"/>
       <!-- face -->
@@ -336,6 +374,17 @@ function rig(o){
   </svg></div>`;
 }
 
+
+function pour(o){
+  const g=o.pp?"#8b7cf0":"#eef4fb", d=o.pp?"#5B4BCC":"#b9c8dc";
+  let h="";const base=2.2+4.2*.42;
+  for(let i=0;i<14;i++){const gx=((i*37)%9)-4;h+=`<i style="--gx:${gx}px;animation-delay:${(base+i*.11).toFixed(2)}s"></i>`;}
+  return `<span class="pour" style="--grain:${g}" aria-hidden="true">${h}</span>
+  <span class="pile" aria-hidden="true"><svg viewBox="0 0 46 14"><path d="M1 13 Q8 3 23 1.5 Q38 3 45 13 Z" fill="${g}" stroke="#141a2e" stroke-width="1.8" stroke-linejoin="round"/>
+  <g fill="${d}"><circle cx="15" cy="9" r="1.2"/><circle cx="22" cy="6" r="1.2"/><circle cx="29" cy="9.5" r="1.2"/><circle cx="34" cy="11" r="1"/><circle cx="10" cy="11.3" r="1"/></g>
+  <path d="M14 6 Q19 3.2 23 3" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round" opacity=".8"/></svg></span>`;
+}
+
 function card(o,idx){
   const s=o.stage;
   const stops=STAGES.map((st,i)=>{
@@ -357,7 +406,7 @@ function card(o,idx){
       <div class="mascot" style="left:${10+pct(s)*.8}%">
         <div class="body"><svg viewBox="0 0 80 88" style="--label:${label};--loop:${o.pp?"#5B4BCC":"#FFB000"}" role="img" aria-label="Salt sack mascot"><use href="#sack"/></svg>
           <span class="think">?</span><span class="cash">$</span>${confetti()}</div>
-        <div class="shadow"></div>${s>=3?rig(o):""}
+        <div class="shadow"></div>${s>=3?rig(o):""}${s===4?pour(o):""}
       </div>
     </div>
     <div class="foot"><span class="id">${o.id} &middot; stop ${s+1} of 5</span>
