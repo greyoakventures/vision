@@ -245,6 +245,14 @@ footer{text-align:center;font-size:12px;color:var(--mute);padding:10px 14px 30px
 .completed #doneorders{padding:4px 12px 2px}
 .completed .order{box-shadow:0 4px 0 var(--ink)}
 .empty{background:#fff;border:2px dashed var(--ink2);border-radius:16px;padding:14px;color:var(--ink2);font-weight:700;margin-bottom:22px}
+
+.clink{display:flex;align-items:center;gap:8px;margin-top:10px;padding:8px 10px;background:#f4f7fc;border:1.5px solid var(--line);border-radius:12px}
+.clink .ct{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.05em;color:var(--ink2);white-space:nowrap}
+.clink input{flex:1;min-width:0;font:inherit;font-size:12px;font-weight:700;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:8px;padding:6px 8px;text-overflow:ellipsis}
+.copy{font:inherit;font-weight:900;font-size:12px;border:2px solid var(--ink);border-radius:999px;background:var(--amber);padding:6px 14px;cursor:pointer;box-shadow:0 2px 0 var(--ink);white-space:nowrap}
+.copy:active{transform:translateY(2px);box-shadow:none}
+.copy.ok{background:var(--good);color:#fff}
+@media (max-width:600px){.clink{flex-wrap:wrap}.clink .ct{width:100%}}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .snow{display:none}
@@ -422,6 +430,7 @@ function card(o,idx){
       </div>
     </div>
     <div class="foot"><span class="id">${esc(o.id)} &middot; stop ${s+1} of 5</span><span class="refs">${refs}</span></div>
+    ${o.customerUrl?`<div class="clink"><span class="ct">Customer link</span><input readonly value="${esc(o.customerUrl)}" aria-label="Customer link for ${esc(o.customer)}"><button class="copy" data-url="${esc(o.customerUrl)}">Copy</button></div>`:""}
   </article>`;
 }
 
@@ -444,6 +453,13 @@ function render(){
   document.getElementById("stats").innerHTML=
     `<div class="stat"><b>${active.length}</b><span>Active orders</span></div><div class="stat"><b>${sacksOpen}</b><span>Sacks in progress</span></div><div class="stat"><b>${toShip}</b><span>Paid, to hand off</span></div><div class="stat"><b>${money(unpaid).replace(/\.00$/,"")}</b><span>Awaiting payment</span></div>`;
 }
+function copyText(t){if(navigator.clipboard&&window.isSecureContext)return navigator.clipboard.writeText(t);
+  return new Promise((res,rej)=>{const a=document.createElement("textarea");a.value=t;a.style.position="fixed";a.style.opacity="0";document.body.appendChild(a);a.select();
+    try{document.execCommand("copy")?res():rej()}catch(x){rej(x)}finally{a.remove()}});}
+document.addEventListener("click",e=>{const b=e.target.closest(".copy");if(!b)return;
+  copyText(b.dataset.url).then(()=>{b.textContent="Copied";b.classList.add("ok");setTimeout(()=>{b.textContent="Copy";b.classList.remove("ok")},1800);})
+  .catch(()=>{const i=b.parentNode.querySelector("input");i.focus();i.select();b.textContent="Select and copy";});});
+document.addEventListener("focusin",e=>{if(e.target.matches(".clink input"))e.target.select();});
 document.addEventListener("click",e=>{const c=e.target.closest(".chip");if(!c)return;
   if(c.dataset.f==="done"){const d=document.getElementById("completed");d.open=true;d.scrollIntoView({behavior:"smooth",block:"start"});return;}
   filter=+c.dataset.f;render();});
