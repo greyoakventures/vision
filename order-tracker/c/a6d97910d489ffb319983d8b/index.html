@@ -7,6 +7,7 @@
 <meta name="googlebot" content="noindex,nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="theme-color" content="#0f1b3d">
+<meta name="order-version" content="80f317386ed1c3e7">
 <title>Your Michigan Salt order</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FFB000'/%3E%3Cpath fill='%23101114' d='M14 48V16h9.2l8.8 16.6L40.8 16H50v32h-8.4V28.2L32 46.2 22.4 28.2V48H14z'/%3E%3C/svg%3E">
 <style>
@@ -329,19 +330,19 @@ footer{text-align:center;font-size:12px;color:var(--mute);padding:10px 14px 30px
     <div class="topline">
       <div class="brand"><span class="m"><svg width="20" height="20" viewBox="0 0 64 64"><path fill="#101114" d="M14 48V16h9.2l8.8 16.6L40.8 16H50v32h-8.4V28.2L32 46.2 22.4 28.2V48H14z"/></svg></span>Michigan Salt</div>
     </div>
-    <h1 class="hello">Hi, <span>Dominic G.</span></h1>
+    <h1 class="hello" data-live="name">Hi, <span>Dominic G.</span></h1>
     <p class="sub">Here is where your salt order is right now. The sack bounces at your current step.</p>
   </div>
 </header>
-<main style="margin-top:-30px;position:relative;z-index:3">
+<main data-stage="2" style="margin-top:-30px;position:relative;z-index:3">
   <article class="order s2 p-pp" aria-label="Your order: Invoice paid">
     <div class="ohead">
       <div><div class="who">Your order</div>
-        <div class="meta"><span class="tag pp">Purple Power</span><span class="tag ff">Delivery</span></div></div>
-      <div class="sackcount"><small>Order size</small>44 super sacks</div>
+        <div class="meta" data-live="meta"><span class="tag pp">Purple Power</span><span class="tag ff">Delivery</span></div></div>
+      <div class="sackcount" data-live="size"><small>Order size</small>44 super sacks</div>
     </div>
-    <p class="status "><span class="dot"></span>Paid in full. Thank you!</p>
-    <p class="note">We are lining up your delivery now and will reach out with the day.</p>
+    <p class="status " data-live="status"><span class="dot"></span>Paid in full. Thank you!</p>
+    <p class="note" data-live="sub">We are lining up your delivery now and will reach out with the day.</p>
     <div class="track">
       <div class="rail"><div class="fill" data-w="50"></div></div>
       <ol class="stops"><li class="stop done"><span class="bub"><svg aria-hidden="true"><use href="#i-chat"/></svg></span><span class="lbl">Pending order</span><span class="when"></span></li><li class="stop done"><span class="bub"><svg aria-hidden="true"><use href="#i-send"/></svg></span><span class="lbl">Invoice sent</span><span class="when"></span></li><li class="stop cur"><span class="bub"><svg aria-hidden="true"><use href="#i-paid"/></svg></span><span class="lbl">Invoice paid</span><span class="when"></span></li><li class="stop "><span class="bub"><svg aria-hidden="true"><use href="#i-cal"/></svg></span><span class="lbl">Delivery scheduled</span><span class="when"></span></li><li class="stop "><span class="bub"><svg aria-hidden="true"><use href="#i-truck"/></svg></span><span class="lbl">Delivered</span><span class="when"></span></li></ol>
@@ -358,7 +359,30 @@ footer{text-align:center;font-size:12px;color:var(--mute);padding:10px 14px 30px
 <script>
 (function(){var s=document.getElementById("snow"),h="";for(var i=0;i<26;i++){var z=3+Math.random()*5;
   h+='<b style="left:'+(Math.random()*100)+'%;width:'+z+'px;height:'+z+'px;animation-duration:'+(6+Math.random()*8)+'s;animation-delay:'+(-Math.random()*14)+'s;opacity:'+(.4+Math.random()*.5)+'"></b>';}s.innerHTML=h;})();
-requestAnimationFrame(function(){requestAnimationFrame(function(){document.querySelectorAll(".fill").forEach(function(f){f.style.width=f.dataset.w+"%";});});});
+function grow(){requestAnimationFrame(function(){requestAnimationFrame(function(){document.querySelectorAll(".fill").forEach(function(f){f.style.width=f.dataset.w+"%";});});});}
+grow();
+(function(){
+  var EVERY=60000, MAX=600000, wait=EVERY, timer=null;
+  var meta=document.querySelector('meta[name="order-version"]'), ver=meta.getAttribute("content");
+  function later(ms){clearTimeout(timer);timer=setTimeout(check,ms);}
+  function apply(doc){
+    var oldMain=document.querySelector("main"), newMain=doc.querySelector("main");
+    if(!newMain)return;
+    if(newMain.getAttribute("data-stage")!==oldMain.getAttribute("data-stage")){oldMain.replaceWith(document.importNode(newMain,true));grow();}
+    else{oldMain.querySelectorAll("[data-live]").forEach(function(el){var n=newMain.querySelector('[data-live="'+el.getAttribute("data-live")+'"]');if(n){el.innerHTML=n.innerHTML;el.className=n.className;}});}
+    var oh=document.querySelector('h1[data-live="name"]'), nh=doc.querySelector('h1[data-live="name"]');if(oh&&nh)oh.innerHTML=nh.innerHTML;
+  }
+  function check(){
+    if(document.visibilityState!=="visible")return;
+    fetch(location.pathname+"?v="+Date.now(),{cache:"no-store",credentials:"omit"}).then(function(r){if(!r.ok)throw new Error("bad");return r.text();}).then(function(h){
+      var doc=new DOMParser().parseFromString(h,"text/html"), m=doc.querySelector('meta[name="order-version"]'), nv=m&&m.getAttribute("content");
+      if(!nv)throw new Error("no marker");if(nv!==ver){apply(doc);ver=nv;meta.setAttribute("content",nv);}
+      wait=EVERY;later(wait);
+    }).catch(function(){wait=Math.min(wait*2,MAX);later(wait);});
+  }
+  document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible")later(0);else clearTimeout(timer);});
+  later(EVERY);
+})();
 </script>
 </body>
 </html>
