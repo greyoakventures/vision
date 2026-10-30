@@ -1,0 +1,260 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-30T17:51:47-04:00",
+  "orders": [
+    {
+      "id": "MS-DQ7KTR4A",
+      "customer": "Tyler K.",
+      "product": "Purple Power",
+      "sacks": 4,
+      "total": 1461,
+      "stage": "pending",
+      "fulfillment": "delivery",
+      "dates": {
+        "pending": "2026-10-30"
+      },
+      "next": null,
+      "note": "Website request for 4 sacks plus local delivery. Quote goes out Monday.",
+      "refs": {
+        "quickbooks": [],
+        "homeworks": []
+      },
+      "customerUrl": "https://greyoakventures.github.io/vision/order-tracker-mock/c/bbfffb53ff62a0c37eb8b7ce/"
+    },
+    {
+      "id": "MS-DQ6JWM2C",
+      "customer": "Jessica M.",
+      "product": "Purple Power",
+      "sacks": 2,
+      "total": 624,
+      "stage": "pending",
+      "fulfillment": "pickup",
+      "dates": {
+        "pending": "2026-10-29"
+      },
+      "next": null,
+      "note": "Called in for 2 sacks at the shop. Confirming her trailer size first.",
+      "refs": {
+        "quickbooks": [],
+        "homeworks": []
+      },
+      "customerUrl": "https://greyoakventures.github.io/vision/order-tracker-mock/c/83cd116c62360342726048b8/"
+    },
+    {
+      "id": "MS-DQ4BHN8E",
+      "customer": "Brandon H.",
+      "product": "Purple Power",
+      "sacks": 22,
+      "total": 7289,
+      "stage": "invoice_sent",
+      "fulfillment": "delivery",
+      "dates": {
+        "pending": "2026-10-27",
+        "invoice_sent": "2026-10-29"
+      },
+      "next": {
+        "label": "Planned delivery",
+        "date": "2026-11-10"
+      },
+      "note": "One truckload plus delivery. Invoice out, truck held for Nov 10 once paid.",
+      "refs": {
+        "quickbooks": [
+          "#231"
+        ],
+        "homeworks": [
+          "#9871"
+        ]
+      },
+      "customerUrl": "https://greyoakventures.github.io/vision/order-tracker-mock/c/0d311049c456e4ed672416ee/"
+    },
+    {
+      "id": "MS-DQ5LPS3G",
+      "customer": "Kayla S.",
+      "product": "Purple Power",
+      "sacks": 22,
+      "total": 6864,
+      "stage": "invoice_sent",
+      "fulfillment": "pickup",
+      "dates": {
+        "pending": "2026-10-28",
+        "invoice_sent": "2026-10-28"
+      },
+      "next": null,
+      "note": "Truckload for shop pickup. Invoice out, ACH expected this week.",
+      "refs": {
+        "quickbooks": [
+          "#232"
+        ],
+        "homeworks": [
+          "#9874"
+        ]
+      },
+      "customerUrl": "https://greyoakventures.github.io/vision/order-tracker-mock/c/cfffdd62addb1d1962888a7c/"
+    },
+    {
+      "id": "MS-DQ8RVD6J",
+      "customer": "Marcus D.",
+      "product": "Purple Power",
+      "sacks": 8,
+      "total": 2707,
+      "stage": "paid",
+      "fulfillment": "delivery",
+      "dates": {
+        "pending": "2026-10-26",
+        "invoice_sent": "2026-10-27",
+        "paid": "2026-10-30"
+      },
+      "next": null,
+      "note": "8 sacks plus delivery, paid by card. Booking the truck day now.",
+      "refs": {
+        "quickbooks": [
+          "#234"
+        ],
+        "homeworks": [
+          "#9877"
+        ]
+      },
+      "customerUrl": "https://greyoakventures.github.io/vision/order-tracker-mock/c/793a259c57c7f6085300baed/"
+    },
+    {
+      "id": "MS-DQ2FXA9L",
+      "customer": "Andrea P.",
+      "product": "Purple Power",
+      "sacks": 44,
+      "total": 14578,
+      "stage": "scheduled",
+      "fulfillment": "delivery",
+      "dates": {
+        "pending": "2026-10-22",
+        "invoice_sent": "2026-10-23",
+        "paid": "2026-10-26",
+        "scheduled": "2026-10-28"
+      },
+      "next": {
+        "label": "Delivery",
+        "date": "2026-11-04",
+        "time": "8 AM"
+      },
+      "note": "Two truckloads, paid by ACH. Both trucks drop Wednesday morning.",
+      "refs": {
+        "quickbooks": [
+          "#228"
+        ],
+        "homeworks": [
+          "#9866"
+        ]
+      },
+      "customerUrl": "https://greyoakventures.github.io/vision/order-tracker-mock/c/9e3a2dab279c8553844d77cb/"
+    },
+    {
+      "id": "MS-DQ9CZE5N",
+      "customer": "Chris W.",
+      "product": "Purple Power",
+      "sacks": 4,
+      "total": 1461,
+      "stage": "scheduled",
+      "fulfillment": "delivery",
+      "dates": {
+        "pending": "2026-10-28",
+        "invoice_sent": "2026-10-28",
+        "scheduled": "2026-10-30"
+      },
+      "next": {
+        "label": "Delivery (COD)",
+        "date": "2026-11-03"
+      },
+      "note": "4 sacks plus local delivery. Cash on delivery: collect payment when the truck drops the salt.",
+      "refs": {
+        "quickbooks": [
+          "#233"
+        ],
+        "homeworks": [
+          "#9876"
+        ]
+      },
+      "cod": true,
+      "totalNote": "COD: collect cash on delivery",
+      "customerUrl": "https://greyoakventures.github.io/vision/order-tracker-mock/c/5803a3655f8bdd291145e67d/"
+    },
+    {
+      "id": "MS-DQ3MUY7P",
+      "customer": "Derek L.",
+      "product": "Bulk rock salt",
+      "sacks": 6,
+      "total": 1320,
+      "stage": "scheduled",
+      "fulfillment": "pickup",
+      "dates": {
+        "pending": "2026-10-27",
+        "invoice_sent": "2026-10-27",
+        "paid": "2026-10-29",
+        "scheduled": "2026-10-30"
+      },
+      "next": {
+        "label": "Pickup",
+        "date": "2026-11-02",
+        "time": "10 AM"
+      },
+      "note": "Bulk rock salt for a parking lot account. Paid by card, loading Monday.",
+      "refs": {
+        "quickbooks": [
+          "#230"
+        ],
+        "homeworks": [
+          "#9869"
+        ]
+      },
+      "customerUrl": "https://greyoakventures.github.io/vision/order-tracker-mock/c/ece7113e81fea89ae5cfc0ff/"
+    },
+    {
+      "id": "MS-DQ1NGB4R",
+      "customer": "Kevin R.",
+      "product": "Purple Power",
+      "sacks": 22,
+      "total": 6243,
+      "stage": "delivered",
+      "fulfillment": "delivery",
+      "dates": {
+        "pending": "2026-10-20",
+        "invoice_sent": "2026-10-21",
+        "paid": "2026-10-22",
+        "scheduled": "2026-10-23",
+        "delivered": "2026-10-28"
+      },
+      "next": null,
+      "note": "One truckload delivered. Paid by card.",
+      "refs": {
+        "quickbooks": [
+          "#226"
+        ],
+        "homeworks": [
+          "#9863"
+        ]
+      },
+      "customerUrl": "https://greyoakventures.github.io/vision/order-tracker-mock/c/29e2135aa833236dc61be2df/"
+    },
+    {
+      "id": "MS-DQ0WHK2T",
+      "customer": "Sarah J.",
+      "product": "Purple Power",
+      "sacks": 1,
+      "total": 312,
+      "stage": "delivered",
+      "fulfillment": "pickup",
+      "dates": {
+        "pending": "2026-10-29",
+        "paid": "2026-10-29",
+        "delivered": "2026-10-29"
+      },
+      "next": null,
+      "note": "Picked up at the shop. Paid cash.",
+      "refs": {
+        "quickbooks": [],
+        "homeworks": [
+          "#9872"
+        ]
+      },
+      "customerUrl": "https://greyoakventures.github.io/vision/order-tracker-mock/c/c3293b89ebfc9b2f6a167b7f/"
+    }
+  ]
+}
