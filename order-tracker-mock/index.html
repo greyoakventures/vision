@@ -268,6 +268,8 @@ footer{text-align:center;font-size:12px;color:var(--mute);padding:10px 14px 30px
 }
 .topr{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
 .demo{display:inline-flex;align-items:center;background:transparent;color:rgba(255,255,255,.8);font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:999px;border:1.5px solid rgba(255,255,255,.3)}
+.openl{font:inherit;font-weight:900;font-size:12px;border:2px solid var(--ink);border-radius:999px;background:#fff;color:var(--ink);padding:6px 14px;text-decoration:none;box-shadow:0 2px 0 var(--ink);white-space:nowrap}
+.openl:active{transform:translateY(2px);box-shadow:none}
 </style>
 </head>
 <body>
@@ -441,7 +443,7 @@ function card(o,idx){
       </div>
     </div>
     <div class="foot"><span class="id">${esc(o.id)} &middot; stop ${s+1} of 5</span><span class="refs">${refs}</span></div>
-    ${o.customerUrl?`<div class="clink"><span class="ct">Customer link</span><input readonly value="${esc(o.customerUrl)}" aria-label="Customer link for ${esc(o.customer)}"><button class="copy" data-url="${esc(o.customerUrl)}">Copy</button></div>`:""}
+    ${o.customerUrl?`<div class="clink"><span class="ct">Customer link</span><input readonly value="${esc(o.customerUrl)}" aria-label="Customer link for ${esc(o.customer)}"><button class="copy" data-url="${esc(o.customerUrl)}">Copy</button><a class="openl" href="${esc(o.customerUrl)}" target="_blank" rel="noopener" aria-label="Open customer page for ${esc(o.customer)} in a new tab">Open</a></div>`:""}
   </article>`;
 }
 
