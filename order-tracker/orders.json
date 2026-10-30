@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-30T12:40:14-04:00",
+  "orders": [
+    {
+      "id": "MS-MVTFRDEG",
+      "customer": "Nick O.",
+      "product": "Purple Power",
+      "sacks": 66,
+      "total": 20592,
+      "totalNote": "QB total $20,556, $36 gap being fixed",
+      "stage": "invoice_sent",
+      "fulfillment": "pickup",
+      "dates": {
+        "pending": "2026-10-29",
+        "invoice_sent": "2026-10-29"
+      },
+      "next": null,
+      "note": "Three truckloads for shop pickup. Invoices out, payment expected today. Pickup dates TBD.",
+      "refs": {
+        "quickbooks": [
+          "#127",
+          "#129",
+          "#130"
+        ],
+        "homeworks": [
+          "#9448"
+        ]
+      }
+    },
+    {
+      "id": "MS-MVSJXCKP",
+      "customer": "Ryan V.",
+      "product": "Purple Power",
+      "sacks": 4,
+      "total": 1461,
+      "stage": "invoice_sent",
+      "fulfillment": "delivery",
+      "dates": {
+        "pending": "2026-10-28",
+        "invoice_sent": "2026-10-28"
+      },
+      "next": {
+        "label": "Planned delivery",
+        "date": "2026-11-02"
+      },
+      "note": "4 sacks plus local delivery. Invoice out, unpaid. Must pay before the truck goes.",
+      "refs": {
+        "quickbooks": [
+          "#125"
+        ],
+        "homeworks": [
+          "#9449"
+        ]
+      }
+    },
+    {
+      "id": "MS-MVFZHSGU",
+      "customer": "Matthew B.",
+      "product": "Purple Power",
+      "sacks": 8,
+      "total": 2707,
+      "stage": "scheduled",
+      "fulfillment": "delivery",
+      "dates": {
+        "pending": "2026-10-19",
+        "invoice_sent": "2026-10-22",
+        "paid": "2026-10-28",
+        "scheduled": "2026-10-29"
+      },
+      "next": {
+        "label": "Delivery",
+        "date": "2026-11-02",
+        "time": "9 AM"
+      },
+      "note": "8 sacks plus delivery. Paid by card. On the truck Monday morning.",
+      "refs": {
+        "quickbooks": [
+          "#123"
+        ],
+        "homeworks": [
+          "#9450"
+        ]
+      }
+    },
+    {
+      "id": "MS-MVPRISKO",
+      "customer": "Dominic G.",
+      "product": "Purple Power",
+      "sacks": 44,
+      "total": 14578,
+      "stage": "paid",
+      "fulfillment": "delivery",
+      "dates": {
+        "pending": "2026-10-26",
+        "invoice_sent": "2026-10-27",
+        "paid": "2026-10-30"
+      },
+      "next": {
+        "label": "Truck 2",
+        "date": "2026-12-15"
+      },
+      "note": "Two truckloads, paid by ACH. Truck 1 ships ASAP, waiting on the date from the supplier. Truck 2 on Dec 15.",
+      "refs": {
+        "quickbooks": [
+          "#124"
+        ],
+        "homeworks": [
+          "#9457"
+        ]
+      }
+    },
+    {
+      "id": "MS-MVV4PQVP",
+      "customer": "Mike F.",
+      "product": "Purple Power",
+      "sacks": 22,
+      "total": 6243,
+      "stage": "paid",
+      "fulfillment": "delivery",
+      "dates": {
+        "pending": "2026-10-30",
+        "invoice_sent": "2026-10-30",
+        "paid": "2026-10-30"
+      },
+      "next": null,
+      "note": "One truckload, paid by card. Delivery not scheduled yet.",
+      "refs": {
+        "quickbooks": [
+          "Est #0277",
+          "#128"
+        ],
+        "homeworks": [
+          "#9462"
+        ]
+      }
+    },
+    {
+      "id": "MS-MVR28J88",
+      "customer": "Dean V.",
+      "product": "Purple Power",
+      "sacks": 1,
+      "total": 312,
+      "stage": "delivered",
+      "fulfillment": "pickup",
+      "dates": {
+        "pending": "2026-10-27",
+        "paid": "2026-10-30",
+        "delivered": "2026-10-30"
+      },
+      "next": null,
+      "note": "Picked up at the shop. Paid cash.",
+      "refs": {
+        "quickbooks": [],
+        "homeworks": [
+          "#9459"
+        ]
+      }
+    },
+    {
+      "id": "MS-MVS0GWTH",
+      "customer": "Roman B.",
+      "product": "Purple Power",
+      "sacks": 1,
+      "total": 312,
+      "stage": "delivered",
+      "fulfillment": "pickup",
+      "dates": {
+        "pending": "2026-10-28",
+        "paid": "2026-10-28",
+        "delivered": "2026-10-28"
+      },
+      "next": null,
+      "note": "Picked up at the shop. Paid cash.",
+      "refs": {
+        "quickbooks": [],
+        "homeworks": [
+          "#9460"
+        ]
+      }
+    }
+  ]
+}
