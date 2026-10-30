@@ -457,7 +457,7 @@ function render(){
     [0,1,2,3].map(i=>`<button class="chip ${filter===i?"on":""}" data-f="${i}">${i===3?"Scheduled":L[i]}<em>${counts[i]}</em></button>`).join("")+
     `<button class="chip" data-f="done">Completed<em>${done.length}</em></button>`;
   const sacksOpen=active.reduce((a,o)=>a+(+o.sacks||0),0);
-  const unpaid=active.filter(o=>o.stage<2).reduce((a,o)=>a+(+o.total||0),0);
+  const unpaid=active.filter(o=>o.stage<2||o.cod).reduce((a,o)=>a+(+o.total||0),0);
   const toShip=active.filter(o=>o.stage>=2).reduce((a,o)=>a+(+o.sacks||0),0);
   document.getElementById("stats").innerHTML=
     `<div class="stat"><b>${active.length}</b><span>Active orders</span></div><div class="stat"><b>${sacksOpen}</b><span>Sacks in progress</span></div><div class="stat"><b>${toShip}</b><span>Paid, to hand off</span></div><div class="stat"><b>${money(unpaid).replace(/\.00$/,"")}</b><span>Awaiting payment</span></div>`;
