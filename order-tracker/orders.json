@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-30T12:40:14-04:00",
+  "updatedAt": "2026-10-30T15:29:24-04:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -8,7 +8,6 @@
       "product": "Purple Power",
       "sacks": 66,
       "total": 20592,
-      "totalNote": "QB total $20,556, $36 gap being fixed",
       "stage": "invoice_sent",
       "fulfillment": "pickup",
       "dates": {
