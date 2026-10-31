@@ -179,9 +179,9 @@
     {
       "id": "MS-DQ3MUY7P",
       "customer": "Derek L.",
-      "product": "Bulk rock salt",
+      "product": "Purple Power",
       "sacks": 6,
-      "total": 1320,
+      "total": 1872,
       "stage": "scheduled",
       "fulfillment": "pickup",
       "dates": {
@@ -195,7 +195,7 @@
         "date": "2026-11-02",
         "time": "10 AM"
       },
-      "note": "Bulk rock salt for a parking lot account. Paid by card, loading Monday.",
+      "note": "Purple Power for a parking lot account. Paid by card, loading Monday.",
       "refs": {
         "quickbooks": [
           "#230"
