@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-30T17:43:36-04:00",
+  "updatedAt": "2026-10-31T07:01:59-04:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -15,7 +15,7 @@
         "invoice_sent": "2026-10-29"
       },
       "next": null,
-      "note": "Three truckloads for shop pickup. Invoices out, payment expected today. Pickup dates TBD.",
+      "note": "Three truckloads for shop pickup. Invoices out, awaiting payment. Pickup dates TBD.",
       "refs": {
         "quickbooks": [
           "#127",
@@ -45,7 +45,7 @@
         "label": "Delivery (COD)",
         "date": "2026-11-02"
       },
-      "note": "4 sacks plus local delivery. Cash on delivery: collect payment when the truck drops the salt. Invoice #125 stays open until then.",
+      "note": "4 sacks plus local delivery. Cash on delivery: collect payment when the truck drops the salt. Invoice #125 stays open until then. Mon 11/2 drop goes to the NW corner overhead door.",
       "refs": {
         "quickbooks": [
           "#125"
