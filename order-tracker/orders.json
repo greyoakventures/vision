@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-31T15:56:46-04:00",
+  "updatedAt": "2026-10-31T15:57:30-04:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -209,12 +209,15 @@
       },
       "next": {
         "label": "Pickup (pay by check)",
-        "date": "2026-11-01"
+        "date": "2026-11-01",
+        "time": "Afternoon"
       },
-      "note": "4 sacks, shop pickup. Paying by check at pickup tomorrow. Homeworks invoice to be made; skip the QB invoice (QB estimate #0277 not needed).",
+      "note": "4 sacks, shop pickup tomorrow afternoon. Paying by check at pickup; record the check on Homeworks #9479. QB estimate #0277 closed, not needed.",
       "refs": {
         "quickbooks": [],
-        "homeworks": []
+        "homeworks": [
+          "#9479"
+        ]
       },
       "customerUrl": "https://greyoakventures.github.io/vision/order-tracker/c/8f8eff0353e0ab66ff283203/",
       "cod": true,
