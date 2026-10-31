@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-31T07:01:59-04:00",
+  "updatedAt": "2026-10-31T12:08:23-04:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -15,7 +15,7 @@
         "invoice_sent": "2026-10-29"
       },
       "next": null,
-      "note": "Three truckloads for shop pickup. Invoices out, awaiting payment. Pickup dates TBD.",
+      "note": "Three truckloads for shop pickup. Invoices #127 and #129 paid by card 10/31, #130 still awaiting payment. Pickup dates TBD.",
       "refs": {
         "quickbooks": [
           "#127",
@@ -26,7 +26,8 @@
           "#9448"
         ]
       },
-      "customerUrl": "https://greyoakventures.github.io/vision/order-tracker/c/be890b0b9ee94fb995fa0cd8/"
+      "customerUrl": "https://greyoakventures.github.io/vision/order-tracker/c/be890b0b9ee94fb995fa0cd8/",
+      "totalNote": "2 of 3 truckloads paid, 6,864 open"
     },
     {
       "id": "MS-MVSJXCKP",
