@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-31T12:08:23-04:00",
+  "updatedAt": "2026-10-31T12:11:24-04:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -27,7 +27,12 @@
         ]
       },
       "customerUrl": "https://greyoakventures.github.io/vision/order-tracker/c/be890b0b9ee94fb995fa0cd8/",
-      "totalNote": "2 of 3 truckloads paid, 6,864 open"
+      "totalNote": "2 of 3 truckloads paid, 6,864 open",
+      "progress": {
+        "paid": 2,
+        "of": 3,
+        "unit": "truckload"
+      }
     },
     {
       "id": "MS-MVSJXCKP",
