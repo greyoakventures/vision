@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-31T12:31:32-04:00",
+  "updatedAt": "2026-10-31T15:50:30-04:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -194,6 +194,25 @@
         ]
       },
       "customerUrl": "https://greyoakventures.github.io/vision/order-tracker/c/ffb287d847137de0bb2a7fb9/"
+    },
+    {
+      "id": "MS-MVWTCN72",
+      "customer": "Curtis N.",
+      "product": "Purple Power",
+      "sacks": 4,
+      "total": 1248,
+      "stage": "pending",
+      "fulfillment": "pickup",
+      "dates": {
+        "pending": "2026-10-31"
+      },
+      "next": null,
+      "note": "Website order 10/31 3:48 PM, shop pickup, prefers a Sunday pickup. No invoice or Homeworks entry yet. Pay method not given.",
+      "refs": {
+        "quickbooks": [],
+        "homeworks": []
+      },
+      "customerUrl": "https://greyoakventures.github.io/vision/order-tracker/c/8f8eff0353e0ab66ff283203/"
     }
   ]
 }
