@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-31T12:11:24-04:00",
+  "updatedAt": "2026-10-31T12:31:32-04:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -9,13 +9,13 @@
       "sacks": 66,
       "total": 20592,
       "stage": "invoice_sent",
-      "fulfillment": "pickup",
+      "fulfillment": "pickup_or_delivery",
       "dates": {
         "pending": "2026-10-29",
         "invoice_sent": "2026-10-29"
       },
       "next": null,
-      "note": "Three truckloads for shop pickup. Invoices #127 and #129 paid by card 10/31, #130 still awaiting payment. Pickup dates TBD.",
+      "note": "Three truckloads, pickup or delivery to Granville location TBD (likely delivered). Price stays the same since Granville is close to the shop. Invoices #127 and #129 paid by card 10/31, #130 still awaiting payment.",
       "refs": {
         "quickbooks": [
           "#127",
@@ -32,7 +32,8 @@
         "paid": 2,
         "of": 3,
         "unit": "truckload"
-      }
+      },
+      "city": "Granville"
     },
     {
       "id": "MS-MVSJXCKP",

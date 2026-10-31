@@ -352,9 +352,11 @@ footer{text-align:center;font-size:12px;color:var(--mute);padding:10px 14px 30px
 const STAGE_KEYS=["pending","invoice_sent","paid","scheduled","delivered"];
 const ICONS=["i-chat","i-send","i-paid","i-cal","i-truck"];
 const LABELS={delivery:["Pending order","Invoice sent","Invoice paid","Delivery scheduled","Delivered"],
-              pickup:["Pending order","Invoice sent","Invoice paid","Pickup scheduled","Picked up"]};
+              pickup:["Pending order","Invoice sent","Invoice paid","Pickup scheduled","Picked up"],
+              either:["Pending order","Invoice sent","Invoice paid","Pickup or delivery scheduled","Picked up or delivered"]};
 const HEAD={delivery:["Talking it over. Quote in progress.","Invoice is out. Waiting on payment.","Paid in full. Picking a delivery day.","On the schedule. Loaded and ready to roll.","Delivered. Salt is on the lot."],
-            pickup:["Talking it over. Quote in progress.","Invoice is out. Waiting on payment.","Paid in full. Picking a pickup day.","Pickup day is set. Sacks are staged at the shop.","Picked up at the shop."]};
+            pickup:["Talking it over. Quote in progress.","Invoice is out. Waiting on payment.","Paid in full. Picking a pickup day.","Pickup day is set. Sacks are staged at the shop.","Picked up at the shop."],
+            either:["Talking it over. Quote in progress.","Invoice is out. Waiting on payment.","Paid in full. Picking a pickup or delivery day.","On the schedule. Pickup or delivery day is set.","Picked up or delivered."]};
 const pct=s=>s/4*100;
 const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const money=n=>"$"+Number(n||0).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
@@ -424,7 +426,7 @@ function card(o,idx){
   return `<article class="order s${s} ${o.pp?"p-pp":"p-bk"}" data-i="${idx}" aria-label="${esc(o.customer)}, ${L[s]}">
     <div class="ohead">
       <div><div class="who">${esc(o.customer)}</div>
-        <div class="meta"><span class="tag ${o.pp?"pp":"bk"}">${esc(o.product)}</span><span class="tag">${esc(o.sacks)} super sack${o.sacks==1?"":"s"}</span><span class="tag ff">${o.ff==="pickup"?"Pickup":"Delivery"}</span></div></div>
+        <div class="meta"><span class="tag ${o.pp?"pp":"bk"}">${esc(o.product)}</span><span class="tag">${esc(o.sacks)} super sack${o.sacks==1?"":"s"}</span><span class="tag ff">${o.ff==="either"?"Pickup or delivery"+(o.city?" to "+esc(o.city)+" location":"")+", TBD":o.ff==="pickup"?"Pickup":"Delivery"}</span></div></div>
       <div class="amt"><small>Order total</small>${money(o.total)}${o.totalNote?`<span class="tn">${esc(o.totalNote)}</span>`:""}</div>
     </div>
     <p class="status ${s===4?"done":""}"><span class="dot"></span>${H[s]}</p>
@@ -477,7 +479,7 @@ document.addEventListener("click",e=>{const c=e.target.closest(".chip");if(!c)re
   h+=`<b style="left:${l}%;width:${z}px;height:${z}px;animation-duration:${d}s;animation-delay:${del}s;opacity:${.4+Math.random()*.5}"></b>`;}s.innerHTML=h;})();
 
 fetch("orders.json?v="+Date.now(),{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(d=>{
-  ORDERS=(d.orders||[]).map(o=>({...o,stage:Math.max(0,STAGE_KEYS.indexOf(o.stage)),ff:o.fulfillment==="pickup"?"pickup":"delivery",pp:/purple/i.test(o.product||"")}));
+  ORDERS=(d.orders||[]).map(o=>({...o,stage:Math.max(0,STAGE_KEYS.indexOf(o.stage)),ff:o.fulfillment==="pickup"?"pickup":o.fulfillment==="pickup_or_delivery"?"either":"delivery",pp:/purple/i.test(o.product||"")}));
   const rank=o=>o.next&&o.next.date?o.next.date:"9999";
   ORDERS.sort((a,b)=>(a.stage===4)-(b.stage===4)||b.stage-a.stage||rank(a).localeCompare(rank(b))||String(a.customer).localeCompare(String(b.customer)));
   ORDERS.filter(o=>o.stage===4).sort((a,b)=>String((b.dates||{}).delivered).localeCompare(String((a.dates||{}).delivered)));
