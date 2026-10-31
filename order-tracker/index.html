@@ -376,9 +376,8 @@ footer{text-align:center;font-size:12px;color:var(--mute);padding:10px 14px 30px
 <div class="rfsheet" id="rfsheet" role="dialog" aria-modal="true" aria-labelledby="rftitle">
   <div class="rfpanel">
     <h2 id="rftitle">Connect refresh</h2>
-    <p>One-time setup on this phone. Paste the webhook URL and sender key from the "Order tracker refresh on demand" routine panel. They stay on this device only and never go into the site.</p>
-    <label for="rfurl">Webhook URL</label><input id="rfurl" type="url" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="https://...">
-    <label for="rfkey">Sender key</label><input id="rfkey" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Paste the key">
+    <p>One-time setup on this phone. Enter your refresh code. It stays on this device only and never goes into the site.</p>
+    <label for="rfkey">Refresh code</label><input id="rfkey" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Your refresh code">
     <div class="err" id="rferr"></div>
     <div class="row"><button class="btn" id="rfcancel" type="button">Cancel</button><button class="rfsave" id="rfsave" type="button">Save</button></div>
   </div>
@@ -537,10 +536,11 @@ function loadFail(err){document.getElementById("upd").textContent="Could not loa
 loadData().catch(loadFail);
 
 /* ---------- Refresh: quick reload + optional full recheck through the routine webhook ---------- */
-const RF_KEY="msTrackerRefreshConn", RF_LAST="msTrackerRefreshLast", COOLDOWN=60000, POLL_MS=20000, POLL_MAX=18;
+const RELAY_URL="https://michigansalt-ops.onrender.com/relay/tracker-refresh";
+const RF_KEY="msTrackerRefreshToken", RF_LAST="msTrackerRefreshLast", COOLDOWN=60000, POLL_MS=20000, POLL_MAX=18;
 const $=id=>document.getElementById(id);
 let polling=null, quickBusy=false;
-function conn(){try{const c=JSON.parse(localStorage.getItem(RF_KEY)||"null");return c&&c.url&&c.key?c:null;}catch(e){return null;}}
+function conn(){try{const t=localStorage.getItem(RF_KEY);return t?{token:t}:null;}catch(e){return null;}}
 function msg(t,cls){const m=$("rfmsg");m.textContent=t;m.className="rfmsg"+(cls?" "+cls:"");}
 function syncLinks(){const c=conn();$("rfconnect").hidden=!!c;$("rfforget").hidden=!c;}
 function busy(on,label){$("rfbtn").classList.toggle("busy",on);$("rflabel").textContent=label||"Refresh";}
@@ -557,10 +557,10 @@ function startPoll(base){
 function triggerRecheck(c){
   const ctl=typeof AbortController!=="undefined"?new AbortController():null;
   const to=setTimeout(()=>ctl&&ctl.abort(),10000);
-  return fetch(c.url,{method:"POST",mode:"cors",cache:"no-store",signal:ctl?ctl.signal:undefined,
-    headers:{"Content-Type":"application/json","Authorization":"Bearer "+c.key},
+  return fetch(RELAY_URL,{method:"POST",mode:"cors",cache:"no-store",signal:ctl?ctl.signal:undefined,
+    headers:{"Content-Type":"application/json","X-Board-Token":c.token},
     body:JSON.stringify({source:"order-tracker-board",action:"refresh",requestedAt:new Date().toISOString()})})
-  .then(r=>{clearTimeout(to);if(!r.ok)throw new Error("HTTP "+r.status);return true;})
+  .then(r=>{clearTimeout(to);if(!r.ok){const e=new Error("HTTP "+r.status);e.status=r.status;throw e;}return true;})
   .catch(e=>{clearTimeout(to);throw e;});
 }
 function onRefresh(){
@@ -573,26 +573,27 @@ function onRefresh(){
     if(wait>0){msg("Updated "+clock(new Date())+". Full recheck already started, try again in "+Math.ceil(wait/1000)+"s");return;}
     localStorage.setItem(RF_LAST,String(Date.now()));
     msg("Checking sources\u2026");busy(true,"Checking");
-    return triggerRecheck(c).then(()=>startPoll(at),()=>{localStorage.removeItem(RF_LAST);busy(false);msg("Couldn't start a full recheck, showing the latest saved data","warn");});
+    return triggerRecheck(c).then(()=>startPoll(at),e=>{busy(false);const st=e&&e.status;
+      if(st!==429)localStorage.removeItem(RF_LAST);
+      msg(st===503?"Full recheck isn't set up yet":st===401||st===403?"Refresh code doesn't match, tap Connect refresh to fix":st===429?"Just checked, try again in a minute":"Couldn't start a full recheck, showing the latest saved data","warn");
+      if(st===401||st===403)$("rfconnect").hidden=false;});
   }).catch(e=>{loadFail(e);msg("Couldn't reload. Check your connection","warn");})
   .finally(()=>{quickBusy=false;if(!polling)busy(false);});
 }
-function openSheet(){$("rferr").textContent="";const c=conn();$("rfurl").value=c?c.url:"";$("rfkey").value="";$("rfsheet").classList.add("on");setTimeout(()=>$("rfurl").focus(),50);}
+function openSheet(){$("rferr").textContent="";$("rfkey").value="";$("rfsheet").classList.add("on");setTimeout(()=>$("rfkey").focus(),50);}
 function closeSheet(){$("rfsheet").classList.remove("on");}
 $("rfbtn").addEventListener("click",onRefresh);
 $("rfconnect").addEventListener("click",openSheet);
 $("rfcancel").addEventListener("click",closeSheet);
 $("rfsheet").addEventListener("click",e=>{if(e.target===$("rfsheet"))closeSheet();});
 $("rfsave").addEventListener("click",()=>{
-  const url=$("rfurl").value.trim(), key=$("rfkey").value.replace(/[\r\n]/g,"").trim().replace(/^Bearer\s+/i,"");
-  let ok=false;try{ok=new URL(url).protocol==="https:";}catch(e){}
-  if(!ok){$("rferr").textContent="Paste the full https webhook URL.";return;}
-  if(!key){$("rferr").textContent="Paste the sender key.";return;}
-  try{localStorage.setItem(RF_KEY,JSON.stringify({url,key}));}catch(e){$("rferr").textContent="This browser won't save it. Check private browsing.";return;}
+  const key=$("rfkey").value.replace(/[\r\n]/g,"").trim();
+  if(!key){$("rferr").textContent="Enter your refresh code.";return;}
+  try{localStorage.setItem(RF_KEY,key);localStorage.removeItem("msTrackerRefreshConn");}catch(e){$("rferr").textContent="This browser won't save it. Check private browsing.";return;}
   closeSheet();syncLinks();msg("Refresh connected. Tap Refresh to run a full recheck","ok");
 });
 $("rfforget").addEventListener("click",()=>{if(!confirm("Forget the refresh connection on this phone?"))return;
-  localStorage.removeItem(RF_KEY);localStorage.removeItem(RF_LAST);stopPoll();syncLinks();msg("Refresh connection removed from this phone");});
+  localStorage.removeItem(RF_KEY);localStorage.removeItem(RF_LAST);localStorage.removeItem("msTrackerRefreshConn");stopPoll();syncLinks();msg("Refresh connection removed from this phone");});
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeSheet();});
 syncLinks();
 </script>
