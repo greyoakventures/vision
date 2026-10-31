@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-31T15:50:30-04:00",
+  "updatedAt": "2026-10-31T15:56:46-04:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -201,18 +201,24 @@
       "product": "Purple Power",
       "sacks": 4,
       "total": 1248,
-      "stage": "pending",
+      "stage": "scheduled",
       "fulfillment": "pickup",
       "dates": {
-        "pending": "2026-10-31"
+        "pending": "2026-10-31",
+        "scheduled": "2026-10-31"
       },
-      "next": null,
-      "note": "Website order 10/31 3:48 PM, shop pickup, prefers a Sunday pickup. No invoice or Homeworks entry yet. Pay method not given.",
+      "next": {
+        "label": "Pickup (pay by check)",
+        "date": "2026-11-01"
+      },
+      "note": "4 sacks, shop pickup. Paying by check at pickup tomorrow. Homeworks invoice to be made; skip the QB invoice (QB estimate #0277 not needed).",
       "refs": {
         "quickbooks": [],
         "homeworks": []
       },
-      "customerUrl": "https://greyoakventures.github.io/vision/order-tracker/c/8f8eff0353e0ab66ff283203/"
+      "customerUrl": "https://greyoakventures.github.io/vision/order-tracker/c/8f8eff0353e0ab66ff283203/",
+      "cod": true,
+      "totalNote": "Collect check at pickup"
     }
   ]
 }
