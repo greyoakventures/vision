@@ -267,6 +267,33 @@ footer{text-align:center;font-size:12px;color:var(--mute);padding:10px 14px 30px
   .s4 .rig{display:none}
 }
 </style>
+<style>
+/* ---------- refresh (board only; second style block so customer pages never copy it) ---------- */
+.rfwrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.rfbtn{display:inline-flex;align-items:center;gap:7px;font:inherit;font-weight:900;font-size:13px;color:var(--ink);background:#fff;border:2px solid #fff;border-radius:999px;padding:7px 14px;min-height:36px;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.35);-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.rfbtn:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.35)}
+.rfbtn svg{width:16px;height:16px;flex:none}
+.rfbtn.busy svg{animation:rfspin .9s linear infinite}
+.rfbtn[disabled]{opacity:.75;cursor:default}
+@keyframes rfspin{to{transform:rotate(360deg)}}
+.rfline{display:flex;align-items:center;justify-content:flex-end;gap:10px;flex-wrap:wrap;margin-top:8px;min-height:18px;font-size:12px;font-weight:800;color:#c9d4ff;text-align:right}
+.rfline .rfmsg.ok{color:#8ff0c4}.rfline .rfmsg.warn{color:#ffd27a}
+.rflink{font:inherit;font-size:12px;font-weight:800;color:#fff;background:none;border:0;padding:4px 0;text-decoration:underline;text-underline-offset:3px;cursor:pointer;opacity:.85}
+.rfsheet{position:fixed;inset:0;z-index:50;display:none;align-items:flex-end;justify-content:center;background:rgba(16,17,20,.55)}
+.rfsheet.on{display:flex}
+.rfpanel{width:100%;max-width:520px;background:#fff;color:var(--ink);border:2.5px solid var(--ink);border-bottom:0;border-radius:22px 22px 0 0;box-shadow:0 -6px 0 rgba(0,0,0,.15);padding:18px 18px calc(18px + env(safe-area-inset-bottom))}
+.rfpanel h2{margin:0 0 6px;font-size:20px;font-weight:900}
+.rfpanel p{margin:0 0 12px;font-size:14px;color:var(--ink2)}
+.rfpanel label{display:block;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.05em;color:var(--ink2);margin:10px 0 4px}
+.rfpanel input{width:100%;font:inherit;font-size:16px;font-weight:700;color:var(--ink);background:#f4f7fc;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px}
+.rfpanel .row{display:flex;gap:10px;justify-content:flex-end;margin-top:16px}
+.rfpanel .err{color:#b42318;font-size:13px;font-weight:800;margin-top:8px;min-height:16px}
+.rfpanel .btn{font-size:14px;padding:9px 16px}
+.rfsave{font:inherit;font-weight:900;font-size:14px;border:2px solid var(--ink);border-radius:999px;background:var(--ink);color:#F3F5F7;padding:9px 18px;cursor:pointer;box-shadow:0 2px 0 var(--ink)}
+.rfsave:active{transform:translateY(2px);box-shadow:none}
+@media (min-width:601px){.rfsheet{align-items:center}.rfpanel{border-radius:22px;border-bottom:2.5px solid var(--ink)}}
+@media (max-width:600px){.rfline{justify-content:flex-start;text-align:left}}
+</style>
 </head>
 <body>
 
@@ -331,8 +358,9 @@ footer{text-align:center;font-size:12px;color:var(--mute);padding:10px 14px 30px
   <rect width="64" height="64" rx="14" fill="#101114"/>
   <path fill="#F3F5F7" d="M14 48V16h9.2l8.8 16.6L40.8 16H50v32h-8.4V28.2L32 46.2 22.4 28.2V48H14z"/>
 </svg></span><span class="brand-text">MichiganSalt</span></div>
-      <span class="upd" id="upd">Loading orders</span>
+      <div class="rfwrap"><span class="upd" id="upd">Loading orders</span><button class="rfbtn" id="rfbtn" type="button" aria-label="Refresh orders"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg><span id="rflabel">Refresh</span></button></div>
     </div>
+    <div class="rfline"><span class="rfmsg" id="rfmsg" aria-live="polite"></span><button class="rflink" id="rfconnect" type="button" hidden>Connect refresh</button><button class="rflink" id="rfforget" type="button" hidden>Forget refresh connection</button></div>
     <h1>Where's my <span>salt?</span></h1>
     <p class="sub">Every MichiganSalt order, from first quote to the lot.</p>
     <div class="stats" id="stats"></div>
@@ -345,6 +373,16 @@ footer{text-align:center;font-size:12px;color:var(--mute);padding:10px 14px 30px
   <div id="orders"></div>
   <details class="completed" id="completed"><summary><span>Completed</span><em id="donecount">0</em><span class="car">&#9656;</span></summary><div id="doneorders"></div></details>
 </main>
+<div class="rfsheet" id="rfsheet" role="dialog" aria-modal="true" aria-labelledby="rftitle">
+  <div class="rfpanel">
+    <h2 id="rftitle">Connect refresh</h2>
+    <p>One-time setup on this phone. Paste the webhook URL and sender key from the "Order tracker refresh on demand" routine panel. They stay on this device only and never go into the site.</p>
+    <label for="rfurl">Webhook URL</label><input id="rfurl" type="url" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="https://...">
+    <label for="rfkey">Sender key</label><input id="rfkey" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Paste the key">
+    <div class="err" id="rferr"></div>
+    <div class="row"><button class="btn" id="rfcancel" type="button">Cancel</button><button class="rfsave" id="rfsave" type="button">Save</button></div>
+  </div>
+</div>
 <footer>Private board by Vision. Not indexed. Payment status follows QuickBooks and cash received. Data: orders.json</footer>
 
 
@@ -478,16 +516,85 @@ document.addEventListener("click",e=>{const c=e.target.closest(".chip");if(!c)re
 (function(){const s=document.getElementById("snow");let h="";for(let i=0;i<26;i++){const l=Math.random()*100,d=6+Math.random()*8,del=-Math.random()*14,z=3+Math.random()*5;
   h+=`<b style="left:${l}%;width:${z}px;height:${z}px;animation-duration:${d}s;animation-delay:${del}s;opacity:${.4+Math.random()*.5}"></b>`;}s.innerHTML=h;})();
 
-fetch("orders.json?v="+Date.now(),{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(d=>{
+let DATA_AT=null;
+function clock(d){return d.toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit",second:"2-digit",timeZone:TZ});}
+function stampText(iso){const u=iso?new Date(iso):null;
+  return u?u.toLocaleString("en-US",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit",timeZone:TZ})+" ET":"unknown";}
+function loadData(){
+  return fetch("orders.json?v="+Date.now(),{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(d=>{
   ORDERS=(d.orders||[]).map(o=>({...o,stage:Math.max(0,STAGE_KEYS.indexOf(o.stage)),ff:o.fulfillment==="pickup"?"pickup":o.fulfillment==="pickup_or_delivery"?"either":"delivery",pp:/purple/i.test(o.product||"")}));
   const rank=o=>o.next&&o.next.date?o.next.date:"9999";
   ORDERS.sort((a,b)=>(a.stage===4)-(b.stage===4)||b.stage-a.stage||rank(a).localeCompare(rank(b))||String(a.customer).localeCompare(String(b.customer)));
   ORDERS.filter(o=>o.stage===4).sort((a,b)=>String((b.dates||{}).delivered).localeCompare(String((a.dates||{}).delivered)));
-  const u=d.updatedAt?new Date(d.updatedAt):null;
-  document.getElementById("upd").textContent=u?"Last updated "+u.toLocaleString("en-US",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit",timeZone:TZ})+" ET":"Last updated: unknown";
+  DATA_AT=d.updatedAt||null;
+  document.getElementById("upd").textContent=d.updatedAt?"Last updated "+stampText(d.updatedAt):"Last updated: unknown";
   render();
-}).catch(err=>{document.getElementById("upd").textContent="Could not load orders";
-  document.getElementById("orders").innerHTML=`<div class="empty">Could not load orders.json (${esc(err.message)}).</div>`;});
+  return DATA_AT;
+  });
+}
+function loadFail(err){document.getElementById("upd").textContent="Could not load orders";
+  document.getElementById("orders").innerHTML=`<div class="empty">Could not load orders.json (${esc(err.message)}).</div>`;}
+loadData().catch(loadFail);
+
+/* ---------- Refresh: quick reload + optional full recheck through the routine webhook ---------- */
+const RF_KEY="msTrackerRefreshConn", RF_LAST="msTrackerRefreshLast", COOLDOWN=60000, POLL_MS=20000, POLL_MAX=18;
+const $=id=>document.getElementById(id);
+let polling=null, quickBusy=false;
+function conn(){try{const c=JSON.parse(localStorage.getItem(RF_KEY)||"null");return c&&c.url&&c.key?c:null;}catch(e){return null;}}
+function msg(t,cls){const m=$("rfmsg");m.textContent=t;m.className="rfmsg"+(cls?" "+cls:"");}
+function syncLinks(){const c=conn();$("rfconnect").hidden=!!c;$("rfforget").hidden=!c;}
+function busy(on,label){$("rfbtn").classList.toggle("busy",on);$("rflabel").textContent=label||"Refresh";}
+function stopPoll(){if(polling){clearInterval(polling.t);polling=null;}busy(false);}
+function startPoll(base){
+  stopPoll();busy(true,"Checking");
+  let n=0;polling={t:setInterval(()=>{n++;
+    loadData().then(at=>{
+      if(at&&at!==base){stopPoll();msg("Up to date as of "+stampText(at),"ok");}
+      else if(n>=POLL_MAX){stopPoll();msg("No new data yet. Showing the latest saved data ("+stampText(at)+")","warn");}
+    }).catch(()=>{if(n>=POLL_MAX){stopPoll();msg("Couldn't reach the board data. Try again in a minute","warn");}});
+  },POLL_MS)};
+}
+function triggerRecheck(c){
+  const ctl=typeof AbortController!=="undefined"?new AbortController():null;
+  const to=setTimeout(()=>ctl&&ctl.abort(),10000);
+  return fetch(c.url,{method:"POST",mode:"cors",cache:"no-store",signal:ctl?ctl.signal:undefined,
+    headers:{"Content-Type":"application/json","Authorization":"Bearer "+c.key},
+    body:JSON.stringify({source:"order-tracker-board",action:"refresh",requestedAt:new Date().toISOString()})})
+  .then(r=>{clearTimeout(to);if(!r.ok)throw new Error("HTTP "+r.status);return true;})
+  .catch(e=>{clearTimeout(to);throw e;});
+}
+function onRefresh(){
+  if(quickBusy)return;quickBusy=true;busy(true);
+  loadData().then(at=>{
+    msg("Updated "+clock(new Date()));
+    const c=conn();
+    if(!c||polling)return;
+    const last=+localStorage.getItem(RF_LAST)||0, wait=COOLDOWN-(Date.now()-last);
+    if(wait>0){msg("Updated "+clock(new Date())+". Full recheck already started, try again in "+Math.ceil(wait/1000)+"s");return;}
+    localStorage.setItem(RF_LAST,String(Date.now()));
+    msg("Checking sources\u2026");busy(true,"Checking");
+    return triggerRecheck(c).then(()=>startPoll(at),()=>{localStorage.removeItem(RF_LAST);busy(false);msg("Couldn't start a full recheck, showing the latest saved data","warn");});
+  }).catch(e=>{loadFail(e);msg("Couldn't reload. Check your connection","warn");})
+  .finally(()=>{quickBusy=false;if(!polling)busy(false);});
+}
+function openSheet(){$("rferr").textContent="";const c=conn();$("rfurl").value=c?c.url:"";$("rfkey").value="";$("rfsheet").classList.add("on");setTimeout(()=>$("rfurl").focus(),50);}
+function closeSheet(){$("rfsheet").classList.remove("on");}
+$("rfbtn").addEventListener("click",onRefresh);
+$("rfconnect").addEventListener("click",openSheet);
+$("rfcancel").addEventListener("click",closeSheet);
+$("rfsheet").addEventListener("click",e=>{if(e.target===$("rfsheet"))closeSheet();});
+$("rfsave").addEventListener("click",()=>{
+  const url=$("rfurl").value.trim(), key=$("rfkey").value.replace(/[\r\n]/g,"").trim().replace(/^Bearer\s+/i,"");
+  let ok=false;try{ok=new URL(url).protocol==="https:";}catch(e){}
+  if(!ok){$("rferr").textContent="Paste the full https webhook URL.";return;}
+  if(!key){$("rferr").textContent="Paste the sender key.";return;}
+  try{localStorage.setItem(RF_KEY,JSON.stringify({url,key}));}catch(e){$("rferr").textContent="This browser won't save it. Check private browsing.";return;}
+  closeSheet();syncLinks();msg("Refresh connected. Tap Refresh to run a full recheck","ok");
+});
+$("rfforget").addEventListener("click",()=>{if(!confirm("Forget the refresh connection on this phone?"))return;
+  localStorage.removeItem(RF_KEY);localStorage.removeItem(RF_LAST);stopPoll();syncLinks();msg("Refresh connection removed from this phone");});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeSheet();});
+syncLinks();
 </script>
 </body>
 </html>
