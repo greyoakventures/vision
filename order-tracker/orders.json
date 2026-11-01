@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-31T17:04:49-04:00",
+  "updatedAt": "2026-11-01T12:43:57-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -199,8 +199,8 @@
       "id": "MS-MVWTCN72",
       "customer": "Curtis N.",
       "product": "Purple Power",
-      "sacks": 4,
-      "total": 1248,
+      "sacks": 5,
+      "total": 1560,
       "stage": "scheduled",
       "fulfillment": "pickup",
       "dates": {
@@ -210,9 +210,9 @@
       "next": {
         "label": "Pickup (pay by check)",
         "date": "2026-11-01",
-        "time": "Afternoon"
+        "time": "Now"
       },
-      "note": "4 sacks, shop pickup tomorrow afternoon. Paying by check at pickup; record the check on Homeworks #9479. QB estimate #0277 closed, not needed.",
+      "note": "5 sacks (changed from 4 on 11/1), shop pickup today. Paying by check at pickup; record the check on Homeworks #9479.",
       "refs": {
         "quickbooks": [],
         "homeworks": [
