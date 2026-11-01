@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T12:43:57-05:00",
+  "updatedAt": "2026-11-01T13:16:13-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -201,27 +201,23 @@
       "product": "Purple Power",
       "sacks": 5,
       "total": 1560,
-      "stage": "scheduled",
+      "stage": "delivered",
       "fulfillment": "pickup",
       "dates": {
         "pending": "2026-10-31",
-        "scheduled": "2026-10-31"
+        "scheduled": "2026-10-31",
+        "paid": "2026-11-01",
+        "delivered": "2026-11-01"
       },
-      "next": {
-        "label": "Pickup (pay by check)",
-        "date": "2026-11-01",
-        "time": "Now"
-      },
-      "note": "5 sacks (changed from 4 on 11/1), shop pickup today. Paying by check at pickup; record the check on Homeworks #9479.",
+      "next": null,
+      "note": "5 sacks, picked up at the shop 11/1. Paid by check at pickup; record the check on Homeworks #9479.",
       "refs": {
         "quickbooks": [],
         "homeworks": [
           "#9479"
         ]
       },
-      "customerUrl": "https://greyoakventures.github.io/vision/order-tracker/c/8f8eff0353e0ab66ff283203/",
-      "cod": true,
-      "totalNote": "Collect check at pickup"
+      "customerUrl": "https://greyoakventures.github.io/vision/order-tracker/c/8f8eff0353e0ab66ff283203/"
     }
   ]
 }
