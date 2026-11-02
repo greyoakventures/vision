@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-02T12:08:07-05:00",
+  "updatedAt": "2026-11-02T17:09:00-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -47,10 +47,11 @@
         "pending": "2026-10-28",
         "invoice_sent": "2026-10-28",
         "scheduled": "2026-10-30",
+        "paid": "2026-11-02",
         "delivered": "2026-11-02"
       },
       "next": null,
-      "note": "4 sacks delivered 11/2. Payment not yet collected; invoice to be emailed (QB #125, $1,461).",
+      "note": "4 sacks delivered 11/2. Paid by check at delivery, recorded on Homeworks #9449 11/2. QuickBooks #125 not marked paid yet.",
       "refs": {
         "quickbooks": [
           "#125"
@@ -61,7 +62,7 @@
       },
       "customerUrl": "https://greyoakventures.github.io/vision/order-tracker/c/d8be373c56571dbcaaf1dc23/",
       "cod": true,
-      "totalNote": "Unpaid, invoice to be emailed"
+      "totalNote": "Paid by check at delivery 11/2"
     },
     {
       "id": "MS-MVFZHSGU",
