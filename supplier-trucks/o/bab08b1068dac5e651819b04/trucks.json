@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-02T13:45:00-05:00",
+  "updatedAt": "2026-11-02T13:50:00-05:00",
   "supplier": {
     "name": "Advance Lawn Service Company, LLC",
     "short": "Advance Lawn Service",
@@ -11,7 +11,7 @@
   "estimate": {
     "loads": 7,
     "amount": 41507,
-    "note": "From Mr. Krabs's season plan. Advance has not invoiced these yet."
+    "note": "From Mr. Krabs's season plan for 7 loads. It doesn't include the second shop truck, and Advance has not invoiced these yet."
   },
   "trucks": [
     {
@@ -40,6 +40,24 @@
       "showAustin": true,
       "destShort": "Allendale shop",
       "note": "On the shop floor 10/27. 19 sacks sold, 3 on hand. Advance invoice #29367 paid 11/2."
+    },
+    {
+      "id": "T8",
+      "label": "Shop truck 2",
+      "dest": "Allendale shop",
+      "destAustin": "Allendale, MI (our shop)",
+      "approved": true,
+      "stage": "approved",
+      "requested": "ASAP",
+      "dates": {},
+      "invoice": null,
+      "paid": false,
+      "paidDate": null,
+      "customer": "Shop stock",
+      "customerPaid": null,
+      "showAustin": true,
+      "destShort": "Allendale shop",
+      "note": "Restock. Shop is down to 3 sacks from the first truck. Nick approved 11/2."
     },
     {
       "id": "T2",
@@ -84,7 +102,7 @@
       "destAustin": "Granville, MI area (drop site TBD)",
       "approved": true,
       "stage": "approved",
-      "requested": null,
+      "requested": "ASAP",
       "dates": {},
       "invoice": null,
       "paid": false,
@@ -102,7 +120,7 @@
       "destAustin": "Granville, MI area (drop site TBD)",
       "approved": true,
       "stage": "approved",
-      "requested": null,
+      "requested": "ASAP",
       "dates": {},
       "invoice": null,
       "paid": false,
@@ -120,7 +138,7 @@
       "destAustin": null,
       "approved": false,
       "stage": "not_approved",
-      "requested": null,
+      "requested": "ASAP",
       "dates": {},
       "invoice": null,
       "paid": false,
@@ -138,7 +156,7 @@
       "destAustin": null,
       "approved": false,
       "stage": "not_approved",
-      "requested": null,
+      "requested": "ASAP",
       "dates": {},
       "invoice": null,
       "paid": false,
