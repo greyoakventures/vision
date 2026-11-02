@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T13:16:13-05:00",
+  "updatedAt": "2026-11-02T07:03:05-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -210,7 +210,7 @@
         "delivered": "2026-11-01"
       },
       "next": null,
-      "note": "5 sacks, picked up at the shop 11/1. Paid by check at pickup; record the check on Homeworks #9479.",
+      "note": "5 sacks, picked up at the shop 11/1. Paid by check at pickup, recorded on Homeworks #9479 11/1.",
       "refs": {
         "quickbooks": [],
         "homeworks": [
