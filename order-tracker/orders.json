@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-02T11:23:52-05:00",
+  "updatedAt": "2026-11-02T12:08:07-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -50,7 +50,7 @@
         "delivered": "2026-11-02"
       },
       "next": null,
-      "note": "4 sacks delivered 11/2 to Zeeland. Payment not yet collected; invoice to be emailed (QB #125, $1,461).",
+      "note": "4 sacks delivered 11/2. Payment not yet collected; invoice to be emailed (QB #125, $1,461).",
       "refs": {
         "quickbooks": [
           "#125"
