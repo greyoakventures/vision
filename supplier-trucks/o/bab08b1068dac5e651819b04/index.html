@@ -127,7 +127,7 @@ function card(t,yard){
   if(t.customerPaid===true)badges.push(`<span class="bdg pp">Customer paid us</span>`);
   if(t.customerPaid===false)badges.push(`<span class="bdg warn">Customer not paid yet</span>`);
  }else/*E*/{
-  if(t.invoiceReceived)badges.push(`<span class="bdg ok">&#10003; Invoice received${t.invoiceNo?` (#${t.invoiceNo})`:""}</span>`);
+  if(t.invoiceReceived)badges.push(t.invoicePaid?`<span class="bdg ok">&#10003; Invoice${t.invoiceNo?` #${t.invoiceNo}`:""} paid</span>`:`<span class="bdg ok">&#10003; Invoice received${t.invoiceNo?` (#${t.invoiceNo})`:""}</span>`);
  }
  /*O*/const invHtml=MODE==="owner"&&t.invoice?`<div class="inv">Invoice <b>#${t.invoice.number}</b> · <b>${money(t.invoice.amount)}</b> · sent ${fd(t.invoice.date)} · due <b>${fd(t.invoice.due)}</b>${t.invoice.match?`<br>${t.invoice.match}`:""}${t.invoice.detail?`<br>${t.invoice.detail}`:""}</div>`:"";/*E*/
  const left=pos(t.stage);

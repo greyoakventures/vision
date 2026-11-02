@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-02T11:45:00-05:00",
+  "updatedAt": "2026-11-02T13:45:00-05:00",
   "supplier": {
     "name": "Advance Lawn Service Company, LLC",
     "short": "Advance Lawn Service",
@@ -33,13 +33,13 @@
         "detail": "22 sacks @ $186 = $4,092.00 + trucking 294 mi @ $6.25 = $1,837.50",
         "match": "Matched: the invoice PDF lists 22 Purple Power sacks delivered to Allendale on 10/27."
       },
-      "paid": false,
-      "paidDate": null,
+      "paid": true,
+      "paidDate": "2026-11-02",
       "customer": "Shop stock",
       "customerPaid": null,
       "showAustin": true,
       "destShort": "Allendale shop",
-      "note": "On the shop floor 10/27. 19 sacks sold, 3 on hand."
+      "note": "On the shop floor 10/27. 19 sacks sold, 3 on hand. Advance invoice #29367 paid 11/2."
     },
     {
       "id": "T2",

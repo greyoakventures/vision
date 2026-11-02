@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-02T11:45:00-05:00",
+  "updatedAt": "2026-11-02T13:45:00-05:00",
   "supplier": {
     "name": "Advance Lawn Service Company, LLC",
     "yard": "Hartford, WI"
@@ -19,6 +19,7 @@
       },
       "invoiceReceived": true,
       "invoiceNo": "29367",
+      "invoicePaid": true,
       "note": null
     },
     {
@@ -31,6 +32,7 @@
       "dates": {},
       "invoiceReceived": false,
       "invoiceNo": null,
+      "invoicePaid": false,
       "note": null
     },
     {
@@ -43,6 +45,7 @@
       "dates": {},
       "invoiceReceived": false,
       "invoiceNo": null,
+      "invoicePaid": false,
       "note": null
     },
     {
@@ -55,6 +58,7 @@
       "dates": {},
       "invoiceReceived": false,
       "invoiceNo": null,
+      "invoicePaid": false,
       "note": null
     },
     {
@@ -67,6 +71,7 @@
       "dates": {},
       "invoiceReceived": false,
       "invoiceNo": null,
+      "invoicePaid": false,
       "note": null
     }
   ]

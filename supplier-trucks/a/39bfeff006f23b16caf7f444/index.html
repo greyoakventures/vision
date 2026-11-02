@@ -120,7 +120,7 @@ function card(t,yard){
  let steps=st.map(([k,n],i)=>{const on=idx>=i+1, now=idx===i+1&&t.stage!=="delivered";const d=t.dates&&t.dates[k];return `<li class="${on?"on":""} ${now?"now":""}"><i></i>${n}${d?`<small>${fd(d)}</small>`:""}</li>`}).join("");
  let badges=[];
  {
-  if(t.invoiceReceived)badges.push(`<span class="bdg ok">&#10003; Invoice received${t.invoiceNo?` (#${t.invoiceNo})`:""}</span>`);
+  if(t.invoiceReceived)badges.push(t.invoicePaid?`<span class="bdg ok">&#10003; Invoice${t.invoiceNo?` #${t.invoiceNo}`:""} paid</span>`:`<span class="bdg ok">&#10003; Invoice received${t.invoiceNo?` (#${t.invoiceNo})`:""}</span>`);
  }
  
  const left=pos(t.stage);
