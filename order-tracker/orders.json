@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-02T09:52:33-05:00",
+  "updatedAt": "2026-11-02T11:23:52-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -41,18 +41,16 @@
       "product": "Purple Power",
       "sacks": 4,
       "total": 1461,
-      "stage": "scheduled",
+      "stage": "delivered",
       "fulfillment": "delivery",
       "dates": {
         "pending": "2026-10-28",
         "invoice_sent": "2026-10-28",
-        "scheduled": "2026-10-30"
+        "scheduled": "2026-10-30",
+        "delivered": "2026-11-02"
       },
-      "next": {
-        "label": "Delivery (COD)",
-        "date": "2026-11-02"
-      },
-      "note": "4 sacks plus local delivery. Cash on delivery: collect payment when the truck drops the salt. Invoice #125 stays open until then. Mon 11/2 drop goes to the NW corner overhead door.",
+      "next": null,
+      "note": "4 sacks delivered 11/2 to Zeeland. Payment not yet collected; invoice to be emailed (QB #125, $1,461).",
       "refs": {
         "quickbooks": [
           "#125"
@@ -63,7 +61,7 @@
       },
       "customerUrl": "https://greyoakventures.github.io/vision/order-tracker/c/d8be373c56571dbcaaf1dc23/",
       "cod": true,
-      "totalNote": "COD: collect cash on delivery"
+      "totalNote": "Unpaid, invoice to be emailed"
     },
     {
       "id": "MS-MVFZHSGU",
