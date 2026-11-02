@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-02T11:45:00-05:00",
+  "supplier": {
+    "name": "Advance Lawn Service Company, LLC",
+    "yard": "Hartford, WI"
+  },
+  "sacksPerTruck": 22,
+  "trucks": [
+    {
+      "id": "L1",
+      "label": "Truckload 1",
+      "dest": "Allendale, MI (our shop)",
+      "destShort": "Allendale",
+      "stage": "delivered",
+      "requested": null,
+      "dates": {
+        "delivered": "2026-10-27"
+      },
+      "invoiceReceived": true,
+      "invoiceNo": "29367",
+      "note": null
+    },
+    {
+      "id": "L2",
+      "label": "Truckload 2",
+      "dest": "Detroit, MI",
+      "destShort": "Detroit",
+      "stage": "approved",
+      "requested": "ASAP",
+      "dates": {},
+      "invoiceReceived": false,
+      "invoiceNo": null,
+      "note": null
+    },
+    {
+      "id": "L3",
+      "label": "Truckload 3",
+      "dest": "Detroit, MI",
+      "destShort": "Detroit",
+      "stage": "approved",
+      "requested": "Dec 15",
+      "dates": {},
+      "invoiceReceived": false,
+      "invoiceNo": null,
+      "note": null
+    },
+    {
+      "id": "L4",
+      "label": "Truckload 4",
+      "dest": "Granville, MI area (drop site TBD)",
+      "destShort": "Granville",
+      "stage": "approved",
+      "requested": null,
+      "dates": {},
+      "invoiceReceived": false,
+      "invoiceNo": null,
+      "note": null
+    },
+    {
+      "id": "L5",
+      "label": "Truckload 5",
+      "dest": "Granville, MI area (drop site TBD)",
+      "destShort": "Granville",
+      "stage": "approved",
+      "requested": null,
+      "dates": {},
+      "invoiceReceived": false,
+      "invoiceNo": null,
+      "note": null
+    }
+  ]
+}
