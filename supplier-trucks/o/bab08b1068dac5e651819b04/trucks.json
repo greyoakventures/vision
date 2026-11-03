@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-02T13:50:00-05:00",
+  "updatedAt": "2026-11-02T21:41:56-05:00",
   "supplier": {
     "name": "Advance Lawn Service Company, LLC",
     "short": "Advance Lawn Service",
@@ -38,7 +38,13 @@
       "customer": "Shop stock",
       "customerPaid": null,
       "showAustin": true,
-      "destShort": "Allendale shop",
+      "contact": {
+        "name": "Nick Davidson",
+        "company": "MichiganSalt (Augusta Lawn Care Services of Hudsonville)",
+        "phone": "616-600-8711",
+        "address": "5260 Edgewater Dr, Allendale, MI 49401"
+      },
+      "destShort": "Allendale, MI",
       "note": "On the shop floor 10/27. 19 sacks sold, 3 on hand. Advance invoice #29367 paid 11/2."
     },
     {
@@ -56,7 +62,13 @@
       "customer": "Shop stock",
       "customerPaid": null,
       "showAustin": true,
-      "destShort": "Allendale shop",
+      "contact": {
+        "name": "Nick Davidson",
+        "company": "MichiganSalt (Augusta Lawn Care Services of Hudsonville)",
+        "phone": "616-600-8711",
+        "address": "5260 Edgewater Dr, Allendale, MI 49401"
+      },
+      "destShort": "Allendale, MI",
       "note": "Restock. Shop is down to 3 sacks from the first truck. Nick approved 11/2."
     },
     {
@@ -74,7 +86,12 @@
       "customer": "Dominic G.",
       "customerPaid": true,
       "showAustin": true,
-      "destShort": "Detroit",
+      "contact": {
+        "name": "Dominic Grillo",
+        "phone": "586-237-9051",
+        "address": "459 Antoinette, Detroit, MI 48202"
+      },
+      "destShort": "Detroit, MI",
       "note": "Waiting on a ship date from Advance."
     },
     {
@@ -92,7 +109,12 @@
       "customer": "Dominic G.",
       "customerPaid": true,
       "showAustin": true,
-      "destShort": "Detroit",
+      "contact": {
+        "name": "Dominic Grillo",
+        "phone": "586-237-9051",
+        "address": "459 Antoinette, Detroit, MI 48202"
+      },
+      "destShort": "Detroit, MI",
       "note": "Customer asked for Dec 15."
     },
     {
@@ -110,6 +132,13 @@
       "customer": "Nick O.",
       "customerPaid": true,
       "showAustin": true,
+      "contact": {
+        "name": "Nick Owens",
+        "company": "Liberty Tree Landscaping Service",
+        "phone": "217-552-4544",
+        "address": null,
+        "addressNote": "Drop site TBD, likely Granville, MI area"
+      },
       "destShort": "Granville area",
       "note": "Drop site not confirmed yet. Likely Granville."
     },
@@ -128,6 +157,13 @@
       "customer": "Nick O.",
       "customerPaid": true,
       "showAustin": true,
+      "contact": {
+        "name": "Nick Owens",
+        "company": "Liberty Tree Landscaping Service",
+        "phone": "217-552-4544",
+        "address": null,
+        "addressNote": "Drop site TBD, likely Granville, MI area"
+      },
       "destShort": "Granville area",
       "note": "Drop site not confirmed yet. Likely Granville."
     },
@@ -146,16 +182,23 @@
       "customer": "Nick O.",
       "customerPaid": false,
       "showAustin": false,
+      "contact": {
+        "name": "Nick Owens",
+        "company": "Liberty Tree Landscaping Service",
+        "phone": "217-552-4544",
+        "address": null,
+        "addressNote": "Drop site TBD, likely Granville, MI area"
+      },
       "destShort": "Granville area",
       "note": "Not yet approved for shipment. Customer has not paid this load yet."
     },
     {
       "id": "T7",
       "label": "Mike F. truck",
-      "dest": "TBD (Mike F.)",
-      "destAustin": null,
-      "approved": false,
-      "stage": "not_approved",
+      "dest": "Hartford, MI (Mike F.)",
+      "destAustin": "Hartford, MI",
+      "approved": true,
+      "stage": "approved",
       "requested": "ASAP",
       "dates": {},
       "invoice": null,
@@ -163,9 +206,14 @@
       "paidDate": null,
       "customer": "Mike F.",
       "customerPaid": true,
-      "showAustin": false,
-      "destShort": "TBD",
-      "note": "Full truckload sold 10/30. The shop truck cannot cover it (3 sacks left), so this needs its own Advance load. Nick has not approved it yet. Drop site TBD."
+      "showAustin": true,
+      "contact": {
+        "name": "Mike Fisher",
+        "phone": "269-208-2831",
+        "address": "51756 59 1/2 St, Hartford, MI 49057"
+      },
+      "destShort": "Hartford, MI",
+      "note": "Full truckload sold 10/30, needs its own Advance load. Nick approved 11/2 for ASAP shipment."
     }
   ]
 }

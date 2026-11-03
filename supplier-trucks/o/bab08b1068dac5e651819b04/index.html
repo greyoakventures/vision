@@ -31,7 +31,8 @@ background-image:radial-gradient(circle at 12% 18%,#fff 0 2px,transparent 3px),r
 h1{font-size:clamp(28px,5.4vw,46px);line-height:1.04;margin:18px 0 6px;font-weight:900;letter-spacing:-.035em}
 h1 span{color:#b9b0ff}
 .sub{margin:0;color:#cfd3ff;font-size:15px;max-width:620px}
-.upd{color:#aab0c8;font-size:12px;margin-top:10px;font-weight:700}
+.upd{color:#cfd3ff;font-size:12px;font-weight:700}
+.upd small{display:block;color:#8f96b3;font-weight:700;font-size:11px}
 main{max-width:1080px;margin:0 auto;padding:0 14px 40px}
 .sum{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:-48px 0 18px;position:relative;z-index:3}
 .stat{background:#fff;border:2.5px solid var(--ink);border-radius:16px;box-shadow:0 4px 0 var(--ink);padding:10px 12px}
@@ -76,6 +77,20 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 40px}
 .bdg.pp{background:var(--purple);border-color:var(--purple);color:#fff}
 .inv{margin-top:10px;border-top:1.5px dashed var(--line);padding-top:9px;font-size:13px;color:var(--ink2)}
 .inv b{color:var(--ink)}
+.contact{margin-top:10px;border:1.5px solid var(--line);background:#f8f9fb;border-radius:14px;padding:9px 11px;font-size:13px;color:var(--ink2);display:grid;gap:3px}
+.contact .cn{font-weight:900;color:var(--ink);font-size:14px}
+.contact .co{font-weight:700}
+.contact a.tel{display:inline-flex;align-items:center;gap:6px;font-weight:900;color:#fff;background:var(--purple);border-radius:999px;padding:5px 12px;text-decoration:none;width:max-content;margin-top:3px}
+.contact a.tel svg{width:14px;height:14px}
+.contact .addr{font-weight:700;color:var(--ink)}
+.contact .tbd{color:#7a5200;font-weight:800}
+.rfwrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px}
+.rfbtn{display:inline-flex;align-items:center;gap:7px;font:inherit;font-weight:900;font-size:13px;background:#fff;color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:7px 14px;cursor:pointer;box-shadow:0 3px 0 #000}
+.rfbtn:active{transform:translateY(2px);box-shadow:0 1px 0 #000}
+.rfbtn svg{width:15px;height:15px}
+.rfbtn.spin svg{animation:spin .8s linear infinite}
+.rfbtn[disabled]{opacity:.85;cursor:wait}
+@keyframes spin{to{transform:rotate(360deg)}}
 .note{font-size:13px;color:var(--ink2);margin:8px 0 0}
 footer{max-width:1080px;margin:0 auto;padding:0 18px 30px;color:var(--mute);font-size:12px}
 </style>
@@ -86,7 +101,7 @@ footer{max-width:1080px;margin:0 auto;padding:0 18px 30px;color:var(--mute);font
 <span class="who-badge owner">Nick only</span></div>
 <h1>Advance trucks, <span>owner view</span></h1>
 <p class="sub">Every Purple Power truckload from Advance Lawn Service: where it is, whether Advance invoiced it, and whether we paid.</p>
-<div class="upd" id="upd"></div>
+<div class="rfwrap"><button class="rfbtn" id="rfbtn" type="button" aria-label="Refresh trucks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg><span id="rflabel">Refresh</span></button><div class="upd" id="upd" aria-live="polite">Loading trucks</div></div>
 </div></header>
 <main><div class="sum" id="sum"></div><div id="est"></div><div class="grid" id="grid"><p>Loading trucks</p></div></main>
 <footer>Purple Power: calcium chloride treated rock salt, 22 one-ton super sacks per truckload. Works to -20°F.</footer>
@@ -110,6 +125,12 @@ ${s}
 <rect x="198" y="54" width="8" height="4" rx="1" fill="#FFB000"/>
 ${[40,60,140,186].map(c=>`<circle cx="${c}" cy="68" r="9" fill="#101114"/><circle cx="${c}" cy="68" r="3.5" fill="#B4BBC3"/>`).join("")}
 </svg>`}
+const esc=x=>String(x==null?"":x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const telIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>';
+function contactHtml(t){const c=t.contact;if(!c)return"";
+ const digits=(c.phone||"").replace(/\D/g,"");
+ const ph=digits.length>=10?`<a class="tel" href="tel:+1${digits.slice(-10)}">${telIcon}Call ${esc(c.phone)}</a>`:`<span class="tbd">Phone: TBD</span>`;
+ return `<div class="contact"><span class="cn">${esc(c.name||"Contact TBD")}</span>${c.company?`<span class="co">${esc(c.company)}</span>`:""}<span class="${c.address?"addr":"tbd"}">${esc(c.address||"Delivery address: TBD")}</span>${c.addressNote?`<span>${esc(c.addressNote)}</span>`:""}${ph}</div>`}
 function pos(stage){return {not_approved:0,approved:4,scheduled:30,shipped:62,delivered:100}[stage]??4}
 function card(t,yard){
  const idx=ORDER.indexOf(t.stage), off=t.stage==="not_approved";
@@ -139,12 +160,16 @@ function card(t,yard){
  <span class="endlbl" style="left:8px;color:#fff">${yard}</span><span class="endlbl" style="right:8px;color:#fff">${t.destShort||"Drop site"}</span></div>
  <ol class="steps ${MODE==="owner"?"s6":"s4"}">${steps}</ol>
  ${badges.length?`<div class="badges">${badges.join("")}</div>`:""}
+ ${contactHtml(t)}
  ${invHtml}
  ${t.note?`<p class="note">${t.note}</p>`:""}
  </article>`}
-fetch("trucks.json",{cache:"no-store"}).then(r=>r.json()).then(d=>{
+const btn=$("#rfbtn"),lab=$("#rflabel");let busy=false,first=true;
+const tfmt=x=>x.toLocaleString("en-US",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit",timeZone:"America/Detroit"});
+function load(){if(busy)return;busy=true;btn.disabled=true;btn.classList.add("spin");lab.textContent="Refreshing";
+fetch("trucks.json?t="+Date.now(),{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(d=>{
  const T=d.trucks, yard=d.supplier.yard;
- $("#upd").textContent="Updated "+new Date(d.updatedAt).toLocaleString("en-US",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+" ET";
+ $("#upd").innerHTML="Updated "+tfmt(new Date(d.updatedAt))+" ET<small>Checked "+new Date().toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit",timeZone:"America/Detroit"})+" ET</small>";
  const n=k=>T.filter(k).length;
  let cells;
  /*O*/if(MODE==="owner"){
@@ -157,6 +182,9 @@ fetch("trucks.json",{cache:"no-store"}).then(r=>r.json()).then(d=>{
   $("#sum").innerHTML=cells.map(c=>`<div class="stat"><b>${c[0]}</b><span>${c[1]}</span></div>`).join("");$("#sum").classList.add("n5");
  }
  $("#grid").innerHTML=T.map(t=>card(t,yard)).join("");
-}).catch(()=>{$("#grid").innerHTML="<p>Could not load trucks. Pull to refresh.</p>"});
+first=false;}).catch(()=>{if(first)$("#grid").innerHTML="<p>Could not load trucks. Tap Refresh to try again.</p>";$("#upd").innerHTML=($("#upd").innerHTML.split("<small>")[0]||"")+"<small>Could not refresh. Try again.</small>"}).finally(()=>{busy=false;btn.disabled=false;btn.classList.remove("spin");lab.textContent="Refresh"});}
+btn.addEventListener("click",load);load();setInterval(load,5*60*1000);
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)load()});
+
 </script>
 </body></html>

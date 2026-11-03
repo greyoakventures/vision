@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-02T13:50:00-05:00",
+  "updatedAt": "2026-11-02T21:41:56-05:00",
   "supplier": {
     "name": "Advance Lawn Service Company, LLC",
     "yard": "Hartford, WI"
@@ -11,7 +11,13 @@
       "id": "L1",
       "label": "Truckload 1",
       "dest": "Allendale, MI (our shop)",
-      "destShort": "Allendale",
+      "destShort": "Allendale, MI",
+      "contact": {
+        "name": "Nick Davidson",
+        "company": "MichiganSalt (Augusta Lawn Care Services of Hudsonville)",
+        "phone": "616-600-8711",
+        "address": "5260 Edgewater Dr, Allendale, MI 49401"
+      },
       "stage": "delivered",
       "requested": null,
       "dates": {
@@ -26,7 +32,13 @@
       "id": "L2",
       "label": "Truckload 2",
       "dest": "Allendale, MI (our shop)",
-      "destShort": "Allendale",
+      "destShort": "Allendale, MI",
+      "contact": {
+        "name": "Nick Davidson",
+        "company": "MichiganSalt (Augusta Lawn Care Services of Hudsonville)",
+        "phone": "616-600-8711",
+        "address": "5260 Edgewater Dr, Allendale, MI 49401"
+      },
       "stage": "approved",
       "requested": "ASAP",
       "dates": {},
@@ -39,7 +51,12 @@
       "id": "L3",
       "label": "Truckload 3",
       "dest": "Detroit, MI",
-      "destShort": "Detroit",
+      "destShort": "Detroit, MI",
+      "contact": {
+        "name": "Dominic Grillo",
+        "phone": "586-237-9051",
+        "address": "459 Antoinette, Detroit, MI 48202"
+      },
       "stage": "approved",
       "requested": "ASAP",
       "dates": {},
@@ -52,7 +69,12 @@
       "id": "L4",
       "label": "Truckload 4",
       "dest": "Detroit, MI",
-      "destShort": "Detroit",
+      "destShort": "Detroit, MI",
+      "contact": {
+        "name": "Dominic Grillo",
+        "phone": "586-237-9051",
+        "address": "459 Antoinette, Detroit, MI 48202"
+      },
       "stage": "approved",
       "requested": "Dec 15",
       "dates": {},
@@ -65,7 +87,14 @@
       "id": "L5",
       "label": "Truckload 5",
       "dest": "Granville, MI area (drop site TBD)",
-      "destShort": "Granville",
+      "destShort": "Granville area",
+      "contact": {
+        "name": "Nick Owens",
+        "company": "Liberty Tree Landscaping Service",
+        "phone": "217-552-4544",
+        "address": null,
+        "addressNote": "Drop site TBD, likely Granville, MI area"
+      },
       "stage": "approved",
       "requested": "ASAP",
       "dates": {},
@@ -78,7 +107,32 @@
       "id": "L6",
       "label": "Truckload 6",
       "dest": "Granville, MI area (drop site TBD)",
-      "destShort": "Granville",
+      "destShort": "Granville area",
+      "contact": {
+        "name": "Nick Owens",
+        "company": "Liberty Tree Landscaping Service",
+        "phone": "217-552-4544",
+        "address": null,
+        "addressNote": "Drop site TBD, likely Granville, MI area"
+      },
+      "stage": "approved",
+      "requested": "ASAP",
+      "dates": {},
+      "invoiceReceived": false,
+      "invoiceNo": null,
+      "invoicePaid": false,
+      "note": null
+    },
+    {
+      "id": "L7",
+      "label": "Truckload 7",
+      "dest": "Hartford, MI",
+      "destShort": "Hartford, MI",
+      "contact": {
+        "name": "Mike Fisher",
+        "phone": "269-208-2831",
+        "address": "51756 59 1/2 St, Hartford, MI 49057"
+      },
       "stage": "approved",
       "requested": "ASAP",
       "dates": {},
