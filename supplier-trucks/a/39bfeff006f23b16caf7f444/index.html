@@ -91,6 +91,13 @@ main{max-width:1080px;margin:0 auto;padding:0 14px 40px}
 .rfbtn.spin svg{animation:spin .8s linear infinite}
 .rfbtn[disabled]{opacity:.85;cursor:wait}
 @keyframes spin{to{transform:rotate(360deg)}}
+.lock{max-width:420px;margin:10px auto 30px;background:#fff;border:2.5px solid var(--ink);border-radius:var(--r);box-shadow:0 6px 0 var(--ink);padding:18px}
+.lock h2{margin:0 0 6px;font-weight:900;font-size:20px;letter-spacing:-.02em}
+.lock p{margin:0 0 12px;color:var(--ink2);font-size:14px}
+.lock input{width:100%;font:inherit;font-size:17px;font-weight:700;padding:11px 12px;border:2px solid var(--ink);border-radius:12px;margin-bottom:10px}
+.lock button{width:100%;font:inherit;font-weight:900;font-size:16px;background:var(--purple);color:#fff;border:2px solid var(--ink);border-radius:999px;padding:11px;cursor:pointer;box-shadow:0 3px 0 var(--ink)}
+.lock .err{color:var(--bad);font-weight:800;font-size:13px;min-height:18px;margin:0}
+.lock small{display:block;color:var(--mute);margin-top:10px;font-size:12px}
 .note{font-size:13px;color:var(--ink2);margin:8px 0 0}
 footer{max-width:1080px;margin:0 auto;padding:0 18px 30px;color:var(--mute);font-size:12px}
 </style>
@@ -103,7 +110,7 @@ footer{max-width:1080px;margin:0 auto;padding:0 18px 30px;color:var(--mute);font
 <p class="sub">Hi Austin. These are the MichiganSalt loads approved to ship. Please schedule the open ones and let us know the dates.</p>
 <div class="rfwrap"><button class="rfbtn" id="rfbtn" type="button" aria-label="Refresh trucks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg><span id="rflabel">Refresh</span></button><div class="upd" id="upd" aria-live="polite">Loading trucks</div></div>
 </div></header>
-<main><div class="sum" id="sum"></div><div id="est"></div><div class="grid" id="grid"><p>Loading trucks</p></div></main>
+<main><div id="lock"></div><div class="sum" id="sum"></div><div id="est"></div><div class="grid" id="grid"><p>Loading trucks</p></div></main>
 <footer>Purple Power: calcium chloride treated rock salt, 22 one-ton super sacks per truckload. Works to -20°F.</footer>
 <script>
 const MODE="austin";
@@ -157,10 +164,21 @@ function card(t,yard){
  
  ${t.note?`<p class="note">${t.note}</p>`:""}
  </article>`}
+const LK="ms-supplier-"+MODE+"-code";
+const b64=x=>Uint8Array.from(atob(x),c=>c.charCodeAt(0));
+async function decrypt(e,pw){if(!(window.crypto&&crypto.subtle))throw new Error("nocrypto");const km=await crypto.subtle.importKey("raw",new TextEncoder().encode(pw),"PBKDF2",false,["deriveKey"]);
+ const key=await crypto.subtle.deriveKey({name:"PBKDF2",salt:b64(e.salt),iterations:e.iter,hash:"SHA-256"},km,{name:"AES-GCM",length:256},false,["decrypt"]);
+ const pt=await crypto.subtle.decrypt({name:"AES-GCM",iv:b64(e.iv)},key,b64(e.ct));return JSON.parse(new TextDecoder().decode(pt))}
+function getCode(){try{return localStorage.getItem(LK)}catch(_){return null}}
+function askCode(msg){$("#grid").innerHTML="";$("#sum").innerHTML="";$("#est").innerHTML="";
+ $("#lock").innerHTML=`<form class="lock" id="lockf"><h2>Enter passcode</h2><p>This tracker is private. Enter the passcode Nick gave you. This device will remember it.</p><input id="lockin" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false" placeholder="Passcode" required><p class="err">${msg||""}</p><button type="submit">Open tracker</button><small>Lost it? Ask Nick for the passcode again.</small></form>`;
+ $("#lockf").addEventListener("submit",ev=>{ev.preventDefault();const v=$("#lockin").value.trim();try{localStorage.setItem(LK,v)}catch(_){};window.__pw=v;$("#lock").innerHTML="";load()});
+ $("#upd").textContent="Locked";}
 const btn=$("#rfbtn"),lab=$("#rflabel");let busy=false,first=true;
 const tfmt=x=>x.toLocaleString("en-US",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit",timeZone:"America/Detroit"});
 function load(){if(busy)return;busy=true;btn.disabled=true;btn.classList.add("spin");lab.textContent="Refreshing";
-fetch("trucks.json?t="+Date.now(),{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(d=>{
+const pw=window.__pw||getCode();if(!pw){busy=false;btn.disabled=false;btn.classList.remove("spin");lab.textContent="Refresh";askCode();return}
+fetch("trucks.json?t="+Date.now(),{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(e=>decrypt(e,pw).catch(()=>{try{localStorage.removeItem(LK)}catch(_){};window.__pw=null;askCode("That passcode did not work. Try again.");throw "locked"})).then(d=>{
  const T=d.trucks, yard=d.supplier.yard;
  $("#upd").innerHTML="Updated "+tfmt(new Date(d.updatedAt))+" ET<small>Checked "+new Date().toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit",timeZone:"America/Detroit"})+" ET</small>";
  const n=k=>T.filter(k).length;
@@ -170,7 +188,7 @@ fetch("trucks.json?t="+Date.now(),{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;
   $("#sum").innerHTML=cells.map(c=>`<div class="stat"><b>${c[0]}</b><span>${c[1]}</span></div>`).join("");$("#sum").classList.add("n5");
  }
  $("#grid").innerHTML=T.map(t=>card(t,yard)).join("");
-first=false;}).catch(()=>{if(first)$("#grid").innerHTML="<p>Could not load trucks. Tap Refresh to try again.</p>";$("#upd").innerHTML=($("#upd").innerHTML.split("<small>")[0]||"")+"<small>Could not refresh. Try again.</small>"}).finally(()=>{busy=false;btn.disabled=false;btn.classList.remove("spin");lab.textContent="Refresh"});}
+first=false;}).catch(x=>{if(x==="locked")return;if(first)$("#grid").innerHTML="<p>Could not load trucks. Tap Refresh to try again.</p>";$("#upd").innerHTML=($("#upd").innerHTML.split("<small>")[0]||"")+"<small>Could not refresh. Try again.</small>"}).finally(()=>{busy=false;btn.disabled=false;btn.classList.remove("spin");lab.textContent="Refresh"});}
 btn.addEventListener("click",load);load();setInterval(load,5*60*1000);
 document.addEventListener("visibilitychange",()=>{if(!document.hidden)load()});
 
