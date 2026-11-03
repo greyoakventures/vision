@@ -22,13 +22,14 @@
   ],
   "michigan-salt": [
    "Sandbox server (michigansalt-sandbox) is a paid $7/mo starter service. It is in use (QuickBooks checkout preview, Oct 30). Suspend it or move it to free when no preview is needed.",
-   "Ops order database has no disk (confirmed Oct 23), so orders are wiped on each redeploy unless someone exports first. Attaching a 1 GB Render disk (about $0.25/mo list) would fix it.",
+   "Ops order database now sits on a 1 GB Render disk (about $0.25/mo). Keep taking an export before big changes, and confirm with Flynn that the live orders were restored onto the disk.",
    "Invoicing overlap: QuickBooks (live), Homeworks (old docs), and Stripe (unused, 0 products). Pick one and retire the rest.",
-   "OSRM public demo server has no uptime promise. The quote falls back to an estimate if it is down."
+   "OSRM public demo server has no uptime promise. The quote falls back to an estimate if it is down.",
+   "The truck tracker's first version put customer contacts in the public repo's git history on Nov 2 before it was encrypted. Consider rewriting that history or confirming it's acceptable."
   ]
  },
- "lastUpdated": "2026-11-02T06:40-05:00",
- "lastUpdatedLabel": "Nov 2, 2026, 6:40 AM ET",
+ "lastUpdated": "2026-11-03T06:31-05:00",
+ "lastUpdatedLabel": "Nov 3, 2026, 6:31 AM ET",
  "projects": [
   {
    "id": "michigan-salt",
@@ -36,8 +37,8 @@
    "domain": "michigansalt.com",
    "filled": true,
    "summary": "Truckload ice melt site: quote, request, invoice, ship.",
-   "updated": "2026-11-02T06:40-05:00",
-   "updatedLabel": "Nov 2, 2026, 6:40 AM ET"
+   "updated": "2026-11-03T06:31-05:00",
+   "updatedLabel": "Nov 3, 2026, 6:31 AM ET"
   },
   {
    "id": "grey-oak",
@@ -45,8 +46,8 @@
    "domain": "greyoakventures.com",
    "filled": true,
    "summary": "AI Walkthrough offer: site, request form, auto-reply, booking.",
-   "updated": "2026-11-02T06:40-05:00",
-   "updatedLabel": "Nov 2, 2026, 6:40 AM ET"
+   "updated": "2026-11-03T06:31-05:00",
+   "updatedLabel": "Nov 3, 2026, 6:31 AM ET"
   },
   {
    "id": "augusta",
@@ -268,7 +269,7 @@
    "links": [],
    "confirmed": true,
    "notes": "The Render account that runs the three Michigan Salt services (site, sandbox, ops board).",
-   "lastVerified": "2026-11-02",
+   "lastVerified": "2026-11-03",
    "connects": [],
    "overlapGroup": null,
    "notesByProject": {
@@ -305,7 +306,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Live customer site. Node web service, Ohio region, starter plan, auto-deploys on every commit to main. Last deploy Oct 31 (1:04 PM ET, Purple Power working temperature corrected to -20\u00b0F). /health reports the lead webhook is configured.",
-   "lastVerified": "2026-11-02",
+   "lastVerified": "2026-11-03",
    "connects": [
     "node-server"
    ],
@@ -341,7 +342,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Test copy of the site. Since Oct 30 (about 11:30 PM ET deploys) it previews the qbo-checkout work: QuickBooks invoice checkout with pay-method choice and the card fee folded into delivery. On Oct 31 it added local delivery changes (a per-trip minimum, 4 sacks a trip, up to 8 sacks, Affirm removed as a pay choice) and street-address checks with the free US Census Geocoder before any delivered price. Before that (Oct 29) it previewed the shop-pickup Pay now work; the old 50 lb bags sandbox was saved on the sandbox/bags-50lb-archive branch. Paid starter plan. Possible savings: suspend it or move it to the free plan when no preview is needed.",
-   "lastVerified": "2026-11-02",
+   "lastVerified": "2026-11-03",
    "connects": [],
    "overlapGroup": null
   },
@@ -357,8 +358,8 @@
    "color": "#46E3B7",
    "status": "live",
    "cost": {
-    "monthly": 7,
-    "basis": "Render 'starter' list price $7/mo (plan from connector). render.yaml also asks for a 1 GB disk ($0.25/mo) that the connector did not show.",
+    "monthly": 7.25,
+    "basis": "Render 'starter' list price $7/mo plus the attached 1 GB disk at $0.25/GB/mo list price (plan and disk both read from the Render connector Nov 3). Actual invoice not checked.",
     "kind": "list-price"
    },
    "owner": {
@@ -375,8 +376,8 @@
    },
    "links": [],
    "confirmed": true,
-   "notes": "Order ops board. Node web service, Ohio, starter plan, auto-deploys from main. Since Oct 31 it also relays the order tracker's Refresh button to Vision's on-demand refresh (rate-limited to once a minute). Last deploy Oct 31 (6:07 PM ET). Note: render.yaml says plan free + disk, but the live service is on starter, and the connector shows no disk.",
-   "lastVerified": "2026-11-02",
+   "notes": "Order ops board. Node web service, Ohio, starter plan, auto-deploys from main. Since Oct 31 it also relays the order tracker's Refresh button to Vision's on-demand refresh (rate-limited to once a minute). Last deploy Oct 31 (6:07 PM ET). Nov 3: the Render connector now shows a 1 GB persistent disk mounted at /var/data (it showed none on Oct 23). The date it was attached is unconfirmed; the service was last updated Oct 31 (6:07 PM ET). render.yaml still says plan free, but the live service is on starter.",
+   "lastVerified": "2026-11-03",
    "connects": [
     "ops-app"
    ],
@@ -412,7 +413,7 @@
    "links": [],
    "confirmed": true,
    "notes": "Serves greyoakventures.com and www. Free static site that auto-deploys from the greyoak-site-sandbox branch. The service is still named 'sandbox' even though it serves the live domain. Last deploy Oct 14.",
-   "lastVerified": "2026-11-02",
+   "lastVerified": "2026-11-03",
    "connects": [
     "go-site-pages",
     "go-walkthrough-page",
@@ -486,7 +487,7 @@
    ],
    "confirmed": true,
    "notes": "Private repo for the Michigan Salt site. Branches: main (live site; Oct 30 the old private VIP price link was switched off), qbo-checkout (Oct 30: checkout that creates a QuickBooks invoice with an instant pay link, a pay-method choice before the price (card, ACH, Affirm, check, cash), and the 2.99% card fee folded into delivery; sandbox only, not live), card-fee-delivery (Oct 30: the card fee change on its own; not live), sandbox/card-fee-plus-pay-now (Oct 30: card fee plus pickup Pay now combined for preview), qbo-invoice (older QuickBooks invoice work, not live), feature/pickup-pay-now (Oct 29: shop-pickup customers choose Pay now through a QuickBooks payment link set by env var PICKUP_PAY_URL, or pay cash at pickup; pickup capped at live stock; not merged or live, previewed on the sandbox), sandbox/bags-50lb (feeds the sandbox server) and sandbox/bags-50lb-archive (old 50 lb bags work), pickup-fix (local pickup work, already merged into main Oct 27), doghouse-phone and greyoak-site-sandbox (other projects).",
-   "lastVerified": "2026-11-02",
+   "lastVerified": "2026-11-03",
    "connects": [
     "render-michigansalt",
     "render-ms-sandbox"
@@ -526,7 +527,7 @@
    ],
    "confirmed": true,
    "notes": "Private repo for the ops board. Branches: main (live ops board; the inventory branch was merged and went live Oct 28), feature/zapier-qbo-invoice (Oct 29: send each new real order once to Zapier to start an unsent QuickBooks invoice; not merged or live), and feature/qbo-sync-and-delivered-button (Oct 29: QuickBooks-to-board sync, a Picked up/Delivered button with undo, and an unpaid-but-delivered flag; not merged or live). The old inventory branch is still listed.",
-   "lastVerified": "2026-11-02",
+   "lastVerified": "2026-11-03",
    "connects": [
     "render-ops"
    ],
@@ -783,9 +784,9 @@
    "color": "#003B57",
    "status": "live",
    "cost": {
-    "monthly": 0,
-    "basis": "No disk attached (repo README, Oct 23), so no disk cost. A Render disk would be $0.25/GB/mo list price.",
-    "kind": "included"
+    "monthly": 0.25,
+    "basis": "1 GB Render disk at $0.25/GB/mo list price, attached to michigansalt-ops (seen in the Render connector Nov 3). Actual invoice not checked.",
+    "kind": "list-price"
    },
    "owner": {
     "bots": [
@@ -799,8 +800,8 @@
    },
    "links": [],
    "confirmed": true,
-   "notes": "Orders, abandoned contacts, and supplier invoices in SQLite (better-sqlite3). Confirmed Oct 23: there is no persistent disk yet, so the database is wiped on every redeploy. The ops board now has a full export and exact restore to back it up first. render.yaml still asks for a 1 GB disk at /var/data that was never attached.",
-   "lastVerified": "2026-11-02",
+   "notes": "Orders, abandoned contacts, and supplier invoices in SQLite (better-sqlite3). As of Nov 3 the ops service has a 1 GB persistent Render disk at /var/data, so the database should now survive redeploys (on Oct 23 there was no disk and it was wiped on every redeploy). When the disk was attached, and whether the database was restored onto it, is unconfirmed. The ops board still has a full export and exact restore for backups. The tracker refresh relay also stores its setup file on this disk.",
+   "lastVerified": "2026-11-03",
    "connects": [],
    "overlapGroup": null
   },
@@ -1831,7 +1832,37 @@
    "links": [],
    "confirmed": true,
    "notes": "Daily AI briefings site (noindex), listed under Grey Oak in the source map. Auto-deploys from master; last updated Nov 2.",
-   "lastVerified": "2026-11-02",
+   "lastVerified": "2026-11-03",
+   "connects": [],
+   "overlapGroup": null
+  },
+  {
+   "id": "ms-supplier-tracker",
+   "projects": [
+    "michigan-salt"
+   ],
+   "layer": "data",
+   "name": "Supplier truckload tracker (private, passcode)",
+   "short": "Truck tracker",
+   "logo": "",
+   "color": "#6B2FA0",
+   "status": "live",
+   "cost": {
+    "monthly": 0,
+    "basis": "Static pages on Vision's free GitHub Pages site.",
+    "kind": "free"
+   },
+   "owner": {
+    "bots": [
+     "Vision"
+    ],
+    "person": "Nick"
+   },
+   "lives": {},
+   "links": [],
+   "confirmed": true,
+   "notes": "Added Nov 2. Tracks each truckload on order from the supplier, with an owner view and a limited view for the supplier contact. Both views are encrypted in the page itself and each needs its own passcode, because they show customer contacts and addresses; the passcodes are stored only on the box and never in chat or the repo. Each view has a Refresh button. The limited view never shows money or customer payments. Source data is a file on the box and is rebuilt into the encrypted pages. A first version briefly exposed contact details in the public repo history on Nov 2 before encryption was added (history not yet rewritten; unconfirmed whether that matters).",
+   "lastVerified": "2026-11-03",
    "connects": [],
    "overlapGroup": null
   }
@@ -2145,6 +2176,16 @@
   ]
  },
  "changes": [
+  {
+   "date": "2026-11-03",
+   "project": "michigan-salt",
+   "text": "Ops board server now has a 1 GB persistent disk (about $0.25/mo list), so its orders database should survive redeploys; the date it was added is unconfirmed"
+  },
+  {
+   "date": "2026-11-02",
+   "project": "michigan-salt",
+   "text": "New: private truckload tracker for supplier loads on order, with an owner view and a limited view, each behind its own passcode (free, GitHub Pages)"
+  },
   {
    "date": "2026-10-31",
    "project": "michigan-salt",
