@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-04T12:04:48-05:00",
+  "updatedAt": "2026-11-05T18:15:09-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -108,7 +108,7 @@
         "label": "Truck 2",
         "date": "2026-12-15"
       },
-      "note": "Two truckloads, paid by ACH. Truck 1 ships ASAP, waiting on the date from the supplier. Truck 2 on Dec 15.",
+      "note": "Two truckloads, paid by ACH. Truck 1 delivered 11/4. Truck 2 on Dec 15.",
       "refs": {
         "quickbooks": [
           "#124"
