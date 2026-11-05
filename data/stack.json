@@ -28,8 +28,8 @@
    "The truck tracker's first version put customer contacts in the public repo's git history on Nov 2 before it was encrypted. Consider rewriting that history or confirming it's acceptable."
   ]
  },
- "lastUpdated": "2026-11-03T06:31-05:00",
- "lastUpdatedLabel": "Nov 3, 2026, 6:31 AM ET",
+ "lastUpdated": "2026-11-05T06:39-05:00",
+ "lastUpdatedLabel": "Nov 5, 2026, 6:39 AM ET",
  "projects": [
   {
    "id": "michigan-salt",
@@ -37,8 +37,8 @@
    "domain": "michigansalt.com",
    "filled": true,
    "summary": "Truckload ice melt site: quote, request, invoice, ship.",
-   "updated": "2026-11-03T06:31-05:00",
-   "updatedLabel": "Nov 3, 2026, 6:31 AM ET"
+   "updated": "2026-11-05T06:39-05:00",
+   "updatedLabel": "Nov 5, 2026, 6:39 AM ET"
   },
   {
    "id": "grey-oak",
@@ -305,8 +305,8 @@
    },
    "links": [],
    "confirmed": true,
-   "notes": "Live customer site. Node web service, Ohio region, starter plan, auto-deploys on every commit to main. Last deploy Oct 31 (1:04 PM ET, Purple Power working temperature corrected to -20\u00b0F). /health reports the lead webhook is configured.",
-   "lastVerified": "2026-11-03",
+   "notes": "Live customer site. Node web service, Ohio region, starter plan, auto-deploys on every commit to main. Last deploy Oct 31 (1:04 PM ET, Purple Power working temperature corrected to -20\u00b0F). /health reports the lead webhook is configured. Last deploy Nov 4 (about 6:20 PM ET): Purple Power hero video on the home page, plus an iPhone playback fix.",
+   "lastVerified": "2026-11-05",
    "connects": [
     "node-server"
    ],
@@ -2176,6 +2176,11 @@
   ]
  },
  "changes": [
+  {
+   "date": "2026-11-04",
+   "project": "michigan-salt",
+   "text": "Live site: Purple Power hero video added to the home page (loads after the page, skipped on slow or data-saver connections), with an iPhone fix for Low Power Mode. No new tool or cost; the same site server now also serves video files"
+  },
   {
    "date": "2026-11-03",
    "project": "michigan-salt",
