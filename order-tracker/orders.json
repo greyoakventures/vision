@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-05T18:15:17-05:00",
+  "updatedAt": "2026-11-09T07:03:53-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -125,15 +125,19 @@
       "product": "Purple Power",
       "sacks": 22,
       "total": 6243,
-      "stage": "paid",
+      "stage": "scheduled",
       "fulfillment": "delivery",
       "dates": {
         "pending": "2026-10-30",
         "invoice_sent": "2026-10-30",
-        "paid": "2026-10-30"
+        "paid": "2026-10-30",
+        "scheduled": "2026-11-09"
       },
-      "next": null,
-      "note": "One truckload, paid by card. Delivery not scheduled yet.",
+      "next": {
+        "label": "Delivery",
+        "date": "2026-11-09"
+      },
+      "note": "One truckload, paid by card. Delivery scheduled for today, 11/9.",
       "refs": {
         "quickbooks": [
           "Est #0277",
