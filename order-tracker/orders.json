@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-09T07:03:53-05:00",
+  "updatedAt": "2026-11-10T20:31:31-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -9,13 +9,13 @@
       "sacks": 66,
       "total": 20592,
       "stage": "invoice_sent",
-      "fulfillment": "pickup_or_delivery",
+      "fulfillment": "pickup",
       "dates": {
         "pending": "2026-10-29",
         "invoice_sent": "2026-10-29"
       },
       "next": null,
-      "note": "Three truckloads, pickup or delivery to Granville location TBD (likely delivered). Price stays the same since Granville is close to the shop. Invoices #127 and #129 paid by card 10/31, #130 still awaiting payment.",
+      "note": "Two truckloads purchased so far (invoices #127 and #129 paid). His site is not ready, so truck 1 (22 sacks) was offloaded at the Allendale shop on 11/10. He picked up 4 that day; 18 remain at the shop allocated to him. Truck 2 has not arrived yet. Invoice #130 (third truck) is still open.",
       "refs": {
         "quickbooks": [
           "#127",
@@ -33,7 +33,11 @@
         "of": 3,
         "unit": "truckload"
       },
-      "city": "Granville"
+      "shopHold": {
+        "arrived": 22,
+        "pickedUp": 4,
+        "remaining": 18
+      }
     },
     {
       "id": "MS-MVSJXCKP",
@@ -219,5 +223,28 @@
       },
       "customerUrl": "https://greyoakventures.github.io/vision/order-tracker/c/8f8eff0353e0ab66ff283203/"
     }
-  ]
+  ],
+  "shopYard": {
+    "available": 3,
+    "onHand": 21,
+    "allocated": [
+      {
+        "customer": "Nick O.",
+        "id": "MS-MVTFRDEG",
+        "arrived": 22,
+        "pickedUp": 4,
+        "remaining": 18
+      }
+    ],
+    "log": [
+      {
+        "date": "2026-11-10",
+        "text": "Nick O. truck 1 offloaded at the shop, 22 sacks"
+      },
+      {
+        "date": "2026-11-10",
+        "text": "Nick O. picked up 4 sacks"
+      }
+    ]
+  }
 }
