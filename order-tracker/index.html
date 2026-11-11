@@ -255,6 +255,7 @@ footer{text-align:center;font-size:12px;color:var(--mute);padding:10px 14px 30px
 .yard .ylog{list-style:none;margin:12px 0 0;padding:0;font-size:13px;color:var(--ink2)}
 .yard .ylog li{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-top:1px solid var(--line)}
 .yard .ylog .d{font-weight:700;color:var(--mute);white-space:nowrap}
+.yard .yloghead{margin:14px 0 0;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute)}
 @media(max-width:640px){.yard .ygrid{grid-template-columns:1fr}}
 .tag.ff{background:#EEEFF1;color:#5c6168;border-color:#D5DBE1}
 .next{display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:13px;font-weight:800;color:var(--ink);background:#EEEFF1;border:1.5px dashed #B4BBC3;border-radius:10px;padding:4px 10px}
@@ -481,7 +482,9 @@ function card(o,idx){
   const qb=(o.refs&&o.refs.quickbooks)||[],hw=(o.refs&&o.refs.homeworks)||[];
   const refs=[qb.length?"QuickBooks "+qb.map(esc).join(", "):"",hw.length?"Homeworks "+hw.map(esc).join(", "):""].filter(Boolean).join(" &middot; ");
   const next=o.next&&o.next.date?`<div class="next">&#128197; ${esc(o.next.label||"Next")}: ${esc(longDate(o.next.date))}${o.next.time?", "+esc(o.next.time):""}</div>`:"";
-  const hold=o.shopHold&&Number.isInteger(o.shopHold.remaining)?`<div class="hold"><b>${esc(String(o.shopHold.remaining))}</b> at the shop for him<span>${esc(String(o.shopHold.pickedUp))} picked up · ${esc(String(o.shopHold.arrived))} arrived</span></div>`:"";
+  const holdPicks=((((SHOPYARD||{}).allocated)||[]).find(a=>a.id===o.id)||{}).pickups||[];
+  const holdPickLine=holdPicks.length?holdPicks.map(p=>`${p.qty} picked up ${shortDate(p.date)}`).join(", "):(o.shopHold?`${o.shopHold.pickedUp} picked up`:"");
+  const hold=o.shopHold&&Number.isInteger(o.shopHold.remaining)?`<div class="hold"><b>${esc(String(o.shopHold.remaining))}</b> at the shop for him<span>${esc(holdPickLine)} · ${esc(String(o.shopHold.arrived))} arrived</span></div>`:"";
   return `<article class="order s${s} ${o.pp?"p-pp":"p-bk"}" data-i="${idx}" aria-label="${esc(o.customer)}, ${L[s]}">
     <div class="ohead">
       <div><div class="who">${esc(o.customer)}</div>
@@ -514,6 +517,10 @@ function fillYard(){
   const onHand=Number.isInteger(+y.onHand)?+y.onHand:avail+reserved;
   const allocLabel=alloc.length===1?"Allocated to "+esc(alloc[0].customer||""):"Allocated to a customer";
   const log=(y.log||[]).map(e=>`<li><span>${esc(e.text||"")}</span><span class="d">${esc(shortDate(e.date||""))}</span></li>`).join("");
+  const pickRows=[];
+  for(const r of alloc){for(const p of (r.pickups||[])) pickRows.push({date:p.date||"",qty:+p.qty||0,customer:r.customer||""});}
+  pickRows.sort((a,b)=>a.date<b.date?-1:a.date>b.date?1:0);
+  const picks=pickRows.map(p=>`<li><span>${esc(p.customer)} picked up ${p.qty} sack${p.qty===1?"":"s"}</span><span class="d">${esc(shortDate(p.date))}</span></li>`).join("");
   el.hidden=false;
   el.innerHTML=`<h2>At the shop</h2>
     <p class="ysub">Super sacks in the Allendale parking lot right now.</p>
@@ -522,7 +529,8 @@ function fillYard(){
       <div class="ytile alloc"><b>${reserved}</b><span>${allocLabel}</span></div>
       <div class="ytile avail"><b>${avail}</b><span>Available for resale</span></div>
     </div>
-    ${log?`<ul class="ylog">${log}</ul>`:""}`;
+    ${picks?`<h3 class="yloghead">Pickups</h3><ul class="ylog">${picks}</ul>`:""}
+    ${log?`<h3 class="yloghead">Yard log</h3><ul class="ylog">${log}</ul>`:""}`;
 }
 function render(){
   fillYard();

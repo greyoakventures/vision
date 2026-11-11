@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-10T20:31:31-05:00",
+  "updatedAt": "2026-11-11T02:03:32-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -233,7 +233,13 @@
         "id": "MS-MVTFRDEG",
         "arrived": 22,
         "pickedUp": 4,
-        "remaining": 18
+        "remaining": 18,
+        "pickups": [
+          {
+            "date": "2026-11-10",
+            "qty": 4
+          }
+        ]
       }
     ],
     "log": [
