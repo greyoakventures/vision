@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-17T11:55:23-05:00",
+  "updatedAt": "2026-11-17T18:15:24-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -15,7 +15,7 @@
         "invoice_sent": "2026-10-29"
       },
       "next": null,
-      "note": "Two truckloads purchased so far (invoices #127 and #129 paid). Both paid trucks are now at the Allendale shop (truck 1 offloaded 11/10, truck 2 offloaded 11/12). He picked up 4 on 11/10, 4 on 11/15 and 4 on 11/16; 32 remain at the shop allocated to him. Invoice #130 (third truck) is still open.",
+      "note": "Two truckloads purchased so far (invoices #127 and #129 paid). Both paid trucks are now at the Allendale shop (truck 1 offloaded 11/10, truck 2 offloaded 11/12). He picked up 4 on 11/10, 4 on 11/15, 4 on 11/16 and 4 on 11/17; 28 remain at the shop allocated to him. Invoice #130 (third truck) is still open.",
       "refs": {
         "quickbooks": [
           "#127",
@@ -35,8 +35,8 @@
       },
       "shopHold": {
         "arrived": 44,
-        "pickedUp": 12,
-        "remaining": 32
+        "pickedUp": 16,
+        "remaining": 28
       }
     },
     {
@@ -226,14 +226,14 @@
   ],
   "shopYard": {
     "available": 3,
-    "onHand": 35,
+    "onHand": 31,
     "allocated": [
       {
         "customer": "Nick O.",
         "id": "MS-MVTFRDEG",
         "arrived": 44,
-        "pickedUp": 12,
-        "remaining": 32,
+        "pickedUp": 16,
+        "remaining": 28,
         "pickups": [
           {
             "date": "2026-11-10",
@@ -245,6 +245,10 @@
           },
           {
             "date": "2026-11-16",
+            "qty": 4
+          },
+          {
+            "date": "2026-11-17",
             "qty": 4
           }
         ]
@@ -269,6 +273,10 @@
       },
       {
         "date": "2026-11-16",
+        "text": "Nick O. picked up 4 sacks"
+      },
+      {
+        "date": "2026-11-17",
         "text": "Nick O. picked up 4 sacks"
       }
     ]
