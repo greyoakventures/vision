@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-17T18:16:13-05:00",
+  "updatedAt": "2026-11-17T18:28:55-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -222,10 +222,37 @@
         ]
       },
       "customerUrl": "https://greyoakventures.github.io/vision/order-tracker/c/8f8eff0353e0ab66ff283203/"
+    },
+    {
+      "id": "MS-MWLBGCID",
+      "customer": "Brittany G.",
+      "product": "Purple Power",
+      "sacks": 3,
+      "total": 936,
+      "stage": "pending",
+      "fulfillment": "pickup",
+      "dates": {
+        "pending": "2026-11-17"
+      },
+      "next": {
+        "label": "Pickup",
+        "date": "2026-11-20"
+      },
+      "note": "3 sacks for shop pickup, Friday 11/20 afternoon preferred. Uses the last 3 unsold sacks, held for her. QuickBooks and Homeworks invoices being built, not sent yet.",
+      "refs": {
+        "quickbooks": [],
+        "homeworks": []
+      },
+      "shopHold": {
+        "arrived": 3,
+        "pickedUp": 0,
+        "remaining": 3
+      },
+      "customerUrl": "https://greyoakventures.github.io/vision/order-tracker/c/a359e38d9b8dd0c9858a654a/"
     }
   ],
   "shopYard": {
-    "available": 3,
+    "available": 0,
     "onHand": 35,
     "allocated": [
       {
@@ -248,6 +275,14 @@
             "qty": 4
           }
         ]
+      },
+      {
+        "customer": "Brittany G.",
+        "id": "MS-MWLBGCID",
+        "arrived": 3,
+        "pickedUp": 0,
+        "remaining": 3,
+        "pickups": []
       }
     ],
     "log": [
@@ -270,6 +305,10 @@
       {
         "date": "2026-11-16",
         "text": "Nick O. picked up 4 sacks"
+      },
+      {
+        "date": "2026-11-17",
+        "text": "Last 3 unsold sacks held for Brittany G. (pickup order)"
       }
     ]
   }
