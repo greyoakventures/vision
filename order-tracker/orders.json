@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-17T18:28:55-05:00",
+  "updatedAt": "2026-11-17T20:58:14-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -235,13 +235,17 @@
         "pending": "2026-11-17"
       },
       "next": {
-        "label": "Pickup",
+        "label": "Pickup 10:30 AM",
         "date": "2026-11-20"
       },
-      "note": "3 sacks for shop pickup, Friday 11/20 afternoon preferred. Uses the last 3 unsold sacks, held for her. QuickBooks and Homeworks invoices being built, not sent yet.",
+      "note": "3 sacks for shop pickup, Friday 11/20 at 10:30 AM. Uses the last 3 unsold sacks, held for her. QuickBooks #148 ($936) is the invoice she gets, not sent yet; Homeworks #9498 is the do-not-send mirror.",
       "refs": {
-        "quickbooks": [],
-        "homeworks": []
+        "quickbooks": [
+          "#148"
+        ],
+        "homeworks": [
+          "#9498"
+        ]
       },
       "shopHold": {
         "arrived": 3,
