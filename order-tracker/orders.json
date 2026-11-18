@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-18T11:52:49-05:00",
+  "updatedAt": "2026-11-18T11:53:56-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -229,18 +229,16 @@
       "product": "Purple Power",
       "sacks": 3,
       "total": 936,
-      "stage": "paid",
+      "stage": "delivered",
       "fulfillment": "pickup",
       "dates": {
         "pending": "2026-11-17",
         "paid": "2026-11-18",
-        "scheduled": "2026-11-18"
+        "scheduled": "2026-11-18",
+        "delivered": "2026-11-18"
       },
-      "next": {
-        "label": "Pickup 10:30 AM",
-        "date": "2026-11-20"
-      },
-      "note": "3 sacks for shop pickup at 10:30 AM. Paid in full 11/18, Homeworks #9498 marked paid. QuickBooks #148 no longer needed (Nick asked to delete it). Last 3 lot sacks, held for her.",
+      "next": null,
+      "note": "Picked up all 3 sacks at the shop 11/18, 10:30 AM. Paid in full 11/18 (deposited to LMCU), Homeworks #9498 is the invoice of record. QuickBooks #148 voided, never sent.",
       "refs": {
         "quickbooks": [],
         "homeworks": [
@@ -249,15 +247,15 @@
       },
       "shopHold": {
         "arrived": 3,
-        "pickedUp": 0,
-        "remaining": 3
+        "pickedUp": 3,
+        "remaining": 0
       },
       "customerUrl": "https://greyoakventures.github.io/vision/order-tracker/c/a359e38d9b8dd0c9858a654a/"
     }
   ],
   "shopYard": {
     "available": 0,
-    "onHand": 35,
+    "onHand": 32,
     "allocated": [
       {
         "customer": "Nick O.",
@@ -284,9 +282,14 @@
         "customer": "Brittany G.",
         "id": "MS-MWLBGCID",
         "arrived": 3,
-        "pickedUp": 0,
-        "remaining": 3,
-        "pickups": []
+        "pickedUp": 3,
+        "remaining": 0,
+        "pickups": [
+          {
+            "date": "2026-11-18",
+            "qty": 3
+          }
+        ]
       }
     ],
     "log": [
@@ -313,6 +316,10 @@
       {
         "date": "2026-11-17",
         "text": "Last 3 unsold sacks held for Brittany G. (pickup order)"
+      },
+      {
+        "date": "2026-11-18",
+        "text": "Brittany G. picked up 3 sacks (paid). 32 on the lot, all Nick O."
       }
     ]
   }
