@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-17T20:58:14-05:00",
+  "updatedAt": "2026-11-18T11:52:49-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -229,20 +229,20 @@
       "product": "Purple Power",
       "sacks": 3,
       "total": 936,
-      "stage": "pending",
+      "stage": "paid",
       "fulfillment": "pickup",
       "dates": {
-        "pending": "2026-11-17"
+        "pending": "2026-11-17",
+        "paid": "2026-11-18",
+        "scheduled": "2026-11-18"
       },
       "next": {
         "label": "Pickup 10:30 AM",
         "date": "2026-11-20"
       },
-      "note": "3 sacks for shop pickup, Friday 11/20 at 10:30 AM. Uses the last 3 unsold sacks, held for her. QuickBooks #148 ($936) is the invoice she gets, not sent yet; Homeworks #9498 is the do-not-send mirror.",
+      "note": "3 sacks for shop pickup at 10:30 AM. Paid in full 11/18, Homeworks #9498 marked paid. QuickBooks #148 no longer needed (Nick asked to delete it). Last 3 lot sacks, held for her.",
       "refs": {
-        "quickbooks": [
-          "#148"
-        ],
+        "quickbooks": [],
         "homeworks": [
           "#9498"
         ]
