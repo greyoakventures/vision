@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-18T11:54:51-05:00",
+  "updatedAt": "2026-11-20T12:42:08-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -254,8 +254,8 @@
     }
   ],
   "shopYard": {
-    "available": 0,
-    "onHand": 32,
+    "available": 22,
+    "onHand": 54,
     "allocated": [
       {
         "customer": "Nick O.",
@@ -320,6 +320,10 @@
       {
         "date": "2026-11-18",
         "text": "Brittany G. picked up 3 sacks (paid). 32 on the lot, all Nick O."
+      },
+      {
+        "date": "2026-11-20",
+        "text": "New shop truck landed, 22 sacks for sale (pickup or delivery). 54 on the lot: 32 Nick O., 22 available."
       }
     ]
   }
