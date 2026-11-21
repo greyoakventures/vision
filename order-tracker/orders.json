@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-20T12:42:08-05:00",
+  "updatedAt": "2026-11-21T11:51:26-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -15,7 +15,7 @@
         "invoice_sent": "2026-10-29"
       },
       "next": null,
-      "note": "Two truckloads purchased so far (invoices #127 and #129 paid). Both paid trucks are now at the Allendale shop (truck 1 offloaded 11/10, truck 2 offloaded 11/12). He picked up 4 on 11/10, 4 on 11/15 and 4 on 11/17; 32 remain at the shop allocated to him. Invoice #130 (third truck) is still open.",
+      "note": "Two truckloads purchased so far (invoices #127 and #129 paid). Both paid trucks are at the Allendale shop (offloaded 11/10 and 11/12). He picked up 4 on 11/10, 4 on 11/15, 4 on 11/17 and 5 on 11/21; 27 remain at the shop allocated to him. Invoice #130 (third truck) is still open.",
       "refs": {
         "quickbooks": [
           "#127",
@@ -35,8 +35,8 @@
       },
       "shopHold": {
         "arrived": 44,
-        "pickedUp": 12,
-        "remaining": 32
+        "pickedUp": 17,
+        "remaining": 27
       }
     },
     {
@@ -255,14 +255,14 @@
   ],
   "shopYard": {
     "available": 22,
-    "onHand": 54,
+    "onHand": 49,
     "allocated": [
       {
         "customer": "Nick O.",
         "id": "MS-MVTFRDEG",
         "arrived": 44,
-        "pickedUp": 12,
-        "remaining": 32,
+        "pickedUp": 17,
+        "remaining": 27,
         "pickups": [
           {
             "date": "2026-11-10",
@@ -275,6 +275,10 @@
           {
             "date": "2026-11-17",
             "qty": 4
+          },
+          {
+            "date": "2026-11-21",
+            "qty": 5
           }
         ]
       },
@@ -324,6 +328,10 @@
       {
         "date": "2026-11-20",
         "text": "New shop truck landed, 22 sacks for sale (pickup or delivery). 54 on the lot: 32 Nick O., 22 available."
+      },
+      {
+        "date": "2026-11-21",
+        "text": "Nick O. picked up 5 sacks. 49 on the lot: 27 Nick O., 22 available."
       }
     ]
   }
