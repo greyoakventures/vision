@@ -15,7 +15,7 @@
         "invoice_sent": "2026-10-29"
       },
       "next": null,
-      "note": "Two truckloads purchased so far (invoices #127 and #129 paid). Both paid trucks are at the Allendale shop (offloaded 11/10 and 11/12). He picked up 4 on 11/10, 4 on 11/15, 4 on 11/17 and 5 on 11/21; 27 remain at the shop allocated to him. Invoice #130 (third truck) is still open.",
+      "note": "Two truckloads purchased so far (invoices #127 and #129 paid). Both paid trucks are at the Allendale shop (offloaded 11/10 and 11/12). Pickups: 4 on 11/10, 4 on 11/15, 4 on 11/17, 5 on 11/21 morning, 5 on 11/21 evening, 5 on 11/22, plus 2 found missing in Nick's 11/23 lot count. 15 remain at the shop allocated to him (Nick's physical count 11/23). Invoice #130 (third truck) is still open.",
       "refs": {
         "quickbooks": [
           "#127",
@@ -35,8 +35,8 @@
       },
       "shopHold": {
         "arrived": 44,
-        "pickedUp": 17,
-        "remaining": 27
+        "pickedUp": 29,
+        "remaining": 15
       }
     },
     {
@@ -255,14 +255,14 @@
   ],
   "shopYard": {
     "available": 22,
-    "onHand": 49,
+    "onHand": 37,
     "allocated": [
       {
         "customer": "Nick O.",
         "id": "MS-MVTFRDEG",
         "arrived": 44,
-        "pickedUp": 17,
-        "remaining": 27,
+        "pickedUp": 29,
+        "remaining": 15,
         "pickups": [
           {
             "date": "2026-11-10",
@@ -279,6 +279,19 @@
           {
             "date": "2026-11-21",
             "qty": 5
+          },
+          {
+            "date": "2026-11-21",
+            "qty": 5
+          },
+          {
+            "date": "2026-11-22",
+            "qty": 5
+          },
+          {
+            "date": "2026-11-23",
+            "qty": 2,
+            "note": "unlogged, found in lot count"
           }
         ]
       },
@@ -332,6 +345,10 @@
       {
         "date": "2026-11-21",
         "text": "Nick O. picked up 5 sacks. 49 on the lot: 27 Nick O., 22 available."
+      },
+      {
+        "date": "2026-11-23",
+        "text": "Nick's lot count: 37 on the lot, 15 Nick O., 22 available. Nick O. picked up 5 Saturday evening and 5 Sunday, plus 2 not logged earlier."
       }
     ]
   }
