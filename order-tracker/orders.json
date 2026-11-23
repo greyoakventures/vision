@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-21T11:51:26-05:00",
+  "updatedAt": "2026-11-23T07:57:23-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -290,8 +290,7 @@
           },
           {
             "date": "2026-11-23",
-            "qty": 2,
-            "note": "unlogged, found in lot count"
+            "qty": 2
           }
         ]
       },
