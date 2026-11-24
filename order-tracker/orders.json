@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-23T07:57:23-05:00",
+  "updatedAt": "2026-11-24T09:10:57-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -251,10 +251,43 @@
         "remaining": 0
       },
       "customerUrl": "https://greyoakventures.github.io/vision/order-tracker/c/a359e38d9b8dd0c9858a654a/"
+    },
+    {
+      "id": "HW-9513",
+      "customer": "Jeff H.",
+      "product": "Purple Power",
+      "sacks": 2,
+      "total": 610,
+      "stage": "invoice_sent",
+      "fulfillment": "pickup",
+      "dates": {
+        "pending": "2026-11-24",
+        "invoice_sent": "2026-11-24",
+        "scheduled": "2026-11-27"
+      },
+      "next": {
+        "label": "Pickup",
+        "date": "2026-11-27"
+      },
+      "note": "2 sacks at $305 (limited shop pickup price on the current 22-sack load). Picking up at the shop Friday 11/27, paying at pickup. Homeworks #9513.",
+      "refs": {
+        "quickbooks": [],
+        "homeworks": [
+          "#9513"
+        ]
+      },
+      "cod": true,
+      "totalNote": "Pay at pickup Friday 11/27",
+      "shopHold": {
+        "arrived": 2,
+        "pickedUp": 0,
+        "remaining": 2
+      },
+      "customerUrl": "https://greyoakventures.github.io/vision/order-tracker/c/77141d3d0037ae3b13daf93e/"
     }
   ],
   "shopYard": {
-    "available": 22,
+    "available": 20,
     "onHand": 37,
     "allocated": [
       {
@@ -306,6 +339,14 @@
             "qty": 3
           }
         ]
+      },
+      {
+        "customer": "Jeff H.",
+        "id": "HW-9513",
+        "arrived": 2,
+        "pickedUp": 0,
+        "remaining": 2,
+        "pickups": []
       }
     ],
     "log": [
@@ -348,6 +389,10 @@
       {
         "date": "2026-11-23",
         "text": "Nick's lot count: 37 on the lot, 15 Nick O., 22 available. Nick O. picked up 5 Saturday evening and 5 Sunday, plus 2 not logged earlier."
+      },
+      {
+        "date": "2026-11-24",
+        "text": "2 available sacks held for Jeff H. (pickup Friday 11/27). 37 on the lot: 15 Nick O., 2 Jeff H., 20 available."
       }
     ]
   }
