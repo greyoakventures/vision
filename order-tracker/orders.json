@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-25T10:20:15-05:00",
+  "updatedAt": "2026-11-25T10:20:34-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -299,10 +299,12 @@
         "delivered": "2026-11-25"
       },
       "next": null,
-      "note": "Walk-in, picked up 3 sacks at the shop 11/25 and paid in full at pickup ($920, about $306.67 a sack). Homeworks invoice to be added.",
+      "note": "Walk-in, picked up 3 sacks at the shop 11/25 and paid in full at pickup ($920, about $306.67 a sack). Homeworks #9515 (payment still to be recorded in Homeworks).",
       "refs": {
         "quickbooks": [],
-        "homeworks": []
+        "homeworks": [
+          "#9515"
+        ]
       },
       "totalNote": "Paid at pickup 11/25",
       "shopHold": {
