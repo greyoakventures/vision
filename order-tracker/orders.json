@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-24T09:10:57-05:00",
+  "updatedAt": "2026-11-25T10:20:15-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -284,11 +284,38 @@
         "remaining": 2
       },
       "customerUrl": "https://greyoakventures.github.io/vision/order-tracker/c/77141d3d0037ae3b13daf93e/"
+    },
+    {
+      "id": "WALKIN-20261125-GARBER",
+      "customer": "Josh G.",
+      "product": "Purple Power",
+      "sacks": 3,
+      "total": 920,
+      "stage": "delivered",
+      "fulfillment": "pickup",
+      "dates": {
+        "pending": "2026-11-25",
+        "paid": "2026-11-25",
+        "delivered": "2026-11-25"
+      },
+      "next": null,
+      "note": "Walk-in, picked up 3 sacks at the shop 11/25 and paid in full at pickup ($920, about $306.67 a sack). Homeworks invoice to be added.",
+      "refs": {
+        "quickbooks": [],
+        "homeworks": []
+      },
+      "totalNote": "Paid at pickup 11/25",
+      "shopHold": {
+        "arrived": 3,
+        "pickedUp": 3,
+        "remaining": 0
+      },
+      "customerUrl": "https://greyoakventures.github.io/vision/order-tracker/c/f94df936c75671cd3471069e/"
     }
   ],
   "shopYard": {
-    "available": 20,
-    "onHand": 37,
+    "available": 17,
+    "onHand": 34,
     "allocated": [
       {
         "customer": "Nick O.",
@@ -347,6 +374,19 @@
         "pickedUp": 0,
         "remaining": 2,
         "pickups": []
+      },
+      {
+        "customer": "Josh G.",
+        "id": "WALKIN-20261125-GARBER",
+        "arrived": 3,
+        "pickedUp": 3,
+        "remaining": 0,
+        "pickups": [
+          {
+            "date": "2026-11-25",
+            "qty": 3
+          }
+        ]
       }
     ],
     "log": [
@@ -393,6 +433,10 @@
       {
         "date": "2026-11-24",
         "text": "2 available sacks held for Jeff H. (pickup Friday 11/27). 37 on the lot: 15 Nick O., 2 Jeff H., 20 available."
+      },
+      {
+        "date": "2026-11-25",
+        "text": "Josh G. bought and picked up 3 sacks. 34 on the lot: 15 Nick O., 2 Jeff H., 17 available."
       }
     ]
   }
