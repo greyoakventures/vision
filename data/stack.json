@@ -28,8 +28,8 @@
    "The truck tracker's first version put customer contacts in the public repo's git history on Nov 2 before it was encrypted. Consider rewriting that history or confirming it's acceptable."
   ]
  },
- "lastUpdated": "2026-11-05T06:39-05:00",
- "lastUpdatedLabel": "Nov 5, 2026, 6:39 AM ET",
+ "lastUpdated": "2026-11-26T06:45-05:00",
+ "lastUpdatedLabel": "Nov 26, 2026, 6:45 AM ET",
  "projects": [
   {
    "id": "michigan-salt",
@@ -37,8 +37,8 @@
    "domain": "michigansalt.com",
    "filled": true,
    "summary": "Truckload ice melt site: quote, request, invoice, ship.",
-   "updated": "2026-11-05T06:39-05:00",
-   "updatedLabel": "Nov 5, 2026, 6:39 AM ET"
+   "updated": "2026-11-26T06:45-05:00",
+   "updatedLabel": "Nov 26, 2026, 6:45 AM ET"
   },
   {
    "id": "grey-oak",
@@ -283,7 +283,7 @@
    ],
    "layer": "hosting",
    "name": "Render web service: michigansalt",
-   "short": "Render \u00b7 site",
+   "short": "Render · site",
    "logo": "render",
    "color": "#46E3B7",
    "status": "live",
@@ -305,7 +305,7 @@
    },
    "links": [],
    "confirmed": true,
-   "notes": "Live customer site. Node web service, Ohio region, starter plan, auto-deploys on every commit to main. Last deploy Oct 31 (1:04 PM ET, Purple Power working temperature corrected to -20\u00b0F). /health reports the lead webhook is configured. Last deploy Nov 4 (about 6:20 PM ET): Purple Power hero video on the home page, plus an iPhone playback fix.",
+   "notes": "Live customer site. Node web service, Ohio region, starter plan, auto-deploys on every commit to main. Last deploy Oct 31 (1:04 PM ET, Purple Power working temperature corrected to -20°F). /health reports the lead webhook is configured. Last deploy Nov 4 (about 6:20 PM ET): Purple Power hero video on the home page, plus an iPhone playback fix.",
    "lastVerified": "2026-11-05",
    "connects": [
     "node-server"
@@ -319,7 +319,7 @@
    ],
    "layer": "hosting",
    "name": "Render web service: michigansalt-sandbox",
-   "short": "Render \u00b7 sandbox",
+   "short": "Render · sandbox",
    "logo": "render",
    "color": "#46E3B7",
    "status": "test",
@@ -353,7 +353,7 @@
    ],
    "layer": "hosting",
    "name": "Render web service: michigansalt-ops",
-   "short": "Render \u00b7 ops",
+   "short": "Render · ops",
    "logo": "render",
    "color": "#46E3B7",
    "status": "live",
@@ -390,7 +390,7 @@
    ],
    "layer": "hosting",
    "name": "Render static site: greyoak-site-sandbox",
-   "short": "Render \u00b7 site",
+   "short": "Render · site",
    "logo": "render",
    "color": "#46E3B7",
    "status": "live",
@@ -461,7 +461,7 @@
    ],
    "layer": "code",
    "name": "GitHub repo: michigansalt",
-   "short": "GitHub \u00b7 site repo",
+   "short": "GitHub · site repo",
    "logo": "github",
    "color": "#353b44",
    "status": "live",
@@ -501,7 +501,7 @@
    ],
    "layer": "code",
    "name": "GitHub repo: michigansalt-ops",
-   "short": "GitHub \u00b7 ops repo",
+   "short": "GitHub · ops repo",
    "logo": "github",
    "color": "#353b44",
    "status": "live",
@@ -1709,7 +1709,7 @@
    ],
    "layer": "code",
    "name": "GitHub: michigansalt repo, greyoak-site-sandbox branch",
-   "short": "GitHub \u00b7 site branch",
+   "short": "GitHub · site branch",
    "logo": "github",
    "color": "#353b44",
    "status": "live",
@@ -1773,7 +1773,7 @@
    ],
    "layer": "code",
    "name": "GitHub: daily-brief repo",
-   "short": "GitHub \u00b7 brief repo",
+   "short": "GitHub · brief repo",
    "logo": "github",
    "color": "#353b44",
    "status": "live",
@@ -1808,7 +1808,7 @@
    ],
    "layer": "hosting",
    "name": "Render static site: daily-brief",
-   "short": "Render \u00b7 daily brief",
+   "short": "Render · daily brief",
    "logo": "render",
    "color": "#46E3B7",
    "status": "live",
@@ -2177,6 +2177,11 @@
  },
  "changes": [
   {
+   "date": "2026-11-22",
+   "project": "michigan-salt",
+   "text": "Live site: delivery quotes now cover Kentucky and Tennessee, and local delivery radius is 100 miles with the trailer fee hidden. Same site server, no new tool or cost"
+  },
+  {
    "date": "2026-11-04",
    "project": "michigan-salt",
    "text": "Live site: Purple Power hero video added to the home page (loads after the page, skipped on slow or data-saver connections), with an iPhone fix for Low Power Mode. No new tool or cost; the same site server now also serves video files"
@@ -2199,7 +2204,7 @@
   {
    "date": "2026-10-31",
    "project": "michigan-salt",
-   "text": "Live site: Purple Power working temperature corrected to -20\u00b0F everywhere"
+   "text": "Live site: Purple Power working temperature corrected to -20°F everywhere"
   },
   {
    "date": "2026-10-31",
