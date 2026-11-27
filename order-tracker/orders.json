@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-25T10:25:43-05:00",
+  "updatedAt": "2026-11-27T08:03:36-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -313,10 +313,40 @@
         "remaining": 0
       },
       "customerUrl": "https://greyoakventures.github.io/vision/order-tracker/c/f94df936c75671cd3471069e/"
+    },
+    {
+      "id": "MS-MWYYC9ZK",
+      "customer": "Cohen",
+      "product": "Purple Power",
+      "sacks": 2,
+      "total": 610,
+      "stage": "pending",
+      "fulfillment": "pickup",
+      "dates": {
+        "pending": "2026-11-27"
+      },
+      "next": {
+        "label": "Pickup",
+        "date": "2026-11-27"
+      },
+      "note": "Website order 11/27 7:24 AM, 2 sacks at $305 for shop pickup, wants them this morning. Homeworks #9522 (unsent). Sacks don't leave until paid.",
+      "refs": {
+        "quickbooks": [],
+        "homeworks": [
+          "#9522"
+        ]
+      },
+      "totalNote": "Awaiting payment",
+      "shopHold": {
+        "arrived": 2,
+        "pickedUp": 0,
+        "remaining": 2
+      },
+      "customerUrl": "https://greyoakventures.github.io/vision/order-tracker/c/13242c664859b724dccba54a/"
     }
   ],
   "shopYard": {
-    "available": 17,
+    "available": 15,
     "onHand": 34,
     "allocated": [
       {
@@ -389,6 +419,14 @@
             "qty": 3
           }
         ]
+      },
+      {
+        "customer": "Cohen",
+        "id": "MS-MWYYC9ZK",
+        "arrived": 2,
+        "pickedUp": 0,
+        "remaining": 2,
+        "pickups": []
       }
     ],
     "log": [
@@ -439,6 +477,10 @@
       {
         "date": "2026-11-25",
         "text": "Josh G. bought and picked up 3 sacks. 34 on the lot: 15 Nick O., 2 Jeff H., 17 available."
+      },
+      {
+        "date": "2026-11-27",
+        "text": "2 available sacks held for Cohen (website order, pickup 11/27 once paid). 34 on the lot: 15 Nick O., 2 Jeff H., 2 Cohen, 15 available."
       }
     ]
   }
