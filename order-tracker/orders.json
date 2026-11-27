@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-27T08:03:36-05:00",
+  "updatedAt": "2026-11-27T10:58:14-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -265,11 +265,8 @@
         "invoice_sent": "2026-11-24",
         "scheduled": "2026-11-27"
       },
-      "next": {
-        "label": "Pickup",
-        "date": "2026-11-27"
-      },
-      "note": "2 sacks at $305 (limited shop pickup price on the current 22-sack load). Picking up at the shop Friday 11/27, paying at pickup. Homeworks #9513.",
+      "next": null,
+      "note": "2 sacks at $305 (limited shop pickup price on the current load). Picked up at the shop 11/27, paying at pickup (payment not yet recorded). Homeworks #9513.",
       "refs": {
         "quickbooks": [],
         "homeworks": [
@@ -277,11 +274,11 @@
         ]
       },
       "cod": true,
-      "totalNote": "Pay at pickup Friday 11/27",
+      "totalNote": "Picked up 11/27, payment to confirm",
       "shopHold": {
         "arrived": 2,
-        "pickedUp": 0,
-        "remaining": 2
+        "pickedUp": 2,
+        "remaining": 0
       },
       "customerUrl": "https://greyoakventures.github.io/vision/order-tracker/c/77141d3d0037ae3b13daf93e/"
     },
@@ -347,7 +344,7 @@
   ],
   "shopYard": {
     "available": 15,
-    "onHand": 34,
+    "onHand": 32,
     "allocated": [
       {
         "customer": "Nick O.",
@@ -403,9 +400,14 @@
         "customer": "Jeff H.",
         "id": "HW-9513",
         "arrived": 2,
-        "pickedUp": 0,
-        "remaining": 2,
-        "pickups": []
+        "pickedUp": 2,
+        "remaining": 0,
+        "pickups": [
+          {
+            "date": "2026-11-27",
+            "qty": 2
+          }
+        ]
       },
       {
         "customer": "Josh G.",
@@ -481,6 +483,10 @@
       {
         "date": "2026-11-27",
         "text": "2 available sacks held for Cohen (website order, pickup 11/27 once paid). 34 on the lot: 15 Nick O., 2 Jeff H., 2 Cohen, 15 available."
+      },
+      {
+        "date": "2026-11-27",
+        "text": "Jeff H. picked up his 2 sacks. 32 on the lot: 15 Nick O., 2 Cohen, 15 available."
       }
     ]
   }
