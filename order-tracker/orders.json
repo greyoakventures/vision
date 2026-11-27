@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-27T10:58:14-05:00",
+  "updatedAt": "2026-11-27T10:58:46-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -315,36 +315,35 @@
       "id": "MS-MWYYC9ZK",
       "customer": "Cohen",
       "product": "Purple Power",
-      "sacks": 2,
-      "total": 610,
-      "stage": "pending",
+      "sacks": 3,
+      "total": 915,
+      "stage": "delivered",
       "fulfillment": "pickup",
       "dates": {
-        "pending": "2026-11-27"
+        "pending": "2026-11-27",
+        "paid": "2026-11-27",
+        "delivered": "2026-11-27"
       },
-      "next": {
-        "label": "Pickup",
-        "date": "2026-11-27"
-      },
-      "note": "Website order 11/27 7:24 AM, 2 sacks at $305 for shop pickup, wants them this morning. Homeworks #9522 (unsent). Sacks don't leave until paid.",
+      "next": null,
+      "note": "Website order 11/27 for 2, took 3 at pickup ($305 each, $915). Paid and picked up at the shop 11/27. Homeworks #9522.",
       "refs": {
         "quickbooks": [],
         "homeworks": [
           "#9522"
         ]
       },
-      "totalNote": "Awaiting payment",
+      "totalNote": "Paid 11/27",
       "shopHold": {
-        "arrived": 2,
-        "pickedUp": 0,
-        "remaining": 2
+        "arrived": 3,
+        "pickedUp": 3,
+        "remaining": 0
       },
       "customerUrl": "https://greyoakventures.github.io/vision/order-tracker/c/13242c664859b724dccba54a/"
     }
   ],
   "shopYard": {
-    "available": 15,
-    "onHand": 32,
+    "available": 14,
+    "onHand": 29,
     "allocated": [
       {
         "customer": "Nick O.",
@@ -425,10 +424,15 @@
       {
         "customer": "Cohen",
         "id": "MS-MWYYC9ZK",
-        "arrived": 2,
-        "pickedUp": 0,
-        "remaining": 2,
-        "pickups": []
+        "arrived": 3,
+        "pickedUp": 3,
+        "remaining": 0,
+        "pickups": [
+          {
+            "date": "2026-11-27",
+            "qty": 3
+          }
+        ]
       }
     ],
     "log": [
@@ -487,6 +491,10 @@
       {
         "date": "2026-11-27",
         "text": "Jeff H. picked up his 2 sacks. 32 on the lot: 15 Nick O., 2 Cohen, 15 available."
+      },
+      {
+        "date": "2026-11-27",
+        "text": "Cohen paid and picked up 3 sacks (1 more than ordered). 29 on the lot: 15 Nick O., 14 available."
       }
     ]
   }
