@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-27T10:58:46-05:00",
+  "updatedAt": "2026-11-27T11:25:20-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -258,23 +258,24 @@
       "product": "Purple Power",
       "sacks": 2,
       "total": 610,
-      "stage": "invoice_sent",
+      "stage": "delivered",
       "fulfillment": "pickup",
       "dates": {
         "pending": "2026-11-24",
         "invoice_sent": "2026-11-24",
-        "scheduled": "2026-11-27"
+        "scheduled": "2026-11-27",
+        "paid": "2026-11-27",
+        "delivered": "2026-11-27"
       },
       "next": null,
-      "note": "2 sacks at $305 (limited shop pickup price on the current load). Picked up at the shop 11/27, paying at pickup (payment not yet recorded). Homeworks #9513.",
+      "note": "2 sacks at $305 (limited shop pickup price on the current load). Paid in full and picked up at the shop 11/27. Homeworks #9513.",
       "refs": {
         "quickbooks": [],
         "homeworks": [
           "#9513"
         ]
       },
-      "cod": true,
-      "totalNote": "Picked up 11/27, payment to confirm",
+      "totalNote": "Paid at pickup 11/27",
       "shopHold": {
         "arrived": 2,
         "pickedUp": 2,
