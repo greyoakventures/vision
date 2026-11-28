@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-27T22:33:07-05:00",
+  "updatedAt": "2026-11-27T22:38:59-05:00",
   "orders": [
     {
       "id": "MS-MVTFRDEG",
@@ -356,10 +356,12 @@
         "label": "Pickup",
         "date": "2026-12-05"
       },
-      "note": "4 sacks at $305 (limited shop pickup price on the current load). Website order 11/27 10:30 PM. 4 sacks held. Homeworks invoice pending (duplicate #9523/#9524 being sorted).",
+      "note": "4 sacks at $305 (limited shop pickup price on the current load). Website order 11/27. 4 sacks held for pickup Sat 12/5. Homeworks #9523.",
       "refs": {
         "quickbooks": [],
-        "homeworks": []
+        "homeworks": [
+          "#9523"
+        ]
       },
       "shopHold": {
         "arrived": 4,
